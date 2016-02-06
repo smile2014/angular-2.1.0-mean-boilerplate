@@ -1,18 +1,13 @@
-// Example model
+'use strict';
+const mongoose = require('mongoose');
 
-var mongoose = require('mongoose'),
-  Schema = mongoose.Schema;
-
-var ArticleSchema = new Schema({
+const Schema = mongoose.Schema;
+const ArticleSchema = new Schema({
   title: String,
   url: String,
   text: String
 });
 
-ArticleSchema.virtual('date')
-  .get(function(){
-    return this._id.getTimestamp();
-  });
+ArticleSchema.virtual('date').get(() => this._id.getTimestamp());
 
 mongoose.model('Article', ArticleSchema);
-

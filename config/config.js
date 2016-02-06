@@ -1,35 +1,38 @@
 'use strict';
-const path = require('path');
-const rootPath = path.normalize(__dirname + '/..');
-const env = process.env.NODE_ENV || 'development';
+const path          = require('path');
+
+const appName       = 'myApp';
+const defaultPort   = 3000;
+const rootPath      = path.normalize(__dirname + '/..');
 
 const config = {
   development: {
     root: rootPath,
     app: {
-      name: 'budgeteer'
+      name: appName
     },
-    port: 3000,
-    db: 'mongodb://localhost/budgeteer-development'
+    port: defaultPort,
+    db: `mongodb://localhost/${appName}-development`
   },
 
   test: {
     root: rootPath,
     app: {
-      name: 'budgeteer'
+      name: appName
     },
-    port: 3000,
-    db: 'mongodb://localhost/budgeteer-test'
+    port: defaultPort,
+    db: `mongodb://localhost/${appName}-test`
   },
 
   production: {
     root: rootPath,
     app: {
-      name: 'budgeteer'
+      name: appName
     },
-    port: 3000,
-    db: 'mongodb://localhost/budgeteer-production'
+    port: defaultPort,
+    db: `mongodb://localhost/${appName}-production`
   }
 };
 
+const env = process.env.NODE_ENV || 'development';
 module.exports = config[env];
