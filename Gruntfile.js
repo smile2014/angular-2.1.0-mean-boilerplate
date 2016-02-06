@@ -38,13 +38,6 @@ module.exports = function (grunt) {
           livereload: reloadPort
         }
       },
-      views: {
-        files: [
-          'app/views/*.jade',
-          'app/views/**/*.jade'
-        ],
-        options: { livereload: reloadPort }
-      }
     }
   });
 
