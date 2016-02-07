@@ -1,6 +1,8 @@
+'use strict';
 const express     = require('express');
-const router      = express.Router();
 const mongoose    = require('mongoose');
+
+const router      = express.Router();
 const Article     = mongoose.model('Article');
 
 module.exports = function (app) {

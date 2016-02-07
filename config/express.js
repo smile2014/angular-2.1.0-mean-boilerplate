@@ -1,19 +1,15 @@
-const express         = require('express');
-const glob            = require('glob');
-
-const favicon         = require('serve-favicon');
-const logger          = require('morgan');
-const cookieParser    = require('cookie-parser');
+'use strict';
 const bodyParser      = require('body-parser');
 const compress        = require('compression');
+const cookieParser    = require('cookie-parser');
+const express         = require('express');
+const favicon         = require('serve-favicon');
+const glob            = require('glob');
+const logger          = require('morgan');
 const methodOverride  = require('method-override');
 
 module.exports = function (app, config) {
-  const env = process.env.NODE_ENV || 'development';
-  app.locals.ENV = env;
-  app.locals.ENV_DEVELOPMENT = env == 'development';
-  
-  // app.use(favicon(config.root + '/public/img/favicon.ico'));
+  app.use(favicon(config.root + '/public/img/favicon.ico'));
   app.use(logger('dev'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({
@@ -35,13 +31,6 @@ module.exports = function (app, config) {
     next(err);
   });
   
-  if (app.get('env') === 'development') {
-    app.use((err, req, res, next) => {
-      res.status(err.status || 500);
-      res.send('Error');
-    });
-  }
-
   app.use((err, req, res, next) => {
     res.status(err.status || 500);
     res.send('Error');
