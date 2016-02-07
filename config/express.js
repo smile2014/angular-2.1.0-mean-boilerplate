@@ -22,7 +22,7 @@ module.exports = function (app, config) {
 
   const controllers = glob.sync(config.root + '/app/controllers/*.js');
   controllers.forEach((controller) => {
-    require(controller)(app)
+    require(controller)(app);
   });
 
   app.use((req, res, next) => {
@@ -33,6 +33,6 @@ module.exports = function (app, config) {
   
   app.use((err, req, res, next) => {
     res.status(err.status || 500);
-    res.send('Error');
+    res.redirect('404.html');
   });
 };

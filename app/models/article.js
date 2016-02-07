@@ -8,7 +8,6 @@ const ArticleSchema = new Schema({
   text: String
 });
 
-ArticleSchema.virtual('date')
-  .get(() => this._id.getTimestamp());
+ArticleSchema.virtual('date').get(() => this._id.getTimestamp());
 
 mongoose.model('Article', ArticleSchema);

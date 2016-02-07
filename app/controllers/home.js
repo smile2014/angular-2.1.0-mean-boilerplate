@@ -6,7 +6,7 @@ const router      = express.Router();
 const Article     = mongoose.model('Article');
 
 module.exports = function (app) {
-  app.use('/', router);
+  app.use('/home', router);
 };
 
 router.get('/', (req, res, next) => {
