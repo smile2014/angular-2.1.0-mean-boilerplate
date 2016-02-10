@@ -40,10 +40,10 @@ function loadControllers(app, config) {
 
 function loadErrorHandlers(app) {
   app.use((req, res) => {
-    res.status(404).sendFile(config.path404);
+    res.status(404).sendFile(`${config.root}/public/404.html`);
   });
   
   app.use((err, req, res, next) => {
-    res.status(500).sendFile(config.path500);
+    res.status(500).sendFile(`${config.root}/public/500.html`);
   });
 }
