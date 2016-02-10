@@ -1,6 +1,7 @@
 'use strict';
 const bodyParser      = require('body-parser');
 const compress        = require('compression');
+const config          = require('./config');
 const cookieParser    = require('cookie-parser');
 const express         = require('express');
 const favicon         = require('serve-favicon');
@@ -38,14 +39,11 @@ function loadControllers(app, config) {
 }
 
 function loadErrorHandlers(app) {
-  app.use((req, res, next) => {
-    const err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+  app.use((req, res) => {
+    res.status(404).sendFile(config.path404);
   });
   
   app.use((err, req, res, next) => {
-    res.status(err.status || 500);
-    res.redirect('404.html');
+    res.status(500).sendFile(config.path500);
   });
 }
