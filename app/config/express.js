@@ -11,7 +11,7 @@ const methodOverride  = require('method-override');
 
 module.exports = function (app, config) {
   loadMiddleware(app, config);
-  loadControllers();
+  loadControllers(app, config);
   loadErrorHandlers(app);
 };
 
@@ -28,9 +28,9 @@ function loadMiddleware(app, config) {
   app.use(methodOverride());
 }
 
-function loadControllers() {
-  const controllers = glob.sync(config.root + '/app/controllers/*.js');
+function loadControllers(app, config) {
   console.log('\nLoading controllers...')
+  const controllers = glob.sync(config.root + '/app/controllers/*.js');
   controllers.forEach((controller) => {
     require(controller)(app);
     console.log(`Loaded controller: ${path.basename(controller)}`);

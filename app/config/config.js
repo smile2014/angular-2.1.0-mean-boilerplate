@@ -3,9 +3,9 @@ const path          = require('path');
 
 const appName       = 'myApp';
 const defaultPort   = 3000;
-const rootPath      = path.normalize(__dirname + '/..');
+const rootPath      = path.normalize(__dirname + '/../..');
 
-const config = {
+let config = {
   development: {
     root: rootPath,
     app: {
@@ -35,4 +35,6 @@ const config = {
 };
 
 const env = process.env.NODE_ENV || 'development';
-module.exports = config[env];
+config = config[env];
+
+module.exports = config;

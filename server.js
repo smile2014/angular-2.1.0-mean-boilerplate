@@ -1,6 +1,7 @@
 'use strict';
-const config        = require('./config/config');
+const config        = require('./app/config/config');
 const express       = require('express');
+const expressUtils  = require('./app/utils/express-utils');
 const glob          = require('glob');
 const mongoose      = require('mongoose');
 const path          = require('path');
@@ -14,11 +15,12 @@ loadRoutes();
 startServer();
 
 function logEnvironment() {
-  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`\nenvironment: ${expressUtils.getNodeEnv()}`);
+  expressUtils.printObject(config);
 }
 
 function connectToMongo() {
-  console.log(`connecting to ${config.db}...`);
+  console.log(`\nconnecting to ${config.db}...`);
   mongoose.connect(config.db);
   const db = mongoose.connection;
   db.on('error', () => {
@@ -28,8 +30,8 @@ function connectToMongo() {
 }
 
 function loadModels() {
-  const models = glob.sync(config.root + '/app/models/*.js');
   console.log('\nLoading models...');
+  const models = glob.sync(config.root + '/app/models/*.js');
   models.forEach((model) => {
     require(model);
     console.log(`Loaded model: ${path.basename(model)}`);
@@ -37,7 +39,7 @@ function loadModels() {
 }
 
 function loadRoutes() {
-  require('./config/express')(app, config);
+  require('./app/config/express')(app, config);
 }
 
 function startServer() {
