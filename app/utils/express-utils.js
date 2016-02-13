@@ -1,9 +1,14 @@
 'use strict';
-exports.getNodeEnv = function () {
+module.exports = {
+  getNodeEnv: getNodeEnv,
+  printObject: printObject
+};
+
+function getNodeEnv() {
   return process.env.NODE_ENV || 'development';
 }
 
-exports.printObject = function (obj) {
+function printObject(obj) {
   for (let property of Object.keys(obj)) {
     let value = obj[property];
     if (typeof value === 'object') {
