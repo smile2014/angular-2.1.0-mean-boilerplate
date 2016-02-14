@@ -6,3 +6,6 @@ node_modules/
 
 # istanbul
 coverage
+
+# compiled typescript
+public/js/**/*.js
