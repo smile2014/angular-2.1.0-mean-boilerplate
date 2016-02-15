@@ -8,4 +8,4 @@ node_modules/
 coverage
 
 # compiled typescript
-public/js/**/*.js
+public/js/
