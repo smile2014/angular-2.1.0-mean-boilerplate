@@ -1,6 +1,4 @@
-/// <reference path="../../node_modules/angular2/typings/browser.d.ts"/>
 import {Component} from 'angular2/core';
-import {bootstrap} from 'angular2/platform/browser';
 
 @Component({
   selector: 'hello-world',
@@ -8,12 +6,10 @@ import {bootstrap} from 'angular2/platform/browser';
   <h1>{{message}}</h1>
   `
 })
-class HelloWorld {
+export class HelloWorld {
   message: string;
   
   constructor() {
     this.message = 'Hello World!';
   }
 }
-
-bootstrap(HelloWorld);
