@@ -25,6 +25,7 @@ module.exports = function (grunt) {
       default: {
         src: ['public/ts/**/*.ts'],
         outDir: 'public/js',
+        watch: ['public/ts/**/*.ts'],
         options: {
           rootDir: 'public/ts',
           fast: 'never',
