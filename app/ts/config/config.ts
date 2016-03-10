@@ -2,7 +2,7 @@ import * as path from 'path';
 
 const appName       = 'myApp';
 const defaultPort   = 3000;
-const rootPath      = path.normalize(__dirname + '/../..');
+const rootPath      = path.normalize(__dirname + '/../../..');
 
 let variables: any = {
   development: {

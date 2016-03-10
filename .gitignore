@@ -10,6 +10,7 @@ coverage
 # compiled typescript
 public/js/
 app/js/
+.tscache/
 
 # tsd
 typings/
