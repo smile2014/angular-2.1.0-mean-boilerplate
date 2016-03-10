@@ -1,14 +1,5 @@
 module.exports = function (grunt) {
   grunt.initConfig({
-    jshint: {
-      files: ['*.js', 'app/**/*.js'],
-      options: {
-        esversion: 6,
-        node: true,
-        mocha: true
-      }
-    },
-    
     mocha_istanbul: {
       coverage: {
         src: 'app/test'
@@ -22,35 +13,35 @@ module.exports = function (grunt) {
     },
     
     ts: {
-      default: {
-        src: ['public/ts/**/*.ts'],
-        outDir: 'public/js',
-        watch: ['public/ts/**/*.ts'],
-        options: {
-          rootDir: 'public/ts',
-          fast: 'never',
-          // from tsconfig.json
-          "target": "es5",
-          "module": "system",
-          "moduleResolution": "node",
-          "sourceMap": true,
-          "emitDecoratorMetadata": true,
-          "experimentalDecorators": true,
-          "removeComments": false,
-          "noImplicitAny": false
-        }
+      backend: {
+        tsconfig: 'app/ts/tsconfig.json'
+      },
+      frontend: {
+        tsconfig: 'public/ts/tsconfig.json'
+      }
+    },
+    
+    watch: {
+      ts: {
+        files: [
+          'app/ts/**/*.ts',
+          'public/ts/**/*.ts'
+        ],
+        tasks: [
+          'ts:backend',
+          'ts:frontend'
+        ]
       }
     }
+    
   });
   
   [
-    'grunt-contrib-jshint',
     'grunt-mocha-test',
     'grunt-mocha-istanbul',
-    'grunt-ts'
+    'grunt-ts',
+    'grunt-contrib-watch'
   ].forEach((task) => grunt.loadNpmTasks(task));
-  
-  grunt.registerTask('default', ['jshint', 'mocha_istanbul']);
   
   grunt.registerTask('cover', ['mocha_istanbul']);
   grunt.registerTask('test', ['mochaTest']);

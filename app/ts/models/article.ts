@@ -1,5 +1,4 @@
-'use strict';
-const mongoose = require('mongoose');
+import * as mongoose from 'mongoose';
 
 const Schema = mongoose.Schema;
 const ArticleSchema = new Schema({

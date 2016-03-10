@@ -9,3 +9,7 @@ coverage
 
 # compiled typescript
 public/js/
+app/js/
+
+# tsd
+typings/

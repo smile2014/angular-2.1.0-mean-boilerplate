@@ -1,11 +1,10 @@
-'use strict';
-const path          = require('path');
+import * as path from 'path';
 
 const appName       = 'myApp';
 const defaultPort   = 3000;
 const rootPath      = path.normalize(__dirname + '/../..');
 
-let config = {
+let variables: any = {
   development: {
     root: rootPath,
     app: {
@@ -35,6 +34,4 @@ let config = {
 };
 
 const env = process.env.NODE_ENV || 'development';
-config = config[env];
-
-module.exports = config;
+export const config = variables[env];
