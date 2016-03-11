@@ -30,7 +30,7 @@ function loadMiddleware(app: express.Express, config: any): void {
 
 function loadControllers(app: express.Express, config: any): void {
   console.log('\nLoading controllers...')
-  const controllers = glob.sync(config.root + '/app/controllers/*.js');
+  const controllers = glob.sync(config.root + '/app/js/controllers/*.js');
   controllers.forEach((controller) => {
     require(controller)(app);
     console.log(`Loaded controller: ${path.basename(controller)}`);
