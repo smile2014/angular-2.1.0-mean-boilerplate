@@ -45,5 +45,5 @@ module.exports = function (grunt) {
   
   grunt.registerTask('cover', ['mocha_istanbul']);
   grunt.registerTask('test', ['mochaTest']);
-  grunt.registerTask('tsc', ['ts']);
+  grunt.registerTask('tsc', ['ts', 'watch:ts']);
 };
