@@ -22,13 +22,19 @@ module.exports = function (grunt) {
     },
     
     watch: {
-      ts: {
+      tsBackend: {
         files: [
-          'app/ts/**/*.ts',
+          'app/ts/**/*.ts'
+        ],
+        tasks: [
+          'ts:backend'
+        ]
+      },
+      tsFrontend: {
+        files: [
           'public/ts/**/*.ts'
         ],
         tasks: [
-          'ts:backend',
           'ts:frontend'
         ]
       }
@@ -45,5 +51,6 @@ module.exports = function (grunt) {
   
   grunt.registerTask('cover', ['mocha_istanbul']);
   grunt.registerTask('test', ['mochaTest']);
-  grunt.registerTask('tsc', ['ts', 'watch:ts']);
+  grunt.registerTask('tscFrontend', ['ts:frontend', 'watch:tsFrontend']);
+  grunt.registerTask('tscBackend', ['ts:backend', 'watch:tsBackend']);
 };
