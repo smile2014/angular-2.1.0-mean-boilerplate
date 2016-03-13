@@ -1,7 +1,7 @@
 /// <reference path="../../typings/tsd.d.ts" />
 import {config} from './config/config';
 import {loadRoutes} from './config/express';
-import {printObject, getNodeEnv} from './utils/express-utils';
+import {getNodeEnv} from './utils/express-utils';
 import * as express from 'express';
 import * as glob from 'glob';
 import * as mongoose from 'mongoose';
@@ -19,7 +19,7 @@ module.exports = function(): void {
 
 function logEnvironment(): void {
   console.log(`\nenvironment: ${getNodeEnv()}`);
-  printObject(config);
+  console.log(JSON.stringify(config, null, ' '));
 }
 
 function connectToMongo(): void {
