@@ -19,7 +19,9 @@ module.exports = function(): void {
 
 function logEnvironment(): void {
   console.log(`\nenvironment: ${getNodeEnv()}`);
-  console.log(JSON.stringify(config, null, ' '));
+  console.dir(config, {
+    colors: true
+  });
 }
 
 function connectToMongo(): void {
@@ -34,7 +36,7 @@ function connectToMongo(): void {
 
 function loadModels(): void {
   console.log('\nLoading models...');
-  const models = glob.sync(config.root + '/app/models/*.js');
+  const models = glob.sync(config.root + '/app/js/models/*.js');
   models.forEach((model) => {
     require(model);
     console.log(`Loaded model: ${path.basename(model)}`);
