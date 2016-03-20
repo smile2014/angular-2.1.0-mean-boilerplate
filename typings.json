@@ -1,0 +1,19 @@
+{
+  "name": "boilerplate-mean",
+  "version": false,
+  "ambientDependencies": {
+    "express": "github:DefinitelyTyped/DefinitelyTyped/express/express.d.ts#0144ad5a74053f2292424847259c4c8e1d0fecaa",
+    "mime": "github:DefinitelyTyped/DefinitelyTyped/mime/mime.d.ts#0144ad5a74053f2292424847259c4c8e1d0fecaa",
+    "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#0144ad5a74053f2292424847259c4c8e1d0fecaa",
+    "body-parser": "github:DefinitelyTyped/DefinitelyTyped/body-parser/body-parser.d.ts#0144ad5a74053f2292424847259c4c8e1d0fecaa",
+    "serve-static": "github:DefinitelyTyped/DefinitelyTyped/serve-static/serve-static.d.ts#0144ad5a74053f2292424847259c4c8e1d0fecaa",
+    "cookie-parser": "github:DefinitelyTyped/DefinitelyTyped/cookie-parser/cookie-parser.d.ts#0144ad5a74053f2292424847259c4c8e1d0fecaa",
+    "serve-favicon": "github:DefinitelyTyped/DefinitelyTyped/serve-favicon/serve-favicon.d.ts#0144ad5a74053f2292424847259c4c8e1d0fecaa",
+    "compression": "github:DefinitelyTyped/DefinitelyTyped/compression/compression.d.ts#0144ad5a74053f2292424847259c4c8e1d0fecaa",
+    "morgan": "github:DefinitelyTyped/DefinitelyTyped/morgan/morgan.d.ts#0144ad5a74053f2292424847259c4c8e1d0fecaa",
+    "minimatch": "github:DefinitelyTyped/DefinitelyTyped/minimatch/minimatch.d.ts#0144ad5a74053f2292424847259c4c8e1d0fecaa",
+    "glob": "github:DefinitelyTyped/DefinitelyTyped/glob/glob.d.ts#0144ad5a74053f2292424847259c4c8e1d0fecaa",
+    "method-override": "github:DefinitelyTyped/DefinitelyTyped/method-override/method-override.d.ts#0144ad5a74053f2292424847259c4c8e1d0fecaa",
+    "mongoose": "github:DefinitelyTyped/DefinitelyTyped/mongoose/mongoose.d.ts#0144ad5a74053f2292424847259c4c8e1d0fecaa"
+  }
+}
