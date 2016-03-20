@@ -1,4 +1,3 @@
-import {config} from './config';
 import * as bodyParser from 'body-parser';
 import * as compress from 'compression';
 import * as cookieParser from 'cookie-parser';
@@ -8,6 +7,7 @@ import * as glob from 'glob';
 import * as logger from 'morgan';
 import * as path from 'path';
 import * as methodOverride from 'method-override';
+import {config} from './express-config';
 
 export function loadRoutes(app: express.Express, config: any): void {
   loadMiddleware(app, config);
@@ -29,7 +29,7 @@ function loadMiddleware(app: express.Express, config: any): void {
 }
 
 function loadControllers(app: express.Express, config: any): void {
-  console.log('\nLoading controllers...')
+  console.log('\nLoading controllers...');
   const controllers = glob.sync(config.root + '/app/js/controllers/*.js');
   controllers.forEach((controller) => {
     require(controller)(app);
@@ -42,12 +42,7 @@ function loadErrorHandlers(app: express.Express): void {
     res.status(404).sendFile(`${config.root}/public/404.html`);
   });
   
-  app.use((
-    err: any, 
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction
-  ) => {
+  app.use((err: any, req: any, res: any, next: any) => {
     res.status(500).sendFile(`${config.root}/public/500.html`);
   });
 }

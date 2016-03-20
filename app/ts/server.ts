@@ -1,15 +1,17 @@
-/// <reference path="../../typings/tsd.d.ts" />
-import {config} from './config/config';
-import {loadRoutes} from './config/express';
-import {getNodeEnv} from './utils/express-utils';
+/// <reference path="../../typings/main.d.ts" />
 import * as express from 'express';
 import * as glob from 'glob';
 import * as mongoose from 'mongoose';
 import * as path from 'path';
+import {config} from './config/express-config';
+import {loadRoutes} from './config/express';
+import {getNodeEnv} from './utils/express-utils';
+import {parseOptions, options} from './config/options';
 
 const app = express();
 
 module.exports = function(): void {
+  parseOptions();
   logEnvironment();
   connectToMongo();
   loadModels();
@@ -18,10 +20,8 @@ module.exports = function(): void {
 }
 
 function logEnvironment(): void {
-  console.log(`\nenvironment: ${getNodeEnv()}`);
-  console.dir(config, {
-    colors: true
-  });
+  console.dir(config, { colors: true });
+  console.dir(options, { colors: true });
 }
 
 function connectToMongo(): void {

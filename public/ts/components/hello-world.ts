@@ -1,4 +1,5 @@
 import {Component} from 'angular2/core';
+import {Http, Response} from 'angular2/http';
 
 @Component({
   selector: 'hello-world',
@@ -9,7 +10,7 @@ import {Component} from 'angular2/core';
 export class HelloWorld {
   message: string;
   
-  constructor() {
+  constructor(public http: Http) {
     this.message = 'Hello World!';
   }
 }

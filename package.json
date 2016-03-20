@@ -1,11 +1,10 @@
 {
-  "name": "generator-simonxca-express",
+  "name": "boilerplate-mean",
   "version": "0.0.1",
-  "private": true,
   "scripts": {
     "start": "node server.js"
   },
-  "description": "Simonxca's Express App",
+  "description": "Mean Boilerplate",
   "dependencies": {
     "angular2": "^2.0.0-beta.6",
     "body-parser": "^1.13.3",
