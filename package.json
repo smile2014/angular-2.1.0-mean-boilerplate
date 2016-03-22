@@ -2,7 +2,8 @@
   "name": "boilerplate-mean",
   "version": "0.0.1",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "grunt tsc && npm start"
   },
   "description": "Mean Boilerplate",
   "dependencies": {
@@ -30,9 +31,11 @@
     "grunt-mocha-istanbul": "^3.0.1",
     "grunt-mocha-test": "^0.12.7",
     "grunt-ts": "^5.3.2",
+    "grunt-tslint": "^3.0.3",
     "istanbul": "^0.4.2",
     "mocha": "^2.4.5",
     "supertest": "^1.2.0",
+    "tslint": "^3.6.0",
     "typescript": "^1.7.5",
     "typings": "^0.6.8"
   }

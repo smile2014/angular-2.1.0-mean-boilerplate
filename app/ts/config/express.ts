@@ -41,7 +41,7 @@ function loadErrorHandlers(app: express.Express): void {
   app.use((req: express.Request, res: express.Response) => {
     res.status(404).sendFile(`${config.root}/public/404.html`);
   });
-  
+
   app.use((err: any, req: any, res: any, next: any) => {
     res.status(500).sendFile(`${config.root}/public/500.html`);
   });

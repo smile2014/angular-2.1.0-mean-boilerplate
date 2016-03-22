@@ -9,7 +9,7 @@ import {Http, Response} from 'angular2/http';
 })
 export class HelloWorld {
   message: string;
-  
+
   constructor(public http: Http) {
     this.message = 'Hello World!';
   }

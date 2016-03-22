@@ -17,7 +17,7 @@ module.exports = function(): void {
   loadModels();
   loadRoutes(app, config);
   startServer();
-}
+};
 
 function logEnvironment(): void {
   console.dir(config, { colors: true });

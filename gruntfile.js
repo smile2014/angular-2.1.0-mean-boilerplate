@@ -5,13 +5,13 @@ module.exports = function (grunt) {
         src: 'app/test'
       }
     },
-    
+
     mochaTest: {
       files: {
         src: ['app/test/*.js']
       }
     },
-    
+
     ts: {
       backend: {
         tsconfig: 'app/ts/tsconfig.json'
@@ -20,7 +20,19 @@ module.exports = function (grunt) {
         tsconfig: 'public/ts/tsconfig.json'
       }
     },
-    
+
+    tslint: {
+      options: {
+        configuration: './tslint.json'
+      },
+      files: {
+        src: [
+          'app/ts/**/*.ts',
+          'public/ts/**/*.ts'
+        ]
+      }
+    },
+
     watch: {
       tsBackend: {
         files: [
@@ -39,18 +51,21 @@ module.exports = function (grunt) {
         ]
       }
     }
-    
+
   });
-  
+
   [
     'grunt-mocha-test',
     'grunt-mocha-istanbul',
     'grunt-ts',
-    'grunt-contrib-watch'
+    'grunt-contrib-watch',
+    'grunt-tslint'
   ].forEach((task) => grunt.loadNpmTasks(task));
-  
+
   grunt.registerTask('cover', ['mocha_istanbul']);
   grunt.registerTask('test', ['mochaTest']);
   grunt.registerTask('tscFrontend', ['ts:frontend', 'watch:tsFrontend']);
-  grunt.registerTask('tscBackend', ['ts:backend', 'watch:tsBackend']);
+  grunt.registerTask('tscBackend', ['ts:fackend', 'watch:tsBackend']);
+  grunt.registerTask('lint', ['tslint']);
+  grunt.registerTask('tsc', ['tslint', 'ts:frontend', 'ts:backend']);
 };
