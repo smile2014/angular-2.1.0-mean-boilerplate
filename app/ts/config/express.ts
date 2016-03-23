@@ -24,7 +24,9 @@ function loadMiddleware(app: express.Express, config: any): void {
   }));
   app.use(cookieParser());
   app.use(compress());
-  app.use(express.static(config.root + '/public'));
+  app.use(express.static(config.root + '/public', {
+    extensions: ['html']
+  }));
   app.use(methodOverride());
 }
 
