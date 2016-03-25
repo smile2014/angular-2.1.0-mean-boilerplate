@@ -28,21 +28,27 @@ module.exports = function (grunt) {
     watch: {
       backend: {
         files: ['app/ts/**/*.ts'],
-        tasks: ['buildBackend'],
+        tasks: [
+          'tslint:backend',
+          'ts:backend'
+        ],
       },
       frontend: {
         files: ['public/ts/**/*.ts'],
-        tasks: ['buildFrontend'],
+        tasks: [
+          'tslint:frontend',
+          'ts:frontend'
+        ],
       }
     }
   });
 
   [
-    'grunt-mocha-test',
-    'grunt-mocha-istanbul',
-    'grunt-ts',
+    'grunt-contrib-clean',
     'grunt-contrib-watch',
-    'grunt-tslint',
-    'grunt-contrib-clean'
+    'grunt-mocha-istanbul',
+    'grunt-mocha-test',
+    'grunt-ts',
+    'grunt-tslint'
   ].forEach((task) => grunt.loadNpmTasks(task));
 };
