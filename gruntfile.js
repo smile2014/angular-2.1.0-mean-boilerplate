@@ -1,57 +1,35 @@
 module.exports = function (grunt) {
   grunt.initConfig({
     mocha_istanbul: {
-      coverage: {
-        src: 'app/test'
-      }
+      coverage: {src: 'app/test'}
     },
 
     mochaTest: {
-      files: {
-        src: ['app/test/*.js']
-      }
+      files: {src: ['app/test/*.js']}
     },
 
+    // typescript compile
     ts: {
-      backend: {
-        tsconfig: 'app/ts/tsconfig.json'
-      },
-      frontend: {
-        tsconfig: 'public/ts/tsconfig.json'
-      }
+      backend: {tsconfig: 'app/ts/tsconfig.json'},
+      frontend: {tsconfig: 'public/ts/tsconfig.json'}
     },
 
     tslint: {
-      options: {
-        configuration: './tslint.json'
-      },
-      files: {
-        src: [
-          'app/ts/**/*.ts',
-          'public/ts/**/*.ts'
-        ]
-      }
+      options: {configuration: './tslint.json'},
+      backend: {src: ['app/ts/**/*.ts']},
+      frontend: {src: ['public/ts/**/*.ts']}
     },
 
     watch: {
-      tsBackend: {
-        files: [
-          'app/ts/**/*.ts'
-        ],
-        tasks: [
-          'ts:backend'
-        ]
+      backend: {
+        files: ['app/ts/**/*.ts'],
+        tasks: ['buildBackend'],
       },
-      tsFrontend: {
-        files: [
-          'public/ts/**/*.ts'
-        ],
-        tasks: [
-          'ts:frontend'
-        ]
+      frontend: {
+        files: ['public/ts/**/*.ts'],
+        tasks: ['buildFrontend'],
       }
     }
-
   });
 
   [
@@ -62,10 +40,13 @@ module.exports = function (grunt) {
     'grunt-tslint'
   ].forEach((task) => grunt.loadNpmTasks(task));
 
+  // testing
   grunt.registerTask('cover', ['mocha_istanbul']);
   grunt.registerTask('test', ['mochaTest']);
-  grunt.registerTask('tscFrontend', ['ts:frontend', 'watch:tsFrontend']);
-  grunt.registerTask('tscBackend', ['ts:fackend', 'watch:tsBackend']);
-  grunt.registerTask('lint', ['tslint']);
-  grunt.registerTask('tsc', ['tslint', 'ts:frontend', 'ts:backend']);
+
+  // build
+  grunt.registerTask('buildBackend', ['tslint:backend', 'ts:backend']);
+  grunt.registerTask('buildFrontend', ['tslint:frontend', 'ts:frontend']);
+  grunt.registerTask('watchBackend', ['watch:backend']);
+  grunt.registerTask('watchFrontend', ['watch:frontend']);
 };

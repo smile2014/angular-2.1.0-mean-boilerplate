@@ -2,8 +2,9 @@
   "name": "boilerplate-mean",
   "version": "0.0.1",
   "scripts": {
-    "start": "node server.js",
-    "build": "grunt tsc && npm start"
+    "build": "grunt buildBackend && grunt buildFrontend",
+    "watch": "(grunt watchBackend &) && (grunt watchFrontend &)",
+    "dev": "npm run build && npm run watch && nodemon server.js --watch app/js/"
   },
   "description": "Mean Boilerplate",
   "dependencies": {
