@@ -6,6 +6,7 @@
     "compression": "github:DefinitelyTyped/DefinitelyTyped/compression/compression.d.ts#0144ad5a74053f2292424847259c4c8e1d0fecaa",
     "cookie-parser": "github:DefinitelyTyped/DefinitelyTyped/cookie-parser/cookie-parser.d.ts#0144ad5a74053f2292424847259c4c8e1d0fecaa",
     "express": "github:DefinitelyTyped/DefinitelyTyped/express/express.d.ts#0144ad5a74053f2292424847259c4c8e1d0fecaa",
+    "formidable": "registry:dt/formidable#1.0.16+20160316155526",
     "glob": "github:DefinitelyTyped/DefinitelyTyped/glob/glob.d.ts#0144ad5a74053f2292424847259c4c8e1d0fecaa",
     "method-override": "github:DefinitelyTyped/DefinitelyTyped/method-override/method-override.d.ts#0144ad5a74053f2292424847259c4c8e1d0fecaa",
     "mime": "github:DefinitelyTyped/DefinitelyTyped/mime/mime.d.ts#0144ad5a74053f2292424847259c4c8e1d0fecaa",

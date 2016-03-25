@@ -15,6 +15,7 @@
     "es6-promise": "^3.1.2",
     "es6-shim": "^0.34.4",
     "express": "^4.13.3",
+    "formidable": "^1.0.17",
     "glob": "^6.0.4",
     "method-override": "^2.3.0",
     "mongoose": "^4.1.2",
