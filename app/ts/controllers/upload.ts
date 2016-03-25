@@ -11,7 +11,6 @@ module.exports = function (app: express.Express) {
 router.post('/', (req, res) => {
   const form = new formidable.IncomingForm();
   form.parse(req, (err, fields, files) => {
-    console.log(files);
     const contents = fs.readFileSync(files['file'].path, 'utf-8');
     return res.send(contents);
   });

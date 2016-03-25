@@ -2,6 +2,7 @@ import * as bodyParser from 'body-parser';
 import * as compress from 'compression';
 import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
+import * as expressSession from 'express-session';
 import * as favicon from 'serve-favicon';
 import * as glob from 'glob';
 import * as logger from 'morgan';
@@ -23,6 +24,11 @@ function loadMiddleware(app: express.Express): void {
     extended: true
   }));
   app.use(cookieParser(config.cookieSecret));
+  app.use(expressSession({
+    resave: false,
+    saveUninitialized: false,
+    secret: config.cookieSecret
+  }));
   app.use(compress());
   app.use(express.static(config.root + '/public', {
     extensions: ['html']

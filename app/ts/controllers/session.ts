@@ -7,6 +7,22 @@ module.exports = function (app: express.Express) {
 };
 
 router.get('/', (req, res) => {
-  res.cookie('hello', 'world');
-  res.send('Session');
+  const session: any = req.session;
+  if (session.views) {
+    session.views++;
+    res.send(`View number: ${session.views}`);
+  } else {
+    session.views = 1;
+    res.send('First View!');
+  }
+});
+
+router.get('/clear', (req, res, next) => {
+  req.session.regenerate((err) => {
+    if (err) {
+      next(err);
+    } else {
+      res.send('Session regenerated.');
+    }
+  });
 });
