@@ -1,14 +1,18 @@
 import * as bodyParser from 'body-parser';
 import * as compress from 'compression';
+import * as connectMongo from 'connect-mongo';
 import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
-import * as expressSession from 'express-session';
 import * as favicon from 'serve-favicon';
 import * as glob from 'glob';
 import * as logger from 'morgan';
 import * as path from 'path';
 import * as methodOverride from 'method-override';
+import * as mongoose from 'mongoose';
+import * as session from 'express-session';
 import {config} from './express-config';
+
+const MongoStore = connectMongo(session);
 
 export function loadRoutes(app: express.Express): void {
   loadMiddleware(app);
@@ -24,10 +28,13 @@ function loadMiddleware(app: express.Express): void {
     extended: true
   }));
   app.use(cookieParser(config.cookieSecret));
-  app.use(expressSession({
+  app.use(session({
     resave: false,
     saveUninitialized: false,
-    secret: config.cookieSecret
+    secret: config.cookieSecret,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection
+    })
   }));
   app.use(compress());
   app.use(express.static(config.root + '/public', {

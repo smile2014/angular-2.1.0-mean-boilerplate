@@ -3,10 +3,12 @@ import * as path from 'path';
 // Modify according to your app
 const appName       = 'myApp';
 const defaultPort   = 3000;
-const cookieSecret  = 'random cookie secret';
+const cookieSecret  = 'secret';
 
 if (cookieSecret === 'random cookie secret') {
-  console.log(`WARNING: change cookie secret in ${__filename}`);
+  const file = path.basename(__filename).replace('.js', '.ts');
+  console.log(`WARNING: change cookie secret in ${file}`);
+  process.exit(0);
 }
 
 export interface Config {
