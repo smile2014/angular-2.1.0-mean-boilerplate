@@ -2,8 +2,8 @@
   "name": "boilerplate-mean",
   "version": "0.0.1",
   "scripts": {
-    "build": "grunt buildBackend && grunt buildFrontend",
-    "watch": "(grunt watchBackend &) && (grunt watchFrontend &)",
+    "build": "grunt clean && grunt tslint && grunt ts",
+    "watch": "(grunt watch:backend &) && (grunt watch:frontend &)",
     "dev": "npm run build && npm run watch && nodemon server.js --watch app/js/"
   },
   "description": "Mean Boilerplate",
@@ -29,6 +29,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-mocha-istanbul": "^3.0.1",
     "grunt-mocha-test": "^0.12.7",

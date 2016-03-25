@@ -1,5 +1,10 @@
 module.exports = function (grunt) {
   grunt.initConfig({
+    clean: [
+      'app/js/',
+      'public/js/'
+    ],
+
     mocha_istanbul: {
       coverage: {src: 'app/test'}
     },
@@ -37,16 +42,7 @@ module.exports = function (grunt) {
     'grunt-mocha-istanbul',
     'grunt-ts',
     'grunt-contrib-watch',
-    'grunt-tslint'
+    'grunt-tslint',
+    'grunt-contrib-clean'
   ].forEach((task) => grunt.loadNpmTasks(task));
-
-  // testing
-  grunt.registerTask('cover', ['mocha_istanbul']);
-  grunt.registerTask('test', ['mochaTest']);
-
-  // build
-  grunt.registerTask('buildBackend', ['tslint:backend', 'ts:backend']);
-  grunt.registerTask('buildFrontend', ['tslint:frontend', 'ts:frontend']);
-  grunt.registerTask('watchBackend', ['watch:backend']);
-  grunt.registerTask('watchFrontend', ['watch:frontend']);
 };
