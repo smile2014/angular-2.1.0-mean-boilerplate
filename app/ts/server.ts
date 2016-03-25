@@ -15,7 +15,7 @@ module.exports = function(): void {
   logEnvironment();
   connectToMongo();
   loadModels();
-  loadRoutes(app, config);
+  loadRoutes(app);
   startServer();
 };
 

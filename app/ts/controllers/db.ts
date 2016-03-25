@@ -5,12 +5,12 @@ const router      = express.Router();
 const Article     = mongoose.model('Article');
 
 module.exports = function (app: express.Express): void {
-  app.use('/home', router);
+  app.use('/db', router);
 };
 
 router.get('/', (req, res, next) => {
   Article.find((err: any, articles: mongoose.Document[]) => {
     if (err) return next(err);
-    res.send('Home');
+    res.send('db');
   });
 });
