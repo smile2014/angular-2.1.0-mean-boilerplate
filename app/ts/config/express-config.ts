@@ -1,13 +1,12 @@
 import * as path from 'path';
-import {credentials} from './credentials';
 
 // Modify according to your app
 const appName       = 'myApp';
 const defaultPort   = 3000;
-const cookieSecret  = credentials.cookieSecret || '';
+const cookieSecret  = '';
 
-if (cookieSecret === '') {
-  console.log(`WARNING: cookieSecret not set in ${__dirname}/credentials.ts.`);
+if (!cookieSecret) {
+  console.error(`WARNING: please set cookie secret in app/ts/config/express-config.ts`);
   process.exit(0);
 }
 
