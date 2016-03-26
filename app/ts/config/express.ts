@@ -16,7 +16,7 @@ const sendevent = require('sendevent');
 const watch = require('watch');
 
 const MongoStore = connectMongo(session);
-const eventstream = sendevent('/eventstream');
+const livereload = sendevent('/livereload');
 
 export function loadRoutes(app: express.Express): void {
   loadMiddleware(app);
@@ -26,14 +26,13 @@ export function loadRoutes(app: express.Express): void {
 
 function loadMiddleware(app: express.Express): void {
   app.use(favicon(config.root + '/public/assets/img/favicon.ico'));
-  app.use(logger('dev'));
-  // browser live reload for development
   if (getNodeEnv() === 'development') {
-    app.use(eventstream);
+    app.use(logger('dev'));
+    app.use(livereload);
     watch.watchTree(`${config.root}/public/`, {
       ignoreDirectoryPattern: /ts/
     }, () => {
-      eventstream.broadcast({action: 'reload'});
+      livereload.broadcast({action: 'reload'});
     });
   }
   app.use(bodyParser.json());

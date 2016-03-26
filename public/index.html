@@ -44,7 +44,7 @@
 
     <!-- Live Reload on File Change -->
     <script>
-      (new window.EventSource('/eventstream')).onmessage = function(message) {
+      (new window.EventSource('/livereload')).onmessage = function(message) {
         try {
           if (JSON.parse(message.data).action === 'reload') window.location.reload();
         } catch (e) {}
