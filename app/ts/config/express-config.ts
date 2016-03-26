@@ -3,12 +3,7 @@ import * as path from 'path';
 // Modify according to your app
 const appName       = 'myApp';
 const defaultPort   = 3000;
-const cookieSecret  = '';
-
-if (!cookieSecret) {
-  console.error(`WARNING: please set cookie secret in app/ts/config/express-config.ts`);
-  process.exit(0);
-}
+const cookieSecret  = 'default';
 
 export interface Config {
   root: string;

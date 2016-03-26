@@ -25,6 +25,8 @@ export function loadRoutes(app: express.Express): void {
 };
 
 function loadMiddleware(app: express.Express): void {
+  // delete after changing the cookie secret
+  app.use(cookieSecretWarning);
   app.use(favicon(config.root + '/public/assets/img/favicon.ico'));
   if (getNodeEnv() === 'development') {
     app.use(logger('dev'));
@@ -53,6 +55,14 @@ function loadMiddleware(app: express.Express): void {
     extensions: ['html']
   }));
   app.use(methodOverride());
+}
+
+// delete after changing the cookie secret
+function cookieSecretWarning(req: any, res: any, next: any) {
+  if (config.cookieSecret === 'default') {
+    console.log('WARNING: change cookie secret in app/ts/config/express-config.ts');
+  }
+  next();
 }
 
 function loadControllers(app: express.Express): void {
