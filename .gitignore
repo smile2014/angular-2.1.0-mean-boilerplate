@@ -2,6 +2,9 @@
 node_modules/
 npm-debug.log
 
+# credentials
+app/ts/config/credentials.ts
+
 # OS X
 .DS_Store
 

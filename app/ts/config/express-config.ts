@@ -1,13 +1,13 @@
 import * as path from 'path';
+import {credentials} from './credentials';
 
 // Modify according to your app
 const appName       = 'myApp';
 const defaultPort   = 3000;
-const cookieSecret  = 'secret';
+const cookieSecret  = credentials.cookieSecret || '';
 
-if (cookieSecret === 'random cookie secret') {
-  const file = path.basename(__filename).replace('.js', '.ts');
-  console.log(`WARNING: change cookie secret in ${file}`);
+if (cookieSecret === '') {
+  console.log(`WARNING: cookieSecret not set in ${credentials.path}`);
   process.exit(0);
 }
 
