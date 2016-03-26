@@ -7,7 +7,7 @@ const defaultPort   = 3000;
 const cookieSecret  = credentials.cookieSecret || '';
 
 if (cookieSecret === '') {
-  console.log(`WARNING: cookieSecret not set in ${__dirname}/credentials.ts`);
+  console.log(`WARNING: cookieSecret not set in ${__dirname}/credentials.ts.`);
   process.exit(0);
 }
 
