@@ -11,8 +11,12 @@ import * as methodOverride from 'method-override';
 import * as mongoose from 'mongoose';
 import * as session from 'express-session';
 import {config} from './express-config';
+import {getNodeEnv} from '../utils/express-utils';
+const sendevent = require('sendevent');
+const watch = require('watch');
 
 const MongoStore = connectMongo(session);
+const eventstream = sendevent('/eventstream');
 
 export function loadRoutes(app: express.Express): void {
   loadMiddleware(app);
@@ -23,6 +27,15 @@ export function loadRoutes(app: express.Express): void {
 function loadMiddleware(app: express.Express): void {
   app.use(favicon(config.root + '/public/assets/img/favicon.ico'));
   app.use(logger('dev'));
+  // browser live reload for development
+  if (getNodeEnv() === 'development') {
+    app.use(eventstream);
+    watch.watchTree(`${config.root}/public/`, {
+      ignoreDirectoryPattern: /ts/
+    }, () => {
+      eventstream.broadcast({action: 'reload'});
+    });
+  }
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({
     extended: true
