@@ -6,6 +6,8 @@ import * as express from 'express';
 import * as favicon from 'serve-favicon';
 import * as glob from 'glob';
 import * as logger from 'morgan';
+import * as passport from 'passport';
+import * as passportLocal from 'passport-local';
 import * as path from 'path';
 import * as methodOverride from 'method-override';
 import * as mongoose from 'mongoose';
@@ -17,6 +19,8 @@ const watch = require('watch');
 
 const MongoStore = connectMongo(session);
 const livereload = sendevent('/livereload');
+const LocalStrategy = passportLocal.Strategy;
+const User = require('../models/user');
 
 export function loadRoutes(app: express.Express): void {
   loadMiddleware(app);
@@ -27,7 +31,6 @@ export function loadRoutes(app: express.Express): void {
 function loadMiddleware(app: express.Express): void {
   // delete after changing the cookie secret
   app.use(cookieSecretWarning);
-  app.use(favicon(config.root + '/public/assets/img/favicon.ico'));
   if (getNodeEnv() === 'development') {
     app.use(logger('dev'));
     app.use(livereload);
@@ -37,19 +40,23 @@ function loadMiddleware(app: express.Express): void {
       livereload.broadcast({action: 'reload'});
     });
   }
+
+  app.use(favicon(config.root + '/public/assets/img/favicon.ico'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({
     extended: true
   }));
   app.use(cookieParser(config.cookieSecret));
+
   app.use(session({
     resave: false,
     saveUninitialized: false,
-    secret: config.cookieSecret,
-    store: new MongoStore({
-      mongooseConnection: mongoose.connection
-    })
+    secret: config.cookieSecret
   }));
+  app.use(passport.initialize());
+  app.use(passport.session());
+  configurePassport();
+
   app.use(compress());
   app.use(express.static(config.root + '/public', {
     extensions: ['html']
@@ -63,6 +70,12 @@ function cookieSecretWarning(req: any, res: any, next: any) {
     console.log('WARNING: change cookie secret in app/ts/config/express-config.ts');
   }
   next();
+}
+
+function configurePassport() {
+  passport.use(new LocalStrategy(User.authenticate()));
+  passport.serializeUser(User.serializeUser());
+  passport.deserializeUser(User.deserializeUser());
 }
 
 function loadControllers(app: express.Express): void {
@@ -80,6 +93,7 @@ function loadErrorHandlers(app: express.Express): void {
   });
 
   app.use((err: any, req: any, res: any, next: any) => {
+    console.log(err);
     res.status(500).sendFile(`${config.root}/public/500.html`);
   });
 }
