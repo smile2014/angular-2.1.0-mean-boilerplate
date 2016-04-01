@@ -1,9 +1,9 @@
 module.exports = function (grunt) {
   grunt.initConfig({
-    clean: [
-      'app/js/',
-      'public/js/'
-    ],
+    clean: {
+      backend: ['app/js/'],
+      frontend: ['public/js/']
+    },
 
     mocha_istanbul: {
       coverage: {src: 'app/test'}

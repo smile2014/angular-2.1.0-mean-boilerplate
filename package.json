@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "scripts": {
     "build": "grunt clean && grunt tslint && grunt ts",
-    "watch": "(grunt watch:backend &) && (grunt watch:frontend &)",
-    "dev": "npm run build && npm run watch && nodemon server.js --watch app/js/"
+    "start": "concurrently \"grunt watch:backend\" \"grunt watch:frontend\" \"nodemon server.js --watch app/js/\"",
+    "dev": "npm run build && npm run start"
   },
   "description": "Mean Boilerplate",
   "dependencies": {
@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "concurrently": "^2.0.0",
     "grunt": "^0.4.5",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
@@ -44,6 +45,7 @@
     "grunt-tslint": "^3.0.3",
     "istanbul": "^0.4.2",
     "mocha": "^2.4.5",
+    "nodemon": "^1.9.1",
     "supertest": "^1.2.0",
     "tslint": "^3.6.0",
     "typescript": "^1.7.5",
