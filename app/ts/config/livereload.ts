@@ -7,11 +7,9 @@ const livereload = sendevent('/livereload');
 
 module.exports = function (app: express.Express) {
   app.use(livereload);
-  // directories to watch for changes
-  [
-    `${config.root}/public/`,
-    `${config.root}/public/js`
-  ].forEach((dir: string) => {
-    watch.watchTree(dir, () => livereload.broadcast({action: 'reload'}));
+  watch.watchTree(`${config.root}/public/`, {
+    ignoreDirectoryPattern: /public\/ts/
+  }, () => {
+    livereload.broadcast({action: 'reload'});
   });
 };
