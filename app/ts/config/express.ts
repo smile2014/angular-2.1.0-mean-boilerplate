@@ -14,11 +14,8 @@ import * as mongoose from 'mongoose';
 import * as session from 'express-session';
 import {config} from './express-config';
 import {getNodeEnv} from '../utils/express-utils';
-const sendevent = require('sendevent');
-const watch = require('watch');
 
 const MongoStore = connectMongo(session);
-const livereload = sendevent('/livereload');
 const LocalStrategy = passportLocal.Strategy;
 const User = require('../models/user');
 
@@ -33,12 +30,7 @@ function loadMiddleware(app: express.Express): void {
   app.use(cookieSecretWarning);
   if (getNodeEnv() === 'development') {
     app.use(logger('dev'));
-    app.use(livereload);
-    watch.watchTree(`${config.root}/public/`, {
-      ignoreDirectoryPattern: /ts/
-    }, () => {
-      livereload.broadcast({action: 'reload'});
-    });
+    require('./livereload')(app);
   }
 
   app.use(favicon(config.root + '/public/assets/img/favicon.ico'));
