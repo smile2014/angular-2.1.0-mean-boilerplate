@@ -43,7 +43,7 @@ export class HelloWorld {
         const res = response.json();
         this.message = 'Hello ' + res.username;
       } catch (err) {
-        this.message = 'Not Logged In.';
+        this.message = 'Not Logged In!';
       }
     });
   }
