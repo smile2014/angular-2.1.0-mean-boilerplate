@@ -1,50 +1,27 @@
 import {Component} from 'angular2/core';
 import {Http, Response} from 'angular2/http';
+import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router';
+import {HomePage} from './home-page';
+import {UploadPage} from './upload-page';
+import {LoginPage} from './login-page';
 
+@RouteConfig([
+  {path: '/', name: 'root', redirectTo: ['/Home']},
+  {path: '/home', name: 'Home', component: HomePage},
+  {path: '/upload', name: 'Upload', component: UploadPage},
+  {path: '/login', name: 'Login', component: LoginPage}
+])
 @Component({
   selector: 'hello-world',
+  directives: [ROUTER_DIRECTIVES],
   template: `
-  <h1>{{message}}</h1>
-  <form ngNoForm
-        method="POST"
-        action="/upload"
-        enctype="multipart/form-data">
-    <input name="name" type="text" />
-    <input name="file" type="file" />
-    <button type="submit">Upload</button>
-  </form>
-  <form ngNoForm
-        method="POST"
-        action="/signup">
-    <input name="username" type="text" placeholder="username" />
-    <input name="password" type="password" placeholder="password" />
-    <button type="submit">Signup</button>
-  </form>
-  <form ngNoForm
-        method="POST"
-        action="/login">
-    <input name="username" type="text" placeholder="username" />
-    <input name="password" type="password" placeholder="password" />
-    <button type="submit">Login</button>
-  </form>
-  <form ngNoForm
-        method="GET"
-        action="/logout">
-    <button type="submit">Logout</button>
-  </form>
+  <nav>
+    <a [routerLink]="['/Home']">Home</a>
+    <a [routerLink]="['/Upload']">Upload</a>
+    <a [routerLink]="['/Login']">Login</a>
+    <a href="/logout">Logout</a>
+  </nav>
+  <router-outlet></router-outlet>
   `
 })
-export class HelloWorld {
-  message: string;
-
-  constructor(public http: Http) {
-    this.http.get('/user').subscribe((response: Response) => {
-      try {
-        const res = response.json();
-        this.message = 'Hello ' + res.username;
-      } catch (err) {
-        this.message = 'Not Logged In!';
-      }
-    });
-  }
-}
+export class HelloWorld {}

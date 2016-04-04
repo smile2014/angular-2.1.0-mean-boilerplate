@@ -8,7 +8,7 @@ const livereload = sendevent('/livereload');
 module.exports = function (app: express.Express) {
   app.use(livereload);
   watch.watchTree(`${config.root}/public/`, {
-    ignoreDirectoryPattern: /public\/ts/
+    ignoreDirectoryPattern: /public[/\\]ts/
   }, () => {
     livereload.broadcast({action: 'reload'});
   });
