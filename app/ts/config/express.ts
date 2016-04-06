@@ -63,6 +63,8 @@ function loadMiddleware(app: express.Express): void {
 function cookieSecretWarning(req: any, res: any, next: any) {
   if (config.cookieSecret === 'default') {
     console.log('WARNING: change cookie secret in app/ts/config/express-config.ts');
+  } else {
+    console.log('Remember to remove cookieSecretWarning() from app/ts/config/express.ts');
   }
   next();
 }
