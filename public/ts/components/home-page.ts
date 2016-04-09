@@ -1,5 +1,6 @@
 import {Component} from 'angular2/core';
 import {Http, Response} from 'angular2/http';
+import {AuthService} from '../services/auth-service';
 
 @Component({
   selector: 'home-page',
@@ -10,15 +11,13 @@ import {Http, Response} from 'angular2/http';
 export class HomePage {
   message: string;
 
-  constructor(public http: Http) {
-    this.http.get('/user').subscribe((response: Response) => {
-      try {
-        const res = response.json();
-        this.message = `Hello ${res.username}!`;
-      } catch (err) {
-        this.message = 'Not Logged In.';
+  constructor(public http: Http, private authService: AuthService) {
+    this.authService.getUsername().subscribe(username => {
+      if (username) {
+        this.message = `Hello ${username}`;
+      } else {
+        this.message = `Not Logged In.`;
       }
     });
   }
-
 }

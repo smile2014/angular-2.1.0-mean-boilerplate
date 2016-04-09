@@ -17,11 +17,6 @@ import {Component} from 'angular2/core';
     <input name="password" type="password" placeholder="password" />
     <button type="submit">Login</button>
   </form>
-  <form ngNoForm
-        method="GET"
-        action="/logout">
-    <button type="submit">Logout</button>
-  </form>
   `
 })
 export class LoginPage {}
