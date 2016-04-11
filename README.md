@@ -26,8 +26,11 @@ with all the essentials.
 
 ### To Run
 You will need latest versions of:
-1. npm (get it by installing [node](https://nodejs.org/en/download/))
-2. typings (run `npm install -g typings`)
+
+- npm (get it by installing [node](https://nodejs.org/en/download/))
+- typings (run `npm install -g typings`)
+
+In the terminal:
 
 1. `git clone https://github.com/simonxca/mean2-playground`
 2. `cd` into the repo
