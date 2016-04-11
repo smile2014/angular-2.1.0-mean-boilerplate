@@ -1,4 +1,4 @@
-## MEAN2 Playground
+# MEAN2 Playground
 Sample MongoDB, ExpressJS, Angular2, NodeJS application
 with all the essentials.
 
@@ -12,19 +12,19 @@ with all the essentials.
 - Cookies & Sessions
 
 **Angular2**
+- SystemJS Bundling
 - Client-Side Routing
 - Http Module
-- Lifecycle Hooks
+- FormBuilder and Validators
 - Dependency Injection
-- FormBuilder
-- Directives
+- Lifecycle Hooks
 
 **Workspace**
 - Build Automation with Grunt & npm
 - File Change Detection
 - Live Reload for Frontend & Backend
 
-#### To Run
+### To Run
 You will need latest versions of:
 - npm (get it by installing [node](https://nodejs.org/en/download/))
 - typings (run `npm install -g typings`)
