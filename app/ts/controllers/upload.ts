@@ -5,7 +5,7 @@ import * as fs from 'fs';
 const router = express.Router();
 
 module.exports = function (app: express.Express) {
-  app.use('/upload', router);
+  app.use('/api/upload', router);
 };
 
 router.post('/', (req, res) => {

@@ -1,5 +1,5 @@
 import {Injectable, Injector, provide} from 'angular2/core';
-import {Http, HTTP_PROVIDERS} from 'angular2/http';
+import {Http, Headers} from 'angular2/http';
 import {Observable} from 'rxjs/Observable';
 
 import 'rxjs/Rx';
@@ -9,7 +9,7 @@ export class AuthService {
   constructor(public http: Http) {}
 
   getUsername(): Observable<any> {
-    return this.http.get('/user').map(res => {
+    return this.http.get('/api/user').map(res => {
       try {
         return res.json().username;
       } catch (err) {
@@ -19,11 +19,35 @@ export class AuthService {
   }
 
   isLoggedIn(): Promise<boolean> {
-    const authService = Injector.resolveAndCreate([
-      HTTP_PROVIDERS,
-      AuthService
-    ]).get(AuthService);
-    return authService.getUsername().toPromise(Promise);
+    return this.getUsername().toPromise(Promise);
+  }
+
+  authenticate(url: string, credentials: {
+    username: string,
+    password: string
+  }): Observable<any> {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http.post(
+      url,
+      JSON.stringify(credentials),
+      {headers: headers}
+    ).map(res => res.json());
+  }
+
+  signup(credentials: {
+    username: string,
+    password: string
+  }): Observable<any> {
+    return this.authenticate('/api/signup', credentials);
+  }
+
+  login(credentials: {
+    username: string,
+    password: string
+  }): Observable<any> {
+    return this.authenticate('/api/login', credentials);
   }
 }
 

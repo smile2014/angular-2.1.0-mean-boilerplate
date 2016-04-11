@@ -3,7 +3,6 @@ import {Http, Response} from 'angular2/http';
 import {AuthService} from '../services/auth-service';
 
 @Component({
-  selector: 'home-page',
   template: `
   <div>
     <h1>{{message}}</h1>
@@ -13,18 +12,11 @@ import {AuthService} from '../services/auth-service';
 export class HomePage implements OnInit {
   message: string;
 
-  constructor(
-    public http: Http,
-    private authService: AuthService
-  ) {}
+  constructor(public http: Http, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.authService.getUsername().subscribe(username => {
-      if (username) {
-        this.message = `Hello ${username}`;
-      } else {
-        this.message = `Not Logged In.`;
-      }
+      this.message = username ? `Hello ${username}` : 'Not logged in.';
     });
   }
 }

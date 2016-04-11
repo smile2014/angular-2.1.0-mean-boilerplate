@@ -85,6 +85,7 @@ function loadControllers(app: express.Express): void {
 }
 
 function loadErrorHandlers(app: express.Express): void {
+  // uses client-side routing, send index.html
   app.use((req: express.Request, res: express.Response) => {
     console.log(`GET ${req.originalUrl} 404`);
     res.status(200).sendFile(`${config.root}/public/index.html`);

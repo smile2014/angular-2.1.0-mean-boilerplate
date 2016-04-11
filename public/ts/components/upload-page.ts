@@ -6,9 +6,8 @@ import {Component} from 'angular2/core';
   <div>
     <form ngNoForm
           method="POST"
-          action="/upload"
+          action="/api/upload"
           enctype="multipart/form-data">
-      <input name="name" type="text" />
       <input name="file" type="file" />
       <button type="submit">Upload</button>
     </form>

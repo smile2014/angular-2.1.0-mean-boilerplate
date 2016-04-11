@@ -13,7 +13,7 @@ with all the essentials.
 
 **Angular2**
 - SystemJS Bundling
-- Client-Side Routing
+- Client-Side Routing & PathLocationStrategy
 - Http Requests
 - FormBuilder and Validators
 - Dependency Injection
@@ -36,5 +36,5 @@ In the terminal:
 2. `cd` into the repo
 3. `npm install`
 4. `typings install`
-5. Make sure MongoDB is running (if not, run `mongod`).
+5. Make sure mongoDB is running (if not, run `mongod`).
 6. `npm run dev`
