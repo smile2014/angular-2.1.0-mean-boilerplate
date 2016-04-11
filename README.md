@@ -21,8 +21,7 @@ with all the essentials.
 
 **Workflow**
 - Build Automation with Grunt & npm
-- File Change Detection
-- Live Reload for Frontend & Backend
+- Change Detection and Reload for Browser & Server
 
 ### To Run
 You will need latest versions of:
