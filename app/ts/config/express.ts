@@ -92,6 +92,6 @@ function loadErrorHandlers(app: express.Express): void {
 
   app.use((err: any, req: any, res: any, next: any) => {
     console.log(err);
-    res.status(500).sendFile(`${config.root}/public/500.html`);
+    res.status(500).end();
   });
 }

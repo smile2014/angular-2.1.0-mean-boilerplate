@@ -5,8 +5,10 @@ import {ROUTER_DIRECTIVES, RouteParams} from 'angular2/router';
   selector: 'id-page',
   directives: [ROUTER_DIRECTIVES],
   template: `
-  <h1 *ngIf="validArticle(id)">This is article #{{id}}</h1>
-  <h1 *ngIf="!validArticle(id)">Not a valid article number</h1>
+  <div>
+    <h1 *ngIf="validArticle(id)">This is article #{{id}}</h1>
+    <h1 *ngIf="!validArticle(id)">Not a valid article number</h1>
+  </div>
   `
 })
 export class ArticleIdPage {

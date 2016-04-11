@@ -11,12 +11,14 @@ import {ArticleIdPage} from './id-page';
   selector: 'article-page',
   directives: [ROUTER_DIRECTIVES],
   template: `
-  <h1>Article Section:</h1>
-  <a [routerLink]="['ById', {id: 1}]">Article 1</a>
-  <a [routerLink]="['ById', {id: 2}]">Article 2</a>
-  <a [routerLink]="['ById', {id: 3}]">Article 3</a>
+  <div>
+    <h1>Article Section:</h1>
+    <a [routerLink]="['ById', {id: 1}]">Article 1</a>
+    <a [routerLink]="['ById', {id: 2}]">Article 2</a>
+    <a [routerLink]="['ById', {id: 3}]">Article 3</a>
 
-  <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
+  <div>
   `
 })
 @RouteConfig([

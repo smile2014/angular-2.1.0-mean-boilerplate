@@ -5,7 +5,9 @@ import {ROUTER_DIRECTIVES, Router} from 'angular2/router';
   selector: 'main-page',
   directives: [ROUTER_DIRECTIVES],
   template: `
-  <h1>Select an article.</h1>
+  <div>
+    <h1>Select an article.</h1>
+  </div>
   `
 })
 export class ArticleMainPage {

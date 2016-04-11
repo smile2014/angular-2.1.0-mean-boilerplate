@@ -11,7 +11,9 @@ const authService: AuthService = Injector.resolveAndCreate([
 @Component({
   selector: 'profile-page',
   template: `
-  <h1>Profile page for {{username}}</h1>
+  <div>
+    <h1>Profile page for {{username}}</h1>
+  </div>
   `
 })
 @CanActivate((next, prev) => authService.isLoggedIn())

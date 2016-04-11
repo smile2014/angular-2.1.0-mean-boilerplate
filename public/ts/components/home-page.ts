@@ -5,7 +5,9 @@ import {AuthService} from '../services/auth-service';
 @Component({
   selector: 'home-page',
   template: `
-  <h1>{{message}}</h1>
+  <div>
+    <h1>{{message}}</h1>
+  </div>
   `
 })
 export class HomePage implements OnInit {
