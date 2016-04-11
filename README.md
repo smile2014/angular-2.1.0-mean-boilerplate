@@ -28,6 +28,7 @@ You will need latest versions of:
 
 - npm (get it by installing [node](https://nodejs.org/en/download/))
 - typings (run `npm install -g typings`)
+- mongoDB (get it [here](https://www.mongodb.org/downloads#production))
 
 In the terminal:
 
@@ -35,4 +36,5 @@ In the terminal:
 2. `cd` into the repo
 3. `npm install`
 4. `typings install`
-5. `npm run dev`
+5. Make sure MongoDB is running (if not, run `mongod`).
+6. `npm run dev`
