@@ -1,4 +1,4 @@
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
 import {Http, Response} from 'angular2/http';
 import {AuthService} from '../services/auth-service';
 
@@ -8,10 +8,15 @@ import {AuthService} from '../services/auth-service';
   <h1>{{message}}</h1>
   `
 })
-export class HomePage {
+export class HomePage implements OnInit {
   message: string;
 
-  constructor(public http: Http, private authService: AuthService) {
+  constructor(
+    public http: Http,
+    private authService: AuthService
+  ) {}
+
+  ngOnInit(): void {
     this.authService.getUsername().subscribe(username => {
       if (username) {
         this.message = `Hello ${username}`;

@@ -54,7 +54,7 @@ function loadMiddleware(app: express.Express): void {
 
   app.use(compress());
   app.use(express.static(config.root + '/public', {
-    extensions: ['html']
+    extensions: ['html', 'js']
   }));
   app.use(methodOverride());
 }
@@ -86,7 +86,8 @@ function loadControllers(app: express.Express): void {
 
 function loadErrorHandlers(app: express.Express): void {
   app.use((req: express.Request, res: express.Response) => {
-    res.status(404).sendFile(`${config.root}/public/404.html`);
+    console.log(`GET ${req.originalUrl} 404`);
+    res.status(200).sendFile(`${config.root}/public/index.html`);
   });
 
   app.use((err: any, req: any, res: any, next: any) => {

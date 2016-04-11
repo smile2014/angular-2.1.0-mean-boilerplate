@@ -7,8 +7,6 @@ import {
   ROUTER_PROVIDERS,
   APP_BASE_HREF,
   ROUTER_PRIMARY_COMPONENT,
-  LocationStrategy,
-  HashLocationStrategy
 } from 'angular2/router';
 import {AUTH_PROVIDERS} from './services/auth-service';
 
@@ -17,6 +15,5 @@ bootstrap(HelloWorld, [
   ROUTER_PROVIDERS,
   AUTH_PROVIDERS,
   provide(APP_BASE_HREF, {useValue: '/'}),
-  provide(ROUTER_PRIMARY_COMPONENT, {useValue: HelloWorld}),
-  provide(LocationStrategy, {useClass: HashLocationStrategy})
+  provide(ROUTER_PRIMARY_COMPONENT, {useValue: HelloWorld})
 ]);

@@ -1,4 +1,4 @@
-import {Component, Injector} from 'angular2/core';
+import {Component, Injector, OnInit} from 'angular2/core';
 import {CanActivate} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {AuthService} from '../services/auth-service';
@@ -15,11 +15,13 @@ const authService: AuthService = Injector.resolveAndCreate([
   `
 })
 @CanActivate((next, prev) => authService.isLoggedIn())
-export class ProfilePage {
+export class ProfilePage implements OnInit {
   username: string;
 
-  constructor(private authService: AuthService) {
-    authService.getUsername().subscribe(username => {
+  constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.authService.getUsername().subscribe(username => {
       this.username = username;
     });
   }
