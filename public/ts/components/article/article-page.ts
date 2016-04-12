@@ -1,14 +1,12 @@
 import {Component} from 'angular2/core';
 import {
   ROUTER_DIRECTIVES,
-  RouteParams,
   RouteConfig
 } from 'angular2/router';
 import {ArticleMainPage} from './main-page';
 import {ArticleIdPage} from './id-page';
 
 @Component({
-  selector: 'article-page',
   directives: [ROUTER_DIRECTIVES],
   template: `
   <div>
