@@ -1,28 +1,28 @@
 import {Component} from 'angular2/core';
-import {ROUTER_DIRECTIVES, RouteParams} from 'angular2/router';
+import {ROUTER_DIRECTIVES, RouteParams, Router, CanActivate} from 'angular2/router';
+import {router} from '../../main';
 
 @Component({
   directives: [ROUTER_DIRECTIVES],
   template: `
   <div>
-    <h1 *ngIf="validArticle(id)">This is article #{{id}}</h1>
-    <h1 *ngIf="!validArticle(id)">Not a valid article number</h1>
+    <h1>This is article #{{id}}</h1>
   </div>
   `
+})
+@CanActivate((next, prev) => {
+  const id = parseInt(next.params['id'], 10);
+  if (id && id >= 1 && id <= 3) {
+    return true;
+  } else {
+    router.navigateByUrl('/404', true);
+    return false;
+  }
 })
 export class ArticleIdPage {
   id: string;
 
-  constructor(public routeParams: RouteParams) {
+  constructor(public routeParams: RouteParams, public router: Router) {
     this.id = routeParams.get('id');
-  }
-
-  validArticle(id: string) {
-    try {
-      const _id = parseInt(id, 10);
-      return _id >= 1 && _id <= 3;
-    } catch (err) {
-      return false;
-    }
   }
 }
