@@ -37,7 +37,7 @@ import {AuthService} from '../services/auth-service';
   </div>
   `
 })
-export class LoginPage {
+export class LoginRoute {
   signupForm: ControlGroup;
   loginForm: ControlGroup;
   message: string;

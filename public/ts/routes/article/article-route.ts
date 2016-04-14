@@ -3,8 +3,8 @@ import {
   ROUTER_DIRECTIVES,
   RouteConfig
 } from 'angular2/router';
-import {ArticleMainPage} from './main-page';
-import {ArticleIdPage} from './id-page';
+import {ArticleMainRoute} from './main-route';
+import {ArticleIdRoute} from './id-route';
 
 @Component({
   directives: [ROUTER_DIRECTIVES],
@@ -20,7 +20,7 @@ import {ArticleIdPage} from './id-page';
   `
 })
 @RouteConfig([
-  {path: '/main', name: 'Main', component: ArticleMainPage, useAsDefault: true},
-  {path: '/:id', name: 'ById', component: ArticleIdPage}
+  {path: '/main', name: 'Main', component: ArticleMainRoute, useAsDefault: true},
+  {path: '/:id', name: 'ById', component: ArticleIdRoute}
 ])
-export class ArticlePage {}
+export class ArticleRoute {}

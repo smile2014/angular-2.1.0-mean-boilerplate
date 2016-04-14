@@ -17,7 +17,7 @@ const authService: AuthService = Injector.resolveAndCreate([
   `
 })
 @CanActivate((next, prev) => authService.isLoggedIn())
-export class ProfilePage implements OnInit {
+export class ProfileRoute implements OnInit {
   username: string;
 
   constructor(private authService: AuthService) {}

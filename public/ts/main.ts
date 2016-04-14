@@ -11,12 +11,12 @@ import {
   Router
 } from 'angular2/router';
 import {AUTH_PROVIDERS} from './services/auth-service';
-import {HomePage} from './components/home-page';
-import {UploadPage} from './components/upload-page';
-import {LoginPage} from './components/login-page';
-import {ProfilePage} from './components/profile-page';
-import {ArticlePage} from './components/article/article-page';
-import {ErrorPage} from './components/error-page';
+import {HomeRoute} from './routes/home-route';
+import {UploadRoute} from './routes/upload-route';
+import {LoginRoute} from './routes/login-route';
+import {ProfileRoute} from './routes/profile-route';
+import {ArticleRoute} from './routes/article/article-route';
+import {ErrorRoute} from './routes/error-route';
 
 @Component({
   selector: 'hello-world',
@@ -34,12 +34,12 @@ import {ErrorPage} from './components/error-page';
   `
 })
 @RouteConfig([
-  {path: '/', name: 'Home', component: HomePage, useAsDefault: true},
-  {path: '/upload', name: 'Upload', component: UploadPage},
-  {path: '/login', name: 'Login', component: LoginPage},
-  {path: '/profile', name: 'Profile', component: ProfilePage},
-  {path: '/article/...', name: 'Article', component: ArticlePage},
-  {path: '/*path', name: 'Error', component: ErrorPage}
+  {path: '/', name: 'Home', component: HomeRoute, useAsDefault: true},
+  {path: '/upload', name: 'Upload', component: UploadRoute},
+  {path: '/login', name: 'Login', component: LoginRoute},
+  {path: '/profile', name: 'Profile', component: ProfileRoute},
+  {path: '/article/...', name: 'Article', component: ArticleRoute},
+  {path: '/*path', name: 'Error', component: ErrorRoute}
 ])
 class HelloWorld {}
 

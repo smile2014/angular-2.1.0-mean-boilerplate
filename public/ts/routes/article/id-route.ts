@@ -19,7 +19,7 @@ import {router} from '../../main';
     return false;
   }
 })
-export class ArticleIdPage {
+export class ArticleIdRoute {
   id: string;
 
   constructor(public routeParams: RouteParams, public router: Router) {
