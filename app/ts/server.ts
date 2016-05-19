@@ -20,6 +20,7 @@ module.exports = function(): void {
 };
 
 function logEnvironment(): void {
+  console.log(getNodeEnv());
   console.dir(config, { colors: true });
   console.dir(options, { colors: true });
 }
