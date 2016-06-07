@@ -1,4 +1,4 @@
-/// <reference path="../../typings/main.d.ts" />
+/// <reference path="../../typings-modules/backend.d.ts" />
 import * as express from 'express';
 import * as glob from 'glob';
 import * as mongoose from 'mongoose';

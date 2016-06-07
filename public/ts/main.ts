@@ -1,4 +1,5 @@
 /// <reference path="../../node_modules/angular2/typings/browser.d.ts" />
+/// <reference path="../../typings-modules/frontend.d.ts" />
 import {bootstrap} from 'angular2/platform/browser';
 import {Component, provide, Injector} from 'angular2/core';
 import {HTTP_PROVIDERS} from 'angular2/http';
