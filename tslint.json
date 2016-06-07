@@ -5,7 +5,6 @@
     "indent": [true, 2],
     "label-position": true,
     "label-undefined": true,
-    "max-line-length": [true, 140],
     "no-arg": true,
     "no-bitwise": true,
     "no-console": [true,
@@ -26,7 +25,6 @@
     "one-line": [true,
         "check-open-brace",
         "check-catch",
-        "check-else",
         "check-whitespace"
     ],
     "radix": true,
