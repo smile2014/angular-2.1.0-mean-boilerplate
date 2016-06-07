@@ -6,6 +6,7 @@ import {Tester} from './tester';
 
 @Component({
   directives: [Greeting, Tester],
+  styleUrls: [`css/angular2/routes/home-route.css`],
   template: `
   <div>
     <greeting></greeting>

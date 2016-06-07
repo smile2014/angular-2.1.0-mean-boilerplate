@@ -1,11 +1,11 @@
 /// <reference path="../../node_modules/angular2/typings/browser.d.ts" />
 /// <reference path="../../typings-modules/frontend.d.ts" />
 import {bootstrap} from 'angular2/platform/browser';
+import {APP_BASE_HREF} from 'angular2/platform/common';
 import {Component, provide, Injector} from 'angular2/core';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {
   ROUTER_PROVIDERS,
-  APP_BASE_HREF,
   ROUTER_PRIMARY_COMPONENT,
   ROUTER_DIRECTIVES,
   RouteConfig,
@@ -22,6 +22,7 @@ import {ErrorRoute} from './routes/error-route';
 @Component({
   selector: 'hello-world',
   directives: [ROUTER_DIRECTIVES],
+  styleUrls: [`css/angular2/main.css`],
   template: `
   <nav>
     <a [routerLink]="['Home']">Home</a>

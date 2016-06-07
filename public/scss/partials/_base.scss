@@ -1,0 +1,16 @@
+@import 'modules/colors';
+@import 'modules/fonts';
+
+a {
+  cursor: pointer;
+}
+
+body {
+  background-color: $global-background-color;
+  color: $primary-font-color;
+  font-family: $primary-font-stack;
+}
+
+.btn:active {
+  transition: none;
+}

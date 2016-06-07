@@ -1,0 +1,8 @@
+@mixin vendor-prefix($name, $argument) {
+  // scss-lint:disable VendorPrefix
+  -webkit-#{$name}: #{$argument};
+  -ms-#{$name}: #{$argument};
+  -moz-#{$name}: #{$argument};
+  -o-#{$name}: #{$argument};
+  #{$name}: #{$argument};
+}

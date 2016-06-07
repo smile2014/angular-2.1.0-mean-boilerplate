@@ -17,5 +17,8 @@ app/js/
 .tscache/
 **/.baseDir.ts
 
+# sass
+public/css/
+
 # tsd
 typings/

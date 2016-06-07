@@ -1,4 +1,4 @@
-import {Component, Injector, OnInit} from 'angular2/core';
+import {Component, OnInit, ReflectiveInjector as Injector} from 'angular2/core';
 import {CanActivate} from 'angular2/router';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {AuthService} from '../services/auth-service';

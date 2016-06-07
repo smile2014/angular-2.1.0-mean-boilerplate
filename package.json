@@ -2,9 +2,14 @@
   "name": "boilerplate-mean",
   "version": "0.0.1",
   "scripts": {
-    "build": "grunt clean && grunt tslint && grunt ts",
-    "start": "concurrently \"grunt watch:backend\" \"grunt watch:frontend\" \"nodemon server.js --watch app/js/\"",
-    "dev": "npm run build && npm run start"
+    "build-backend": "grunt clean:backend && grunt tslint:backend && grunt ts:backend",
+    "build-frontend": "grunt clean:frontend && grunt tslint:frontend && grunt ts:frontend",
+    "build-sass": "grunt clean:sass && grunt scsslint:main && grunt sass:main",
+    "build": "concurrently \"npm run build-backend\" \"npm run build-frontend\" \"npm run build-sass\"",
+    "sequential-build": "grunt clean && grunt tslint && grunt scsslint && grunt ts && grunt sass:main",
+    "start": "concurrently \"grunt watch:backend\" \"grunt watch:frontend\" \"grunt watch:sass\" \"nodemon server.js --watch app/js/\"",
+    "dev": "npm run build && npm run start",
+    "prod": "grunt clean && grunt ts && grunt sass:main && node server.js"
   },
   "description": "Mean Boilerplate",
   "dependencies": {
@@ -36,15 +41,19 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "concurrently": "^2.0.0",
+    "fs-readdir-recursive": "^1.0.0",
     "grunt": "^0.4.5",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-mocha-istanbul": "^3.0.1",
     "grunt-mocha-test": "^0.12.7",
+    "grunt-sass": "^1.2.0",
+    "grunt-scss-lint": "^0.3.8",
     "grunt-ts": "^5.3.2",
     "grunt-tslint": "^3.0.3",
     "istanbul": "^0.4.2",
     "mocha": "^2.4.5",
+    "node-sass": "^3.7.0",
     "nodemon": "^1.9.1",
     "supertest": "^1.2.0",
     "tslint": "^3.6.0",

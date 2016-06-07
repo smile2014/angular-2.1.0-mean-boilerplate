@@ -1,0 +1,15 @@
+linters:
+  Comment:
+    enabled: false
+
+  FinalNewline:
+    enabled: false
+
+  HexNotation:
+    style: uppercase
+
+  ImportantRule:
+    enabled: false
+
+  LeadingZero:
+    enabled: false
