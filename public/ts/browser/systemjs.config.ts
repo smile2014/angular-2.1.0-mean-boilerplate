@@ -9,7 +9,7 @@ declare const System: any;
 
   const packages: any = {
     'js':                 { main: 'main.js', defaultExtension: 'js' },
-    'rxjs':               { main: 'bundles/rxjs.umd.js' }
+    'rxjs':               { defaultExtension: 'js' }
   };
 
   [
