@@ -1,12 +1,12 @@
-import {Component} from 'angular2/core';
-import {Http} from 'angular2/http';
+import {Component} from '@angular/core';
+import {Http} from '@angular/http';
 import {
   FormBuilder,
   ControlGroup,
   Validators,
   FORM_DIRECTIVES
-} from 'angular2/common';
-import {Router} from 'angular2/router';
+} from '@angular/common';
+import {Router} from '@angular/router-deprecated';
 import {AuthService} from '../services/auth-service';
 
 @Component({

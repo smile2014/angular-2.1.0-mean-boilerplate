@@ -1,16 +1,16 @@
-/// <reference path="../../node_modules/angular2/typings/browser.d.ts" />
 /// <reference path="../../typings-modules/frontend.d.ts" />
-import {bootstrap} from 'angular2/platform/browser';
-import {APP_BASE_HREF} from 'angular2/platform/common';
-import {Component, provide, Injector} from 'angular2/core';
-import {HTTP_PROVIDERS} from 'angular2/http';
+import {bootstrap} from '@angular/platform-browser-dynamic';
+import {APP_BASE_HREF} from '@angular/common';
+import {Component, provide, Injector} from '@angular/core';
+import {HTTP_PROVIDERS} from '@angular/http';
 import {
   ROUTER_PROVIDERS,
   ROUTER_PRIMARY_COMPONENT,
   ROUTER_DIRECTIVES,
   RouteConfig,
   Router
-} from 'angular2/router';
+} from '@angular/router-deprecated';
+
 import {AUTH_PROVIDERS} from './services/auth-service';
 import {HomeRoute} from './routes/home-route';
 import {UploadRoute} from './routes/upload-route';
@@ -54,6 +54,7 @@ bootstrap(HelloWorld, [
   AUTH_PROVIDERS,
   provide(APP_BASE_HREF, {useValue: '/'}),
   provide(ROUTER_PRIMARY_COMPONENT, {useValue: HelloWorld})
+
 ]).then((ref) => {
   injector = ref.injector;
   router = injector.get(Router);

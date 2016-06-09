@@ -1,9 +1,9 @@
-import {Component, OnInit, ReflectiveInjector as Injector} from 'angular2/core';
-import {CanActivate} from 'angular2/router';
-import {HTTP_PROVIDERS} from 'angular2/http';
+import {Component, OnInit, ReflectiveInjector as Injector} from '@angular/core';
+import {CanActivate} from '@angular/router-deprecated';
+import {HTTP_PROVIDERS} from '@angular/http';
 import {AuthService} from '../services/auth-service';
 
-const authService: AuthService = Injector.resolveAndCreate([
+const auth: AuthService = Injector.resolveAndCreate([
   HTTP_PROVIDERS,
   AuthService
 ]).get(AuthService);
@@ -16,7 +16,7 @@ const authService: AuthService = Injector.resolveAndCreate([
   </div>
   `
 })
-@CanActivate((next, prev) => authService.isLoggedIn())
+@CanActivate((next, prev) => auth.isLoggedIn())
 export class ProfileRoute implements OnInit {
   username: string;
 

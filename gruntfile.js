@@ -60,12 +60,17 @@ module.exports = function (grunt) {
     },
 
     tslint: {
-      options: {configuration: './tslint.json'},
-      backend: {src: ['app/ts/**/*.ts']},
-      frontend: {src: [
-        'public/ts/**/*.ts',
-        '!public/ts/vendor/**/*.ts'
-      ]}
+      backend: {
+        src: ['app/ts/**/*.ts'],
+        options: {configuration: './app/ts/tslint.json'}
+      },
+      frontend: {
+        src: [
+          'public/ts/**/*.ts',
+          '!public/ts/vendor/**/*.ts'
+        ],
+        options: {configuration: './public/ts/tslint.json'}
+      }
     },
 
     watch: {

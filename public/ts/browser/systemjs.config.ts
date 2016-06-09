@@ -1,0 +1,41 @@
+// SystemJS Config
+declare const System: any;
+(function(global: any) {
+
+  const map = {
+    '@angular':           'node_modules/@angular',
+    'rxjs':               'node_modules/rxjs'
+  };
+
+  const packages: any = {
+    'js':                 { main: 'main.js', defaultExtension: 'js' },
+    'rxjs':               { main: 'bundles/rxjs.umd.js' }
+  };
+
+  [
+    'common',
+    'compiler',
+    'core',
+    'http',
+    'platform-browser',
+    'platform-browser-dynamic',
+    'router',
+    'router-deprecated',
+  ].forEach(packageName => {
+
+    let mainFile: string = `${packageName}.umd.js`;
+    if (System.packageWithIndex) mainFile = 'index.js';
+
+    packages[`@angular/${packageName}`] = {
+      main:               mainFile,
+      defaultExtension:   'js'
+    };
+  });
+
+  const config = {
+    map: map,
+    packages: packages
+  };
+
+  System.config(config);
+})(this);

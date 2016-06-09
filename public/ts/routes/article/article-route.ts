@@ -1,8 +1,8 @@
-import {Component} from 'angular2/core';
+import {Component} from '@angular/core';
 import {
   ROUTER_DIRECTIVES,
   RouteConfig
-} from 'angular2/router';
+} from '@angular/router-deprecated';
 import {ArticleMainRoute} from './main-route';
 import {ArticleIdRoute} from './id-route';
 

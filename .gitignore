@@ -18,7 +18,12 @@ app/js/
 **/.baseDir.ts
 
 # sass
+/.sass-cache
 public/css/
 
 # tsd
 typings/
+tscommand*
+
+# vscode
+.vscode/

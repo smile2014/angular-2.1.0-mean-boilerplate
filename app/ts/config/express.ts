@@ -53,6 +53,9 @@ function loadMiddleware(app: express.Express): void {
   configurePassport();
 
   app.use(compress());
+  app.use('/node_modules', express.static(config.root + '/node_modules', {
+    extensions: ['js']
+  }));
   app.use(express.static(config.root + '/public', {
     extensions: ['html', 'js']
   }));

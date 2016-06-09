@@ -1,5 +1,5 @@
-import {Component, OnInit} from 'angular2/core';
-import {Http} from 'angular2/http';
+import {Component, OnInit} from '@angular/core';
+import {Http} from '@angular/http';
 import {AuthService} from '../services/auth-service';
 import {Greeting} from '../components/greeting';
 import {Tester} from './tester';
