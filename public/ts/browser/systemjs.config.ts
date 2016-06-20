@@ -23,12 +23,11 @@ declare const System: any;
     'router-deprecated',
   ].forEach(packageName => {
 
-    let mainFile: string = `${packageName}.umd.js`;
+    let mainFile: string = `/bundles/${packageName}.umd.js`;
     if (System.packageWithIndex) mainFile = 'index.js';
 
     packages[`@angular/${packageName}`] = {
-      main:               mainFile,
-      defaultExtension:   'js'
+      main:               mainFile
     };
   });
 
