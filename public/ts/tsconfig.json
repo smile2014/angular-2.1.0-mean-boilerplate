@@ -9,6 +9,7 @@
     "experimentalDecorators": true,
     "removeComments": true,
     "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true,
     "outDir": "../js"
   },
   "exclude": [
