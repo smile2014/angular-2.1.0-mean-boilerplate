@@ -5,13 +5,12 @@ import * as mongoose from 'mongoose';
 import * as path from 'path';
 import {config} from './config/express-config';
 import {loadRoutes} from './config/express';
-import {getNodeEnv} from './utils/express-utils';
-import {parseOptions, options} from './config/options';
+import {getNodeEnv, isMocha} from './utils/express-utils';
+import {options} from './config/options';
 
 const app = express();
 
 module.exports = function(): void {
-  parseOptions();
   logEnvironment();
   connectToMongo();
   loadModels();
@@ -20,12 +19,18 @@ module.exports = function(): void {
 };
 
 function logEnvironment(): void {
-  console.log(getNodeEnv());
+  console.log('Config:');
   console.dir(config, { colors: true });
+  console.log('Options');
   console.dir(options, { colors: true });
 }
 
 function connectToMongo(): void {
+  // when using mocha, don't allow connecting to anything other than test db
+  if (isMocha() && getNodeEnv() !== 'test') {
+    throw new Error('Warning running mocha on non-testing database.');
+  }
+
   console.log(`\nconnecting to ${config.db}...`);
   mongoose.connect(config.db);
   const db = mongoose.connection;

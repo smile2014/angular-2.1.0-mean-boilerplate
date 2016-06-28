@@ -1,45 +1,13 @@
 import * as path from 'path';
+import {getNodeEnv} from '../utils/express-utils';
 
-// Modify according to your app
-const appName       = 'myApp';
-const defaultPort   = 3000;
-const cookieSecret  = 'default';
+const appName = 'playlistHeaven';
 
-export interface Config {
-  root: string;
-  appName: string;
-  cookieSecret: string;
-  port: number;
-  db: string;
-}
-
-const rootPath = path.normalize(__dirname + '/../../..');
-
-let variables: {[env: string]: Config} = {
-  development: {
-    root: rootPath,
-    appName: appName,
-    cookieSecret: cookieSecret,
-    port: defaultPort,
-    db: `mongodb://localhost/${appName}-development`
-  },
-
-  test: {
-    root: rootPath,
-    appName: appName,
-    cookieSecret: cookieSecret,
-    port: defaultPort,
-    db: `mongodb://localhost/${appName}-test`
-  },
-
-  production: {
-    root: rootPath,
-    appName: appName,
-    cookieSecret: cookieSecret,
-    port: defaultPort,
-    db: `mongodb://localhost/${appName}-production`
-  }
+export let config = {
+  cookieSecret: 'default',
+  tokenSecret: 'default',
+  db: `mongodb://localhost/${appName}-${getNodeEnv()}`,
+  env: getNodeEnv(),
+  port: 3000,
+  root: path.normalize(__dirname + '/../../..')
 };
-
-const env = process.env.NODE_ENV || 'development';
-export const config: Config = variables[env];

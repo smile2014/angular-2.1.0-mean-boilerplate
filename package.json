@@ -7,6 +7,13 @@
     "build-sass": "grunt clean:sass && grunt scsslint:main && grunt sass:main",
     "build": "concurrently \"npm run build-backend\" \"npm run build-frontend\" \"npm run build-sass\"",
     "sequential-build": "grunt clean && grunt tslint && grunt scsslint && grunt ts && grunt sass:main",
+
+    "test-backend": "grunt ts:backend && grunt mochaTest:backend --env=test",
+    "test": "npm run test-backend",
+
+    "cover-backend": "grunt ts:backend && grunt mocha_istanbul:backend --env=test",
+    "cover": "npm run cover-backend",
+
     "start": "concurrently \"grunt watch:backend\" \"grunt watch:frontend\" \"grunt watch:sass\" \"nodemon server.js --watch app/js/\"",
     "dev": "npm run build && npm run start",
     "prod": "grunt clean && grunt ts && grunt sass:main && node server.js"

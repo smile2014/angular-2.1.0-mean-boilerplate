@@ -27,7 +27,7 @@ export function loadRoutes(app: express.Express): void {
 
 function loadMiddleware(app: express.Express): void {
   // delete after changing the cookie secret
-  app.use(cookieSecretWarning);
+  app.use(secretWarning);
   if (getNodeEnv() === 'development') {
     app.use(logger('dev'));
     require('./livereload')(app);
@@ -63,11 +63,17 @@ function loadMiddleware(app: express.Express): void {
 }
 
 // delete after changing the cookie secret
-function cookieSecretWarning(req: any, res: any, next: any) {
+function secretWarning(req: any, res: any, next: any) {
   if (config.cookieSecret === 'default') {
     console.log('WARNING: change cookie secret in app/ts/config/express-config.ts');
   } else {
-    console.log('Remember to remove cookieSecretWarning() from app/ts/config/express.ts');
+    console.log('Remember to remove secretWarning() from app/ts/config/express.ts');
+  }
+
+  if (config.tokenSecret === 'default') {
+    console.log('WARNING: change token secret in app/ts/config/express-config.ts');
+  } else {
+    console.log('Remember to remove secretWarning() from app/ts/config/express.ts');
   }
   next();
 }
