@@ -26,6 +26,10 @@ export function loadRoutes(app: express.Express): void {
 };
 
 function loadMiddleware(app: express.Express): void {
+  app.use(compress());
+  app.use(favicon(config.root + '/public/assets/img/favicon.ico'));
+  app.use(methodOverride());
+
   // delete after changing the cookie secret
   app.use(secretWarning);
   if (getNodeEnv() === 'development') {
@@ -33,7 +37,6 @@ function loadMiddleware(app: express.Express): void {
     require('./livereload')(app);
   }
 
-  app.use(favicon(config.root + '/public/assets/img/favicon.ico'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({
     extended: true
@@ -52,14 +55,12 @@ function loadMiddleware(app: express.Express): void {
   app.use(passport.session());
   configurePassport();
 
-  app.use(compress());
   app.use('/node_modules', express.static(config.root + '/node_modules', {
     extensions: ['js']
   }));
   app.use(express.static(config.root + '/public', {
     extensions: ['html', 'js']
   }));
-  app.use(methodOverride());
 }
 
 // delete after changing the cookie secret
