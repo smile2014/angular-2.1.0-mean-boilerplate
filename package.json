@@ -34,6 +34,7 @@
     "zone.js": "^0.6.12"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "codelyzer": "0.0.26",
     "concurrently": "^2.0.0",
     "fs-readdir-recursive": "^1.0.0",

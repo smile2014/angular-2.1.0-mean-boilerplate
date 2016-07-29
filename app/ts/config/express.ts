@@ -14,14 +14,14 @@ import * as mongoose from 'mongoose';
 import * as session from 'express-session';
 import {config} from './express-config';
 import {getNodeEnv} from '../utils/express-utils';
+import {User} from '../models/user';
 
 const MongoStore = connectMongo(session);
 const LocalStrategy = passportLocal.Strategy;
-const User = require('../models/user');
 
 export function loadRoutes(app: express.Express): void {
   loadMiddleware(app);
-  loadControllers(app);
+  loadApi(app);
   loadErrorHandlers(app);
 };
 
@@ -85,12 +85,12 @@ function configurePassport() {
   passport.deserializeUser(User.deserializeUser());
 }
 
-function loadControllers(app: express.Express): void {
-  console.log('\nLoading controllers...');
-  const controllers = glob.sync(config.root + '/app/js/controllers/*.js');
-  controllers.forEach((controller) => {
-    require(controller)(app);
-    console.log(`Loaded controller: ${path.basename(controller)}`);
+function loadApi(app: express.Express): void {
+  console.log('\nLoading API...');
+  const routes = glob.sync(config.root + '/app/js/api/*.js');
+  routes.forEach((route) => {
+    require(route)(app);
+    console.log(`Loaded route: ${path.basename(route)}`);
   });
 }
 
