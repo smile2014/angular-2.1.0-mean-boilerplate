@@ -16,6 +16,7 @@ declare const System: any;
     'common',
     'compiler',
     'core',
+    'forms',
     'http',
     'platform-browser',
     'platform-browser-dynamic',

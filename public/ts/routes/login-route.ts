@@ -1,61 +1,34 @@
 import {Component} from '@angular/core';
 import {Http} from '@angular/http';
-import {
-  FormBuilder,
-  ControlGroup,
-  Validators,
-  FORM_DIRECTIVES
-} from '@angular/common';
 import {Router} from '@angular/router-deprecated';
 import {AuthService} from '../services/auth-service';
 
 @Component({
-  directives: [FORM_DIRECTIVES],
   template: `
   <div>
-    <form [ngFormModel]="signupForm"
-          (ngSubmit)="signup(signupForm.value)">
-      <input [ngFormControl]="signupForm.controls['username']"
-             type="text"
-             placeholder="username" />
-      <input [ngFormControl]="signupForm.controls['password']"
-             type="password"
-             placeholder="password" />
-      <button type="submit">Signup</button>
-    </form>
-    <form [ngFormModel]="loginForm"
-          (ngSubmit)="login(loginForm.value)">
-      <input [ngFormControl]="loginForm.controls['username']"
-             type="text"
-             placeholder="username" />
-      <input [ngFormControl]="loginForm.controls['password']"
-             type="password"
-             placeholder="password" />
-      <button type="submit">Login</button>
+    <form #f="ngForm"
+          (ngSubmit)="onSubmit(f.value)">
+      <input type="text" id="skuInput" placeholder="SKU"
+             name="sku" ngModel>
+      <button type="submit">Submit</button>
     </form>
     <h1>{{message}}</h1>
   </div>
   `
 })
 export class LoginRoute {
-  signupForm: ControlGroup;
-  loginForm: ControlGroup;
   message: string;
 
   constructor(
-    public fb: FormBuilder,
     public http: Http,
     public router: Router,
     private authService: AuthService
   ) {
-    this.signupForm = fb.group({
-      'username': ['', Validators.required],
-      'password': ['', Validators.required]
-    });
-    this.loginForm = fb.group({
-      'username': ['', Validators.required],
-      'password': ['', Validators.required]
-    });
+
+  }
+
+  onSubmit(form: any): void {
+    console.log(form);
   }
 
   signup(credentials: any): void {

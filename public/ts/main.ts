@@ -2,6 +2,7 @@
 import {bootstrap} from '@angular/platform-browser-dynamic';
 import {APP_BASE_HREF} from '@angular/common';
 import {Component, provide, Injector} from '@angular/core';
+import {provideForms, disableDeprecatedForms} from '@angular/forms';
 import {HTTP_PROVIDERS} from '@angular/http';
 import {
   ROUTER_PROVIDERS,
@@ -30,7 +31,7 @@ import {ErrorRoute} from './routes/error-route';
     <a [routerLink]="['Login']">Login</a>
     <a [routerLink]="['Profile']">Profile</a>
     <a [routerLink]="['Article']">Articles</a>
-    <a href="/api/logout">Logout</a>
+    <a href="/api/v1/logout">Logout</a>
   </nav>
   <router-outlet></router-outlet>
   `
@@ -49,13 +50,15 @@ export let injector: Injector;
 export let router: Router;
 
 bootstrap(HelloWorld, [
+  disableDeprecatedForms(),
+  provideForms(),
   HTTP_PROVIDERS,
   ROUTER_PROVIDERS,
   AUTH_PROVIDERS,
   provide(APP_BASE_HREF, {useValue: '/'}),
-  provide(ROUTER_PRIMARY_COMPONENT, {useValue: HelloWorld})
+  provide(ROUTER_PRIMARY_COMPONENT, {useValue: HelloWorld}),
 
 ]).then((ref) => {
   injector = ref.injector;
   router = injector.get(Router);
-});
+}).catch(err => console.error(err));

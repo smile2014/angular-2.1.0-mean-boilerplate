@@ -30,7 +30,7 @@ export const signup: express.RequestHandler = function (req, res, next) {
 
   User.register(new User({username: username}), password, (err: any, user: any) => {
     if (err) {
-      res.status(400).json({err: 'That user already exists.'});
+      res.status(200).json({err: 'That user already exists.'});
     } else {
       passport.authenticate('local')(req, res, () => {
         req.session.save((err) => {

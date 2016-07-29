@@ -10,7 +10,7 @@ export class AuthService {
   constructor(public http: Http) {}
 
   getUsername(): Observable<any> {
-    return this.http.get('/api/user').map(res => {
+    return this.http.get('/api/v1/user').map(res => {
       try {
         return res.json().username;
       } catch (err) {
@@ -41,14 +41,14 @@ export class AuthService {
     username: string,
     password: string
   }): Observable<any> {
-    return this.authenticate('/api/signup', credentials);
+    return this.authenticate('/api/v1/signup', credentials);
   }
 
   login(credentials: {
     username: string,
     password: string
   }): Observable<any> {
-    return this.authenticate('/api/login', credentials);
+    return this.authenticate('/api/v1/login', credentials);
   }
 }
 
