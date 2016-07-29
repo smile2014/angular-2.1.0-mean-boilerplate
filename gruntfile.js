@@ -1,11 +1,14 @@
+const minimist = require('minimist');
+const path = require('path');
 const readRecursive = require('fs-readdir-recursive');
 
-// return an object of individual scss files to compile
-function getSassCompileFiles() {
-  var result = {};
+const options = minimist(process.argv.slice(2));
 
-  // main sass file
-  result['public/css/main.css'] = 'public/scss/main.scss';
+// return an object of individual scss files to compile
+function getScssCompileFiles() {
+  var result = {
+    'public/css/main.css': 'public/scss/main.scss'
+  };
 
   // sass files for angular2 components
   var SCSS_DIR = 'public/scss/angular2/';
@@ -18,25 +21,77 @@ function getSassCompileFiles() {
   return result;
 }
 
+function getMochaTestFiles() {
+  var files = options.files || '**/*.js'
+  var dir = options.dir || 'app/js/test';
+  return files.split(';').map(function (file) {
+    if (!file.endsWith('.js')) file += '.js';
+    return path.normalize(dir + '/' + file);
+  });
+}
+
 module.exports = function (grunt) {
   grunt.initConfig({
     clean: {
       backend: ['app/js/'],
       frontend: ['public/js/'],
-      sass: ['public/css']
+      scss: ['public/css']
+    },
+
+    concurrent: {
+      build: {
+        tasks: [
+          'build-backend',
+          'build-frontend',
+          'build-scss'
+        ],
+        options: {
+          logConcurrentOutput: true
+        }
+      },
+      start: {
+        tasks: [
+          'watch:backend',
+          'watch:frontend',
+          'watch:scss',
+          'exec:start-nodemon'
+        ],
+        options: {
+          logConcurrentOutput: true
+        }
+      }
+    },
+
+    exec: {
+      'start-nodemon': 'nodemon server.js --watch app/js/',
+      'start-node': 'node server.js'
     },
 
     mocha_istanbul: {
-      coverage: {src: 'app/test'}
+      backend: {
+        src: getMochaTestFiles(),
+        options: {
+          includes: [
+            'app/js/controllers/**/*.js',
+            'app/js/models/**/*.js'
+          ],
+          mochaOptions: ['--env=test']
+        }
+      }
     },
 
-    mochaTest: {
-      files: {src: ['app/test/*.js']}
+    mochacli: {
+      backend: {
+        src: getMochaTestFiles(),
+        options: {
+          flags: ['--env=test']
+        }
+      }
     },
 
     sass: {
       main: {
-        files: getSassCompileFiles(),
+        files: getScssCompileFiles(),
         options: {
           includePaths: ['public/scss/']
         }
@@ -46,7 +101,7 @@ module.exports = function (grunt) {
     scsslint: {
       main: [
         'public/scss/**/*.scss',
-        '!puiblc/scss/vendor/*.scss'
+        '!public/scss/vendor/*.scss'
       ],
       options: {
         config: 'public/scss/scss-lint.yml'
@@ -88,7 +143,7 @@ module.exports = function (grunt) {
           'ts:frontend'
         ],
       },
-      sass: {
+      scss: {
         files: ['public/scss/**/*.scss'],
         tasks: [
           'scsslint',
@@ -99,13 +154,81 @@ module.exports = function (grunt) {
   });
 
   [
+    'grunt-concurrent',
     'grunt-contrib-clean',
     'grunt-contrib-watch',
+    'grunt-exec',
     'grunt-mocha-istanbul',
-    'grunt-mocha-test',
+    'grunt-mocha-cli',
     'grunt-sass',
     'grunt-scss-lint',
     'grunt-ts',
     'grunt-tslint'
   ].forEach((task) => grunt.loadNpmTasks(task));
+
+
+  /************************
+   * Build Tasks
+   ************************/
+  grunt.registerTask('build-backend', [
+    'clean:backend',
+    'tslint:backend',
+    'ts:backend'
+  ]);
+  grunt.registerTask('build-frontend', [
+    'clean:frontend',
+    'tslint:frontend',
+    'ts:frontend'
+  ]);
+  grunt.registerTask('build-scss', [
+    'clean:scss',
+    'scsslint:main',
+    'sass:main'
+  ]);
+  grunt.registerTask('build', ['concurrent:build']);
+  grunt.registerTask('sequential-build', [
+    'build-backend',
+    'build-frontend',
+    'build-scss'
+  ]);
+
+
+  /************************
+   * Test Tasks
+   ************************/
+  grunt.registerTask('test-backend', [
+    'build-backend',
+    'mochacli:backend'
+  ]);
+  grunt.registerTask('test', [
+    'test-backend'
+  ]);
+
+
+  /************************
+   * Code Coverage Tasks
+   ************************/
+  grunt.registerTask('cover-backend', [
+    'build-backend',
+    'mocha_istanbul:backend'
+  ]);
+  grunt.registerTask('cover', [
+    'cover-backend'
+  ]);
+
+
+  /************************
+   * Start Tasks
+   ************************/
+  grunt.registerTask('start', [
+    'concurrent:start'
+  ]);
+  grunt.registerTask('dev', [
+    'build',
+    'start'
+  ]);
+  grunt.registerTask('prod', [
+    'build',
+    'exec:start-node'
+  ]);
 };

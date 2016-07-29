@@ -1,23 +1,6 @@
 {
   "name": "boilerplate-mean",
   "version": "0.0.1",
-  "scripts": {
-    "build-backend": "grunt clean:backend && grunt tslint:backend && grunt ts:backend",
-    "build-frontend": "grunt clean:frontend && grunt tslint:frontend && grunt ts:frontend",
-    "build-sass": "grunt clean:sass && grunt scsslint:main && grunt sass:main",
-    "build": "concurrently \"npm run build-backend\" \"npm run build-frontend\" \"npm run build-sass\"",
-    "sequential-build": "grunt clean && grunt tslint && grunt scsslint && grunt ts && grunt sass:main",
-
-    "test-backend": "grunt ts:backend && grunt mochaTest:backend --env=test",
-    "test": "npm run test-backend",
-
-    "cover-backend": "grunt ts:backend && grunt mocha_istanbul:backend --env=test",
-    "cover": "npm run cover-backend",
-
-    "start": "concurrently \"grunt watch:backend\" \"grunt watch:frontend\" \"grunt watch:sass\" \"nodemon server.js --watch app/js/\"",
-    "dev": "npm run build && npm run start",
-    "prod": "grunt clean && grunt ts && grunt sass:main && node server.js"
-  },
   "description": "Mean Boilerplate",
   "dependencies": {
     "@angular/common": "2.0.0-rc.2",
@@ -51,17 +34,19 @@
     "zone.js": "^0.6.12"
   },
   "devDependencies": {
-    "codelyzer": "0.0.22",
+    "codelyzer": "0.0.26",
     "concurrently": "^2.0.0",
     "fs-readdir-recursive": "^1.0.0",
     "grunt": "^1.0.1",
+    "grunt-concurrent": "^2.3.0",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
-    "grunt-mocha-istanbul": "^3.0.1",
-    "grunt-mocha-test": "^0.12.7",
+    "grunt-exec": "^1.0.0",
+    "grunt-mocha-cli": "^2.1.0",
+    "grunt-mocha-istanbul": "^5.0.1",
     "grunt-sass": "^1.2.0",
     "grunt-scss-lint": "^0.3.8",
-    "grunt-ts": "^5.3.2",
+    "grunt-ts": "^6.0.0-beta.3",
     "grunt-tslint": "^3.0.3",
     "istanbul": "^0.4.2",
     "mocha": "^2.4.5",
@@ -70,6 +55,6 @@
     "supertest": "^1.2.0",
     "tslint": "^3.6.0",
     "typescript": "^1.7.5",
-    "typings": "^0.6.8"
+    "typings": "^1.3.2"
   }
 }
