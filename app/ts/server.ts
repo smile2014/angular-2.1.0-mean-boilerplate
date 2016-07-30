@@ -56,6 +56,11 @@ function loadModels(): void {
 }
 
 function startServer(): http.Server {
+  // set up livereload
+  if (getNodeEnv() === 'development') {
+    require('./config/livereload')(app);
+  }
+
   return app.listen(config.port, () => {
     console.log('\nExpress server listening on port ' + config.port);
   });

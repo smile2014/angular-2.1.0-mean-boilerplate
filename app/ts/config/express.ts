@@ -34,7 +34,6 @@ function loadMiddleware(app: express.Express): void {
   app.use(secretWarning);
   if (getNodeEnv() === 'development') {
     app.use(logger('dev'));
-    require('./livereload')(app);
   }
 
   app.use(bodyParser.json());

@@ -7,7 +7,6 @@ export let config = {
   cookieSecret: 'default',
   tokenSecret: 'default',
   db: `mongodb://localhost/${appName}-${getNodeEnv()}`,
-  env: getNodeEnv(),
   port: 3000,
   root: path.normalize(__dirname + '/../../..')
 };
