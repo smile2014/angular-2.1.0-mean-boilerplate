@@ -2,7 +2,10 @@
 import {bootstrap} from '@angular/platform-browser-dynamic';
 import {APP_BASE_HREF} from '@angular/common';
 import {Component, provide, Injector} from '@angular/core';
-import {provideForms, disableDeprecatedForms} from '@angular/forms';
+import {
+  provideForms,
+  disableDeprecatedForms
+} from '@angular/forms';
 import {HTTP_PROVIDERS} from '@angular/http';
 import {
   ROUTER_PROVIDERS,
