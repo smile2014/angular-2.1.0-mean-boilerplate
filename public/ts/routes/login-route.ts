@@ -7,7 +7,7 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
-import {Router} from '@angular/router-deprecated';
+import {Router} from '@angular/router';
 import {AuthService} from '../services/auth-service';
 
 @Component({
@@ -67,7 +67,7 @@ export class LoginRoute {
       if (res.err) {
         this.message = res.err;
       } else {
-        this.router.navigate(['/Home']);
+        this.router.navigate(['/home']);
       }
     });
   }
@@ -77,7 +77,7 @@ export class LoginRoute {
       if (res.err) {
         this.message = res.err;
       } else {
-        this.router.navigate(['/Home']);
+        this.router.navigate(['/home']);
       }
     });
   }

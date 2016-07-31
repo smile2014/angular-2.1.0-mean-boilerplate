@@ -1,10 +1,5 @@
 import {Component} from '@angular/core';
-import {
-  ROUTER_DIRECTIVES,
-  RouteConfig
-} from '@angular/router-deprecated';
-import {ArticleMainRoute} from './main-route';
-import {ArticleIdRoute} from './id-route';
+import {ROUTER_DIRECTIVES} from '@angular/router';
 
 @Component({
   directives: [ROUTER_DIRECTIVES],
@@ -19,8 +14,4 @@ import {ArticleIdRoute} from './id-route';
   <div>
   `
 })
-@RouteConfig([
-  {path: '/main', name: 'Main', component: ArticleMainRoute, useAsDefault: true},
-  {path: '/:id', name: 'ById', component: ArticleIdRoute}
-])
 export class ArticleRoute {}

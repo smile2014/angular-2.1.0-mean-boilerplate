@@ -9,7 +9,7 @@ import 'rxjs/add/operator/toPromise';
 export class AuthService {
   constructor(public http: Http) {}
 
-  getUsername(): Observable<any> {
+  getUsername(): Observable<boolean> {
     return this.http.get('/api/v1/user').map(res => {
       try {
         return res.json().username;

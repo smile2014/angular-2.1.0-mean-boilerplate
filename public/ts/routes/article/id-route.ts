@@ -1,11 +1,9 @@
 import {Component} from '@angular/core';
 import {
   ROUTER_DIRECTIVES,
-  RouteParams,
   Router,
-  CanActivate
-} from '@angular/router-deprecated';
-import {router} from '../../main';
+  ActivatedRoute
+} from '@angular/router';
 
 @Component({
   directives: [ROUTER_DIRECTIVES],
@@ -15,19 +13,10 @@ import {router} from '../../main';
   </div>
   `
 })
-@CanActivate((next, prev) => {
-  const id = parseInt(next.params['id'], 10);
-  if (id && id >= 1 && id <= 3) {
-    return true;
-  } else {
-    router.navigateByUrl('/404', true);
-    return false;
-  }
-})
 export class ArticleIdRoute {
   id: string;
 
-  constructor(public routeParams: RouteParams, public router: Router) {
-    this.id = routeParams.get('id');
+  constructor(public route: ActivatedRoute, public router: Router) {
+    route.params.subscribe(params => this.id = params['id']);
   }
 }
