@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {
   ROUTER_DIRECTIVES,
   Router,
   ActivatedRoute
 } from '@angular/router';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   directives: [ROUTER_DIRECTIVES],
@@ -13,8 +14,9 @@ import {
   </div>
   `
 })
-export class ArticleIdRoute implements OnInit {
+export class ArticleIdRoute implements OnInit, OnDestroy {
   id: string;
+  paramsSub: Subscription;
 
   constructor(
     public route: ActivatedRoute,
@@ -22,6 +24,10 @@ export class ArticleIdRoute implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.route.params.subscribe(params => this.id = params['id']);
+    this.paramsSub = this.route.params.subscribe(params => this.id = params['id']);
+  }
+
+  ngOnDestroy() {
+    this.paramsSub.unsubscribe();
   }
 }
