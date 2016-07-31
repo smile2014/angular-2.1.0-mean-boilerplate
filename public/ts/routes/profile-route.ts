@@ -1,5 +1,8 @@
-import {Component} from '@angular/core';
-import {Greeting} from '../components/greeting';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+
+import {AuthService} from '../services/auth-service';
+import {Greeting} from '../components/common/greeting';
 
 @Component({
   directives: [Greeting],
@@ -11,4 +14,17 @@ import {Greeting} from '../components/greeting';
   </div>
   `
 })
-export class ProfileRoute {}
+export class ProfileRoute implements OnInit {
+  username: string;
+
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) {}
+
+  ngOnInit() {
+    this.authService.getUsername().subscribe(username => {
+      this.username = username;
+    });
+  }
+}

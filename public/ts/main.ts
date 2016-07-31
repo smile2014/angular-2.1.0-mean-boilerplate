@@ -7,11 +7,28 @@ import {
 } from '@angular/forms';
 import {HTTP_PROVIDERS} from '@angular/http';
 import {bootstrap} from '@angular/platform-browser-dynamic';
-import {provideRouter, ROUTER_DIRECTIVES} from '@angular/router';
+import {provideRouter, ROUTER_DIRECTIVES, RouterConfig} from '@angular/router';
 
-import {routes} from './config/routes';
 import {LoggedInGuard} from './guards/logged-in';
 import {AUTH_PROVIDERS} from './services/auth-service';
+
+import {ErrorRoute} from './routes/error-route';
+import {HomeRoute} from './routes/home/home-route';
+import {LoginRoute} from './routes/login-route';
+import {ProfileRoute} from './routes/profile-route';
+import {UploadRoute} from './routes/upload-route';
+
+import {routes as articleRoutes} from './routes/article/router-config';
+
+export const routes: RouterConfig = [
+  {path: '', component: HomeRoute, pathMatch: 'full'},
+  ...articleRoutes,
+  {path: 'home', component: HomeRoute},
+  {path: 'login', component: LoginRoute},
+  {path: 'profile', component: ProfileRoute, canActivate: [LoggedInGuard]},
+  {path: 'upload', component: UploadRoute},
+  {path: '**', component: ErrorRoute}
+];
 
 @Component({
   selector: 'hello-world',

@@ -6,9 +6,9 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
   template: `
   <div>
     <h1>Article Section:</h1>
-    <a [routerLink]="['ById', {id: 1}]">Article 1</a>
-    <a [routerLink]="['ById', {id: 2}]">Article 2</a>
-    <a [routerLink]="['ById', {id: 3}]">Article 3</a>
+    <a [routerLink]="[1]">Article 1</a>
+    <a [routerLink]="[2]">Article 2</a>
+    <a [routerLink]="[3]">Article 3</a>
 
     <router-outlet></router-outlet>
   <div>

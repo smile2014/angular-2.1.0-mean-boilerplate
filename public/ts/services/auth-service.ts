@@ -9,7 +9,7 @@ import 'rxjs/add/operator/toPromise';
 export class AuthService {
   constructor(public http: Http) {}
 
-  getUsername(): Observable<boolean> {
+  getUsername(): Observable<string> {
     return this.http.get('/api/v1/user').map(res => {
       try {
         return res.json().username;
@@ -19,14 +19,11 @@ export class AuthService {
     });
   }
 
-  isLoggedIn(): Promise<boolean> {
-    return this.getUsername().toPromise(Promise);
-  }
-
   authenticate(url: string, credentials: {
     username: string,
     password: string
   }): Observable<any> {
+
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
 

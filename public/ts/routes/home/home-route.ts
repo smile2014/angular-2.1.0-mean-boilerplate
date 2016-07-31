@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Http} from '@angular/http';
 import {AuthService} from '../../services/auth-service';
-import {Greeting} from '../../components/greeting';
+import {Greeting} from '../../components/common/greeting';
 import {Tester} from './tester';
 
 @Component({
