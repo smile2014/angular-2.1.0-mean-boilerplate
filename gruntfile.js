@@ -38,12 +38,6 @@ module.exports = function (grunt) {
       scss: ['public/css']
     },
 
-    exec: {
-      build: 'npm run build',
-      dev: 'npm run dev',
-      start: 'node server.js'
-    },
-
     mocha_istanbul: {
       backend: {
         src: getMochaTestFiles(),
@@ -190,19 +184,5 @@ module.exports = function (grunt) {
   ]);
   grunt.registerTask('cover', [
     'cover-backend'
-  ]);
-
-
-  /************************
-   * Start Tasks
-   ************************/
-  grunt.registerTask('start', ['exec:dev']);
-  grunt.registerTask('dev', [
-    'build',
-    'exec:dev'
-  ]);
-  grunt.registerTask('prod', [
-    'build',
-    'exec:start'
   ]);
 };
