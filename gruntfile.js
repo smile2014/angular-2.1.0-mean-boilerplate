@@ -22,10 +22,10 @@ function getScssCompileFiles() {
 }
 
 function getMochaTestFiles() {
-  var files = options.files || '**/*.js'
-  var dir = options.dir || 'app/js/test';
+  var files = options.files || '**/*.test.js'
+  var dir = options.dir || 'app/js/';
   return files.split(';').map(function (file) {
-    if (!file.endsWith('.js')) file += '.js';
+    if (!file.endsWith('.test.js')) file += '.test.js';
     return path.normalize(dir + '/' + file);
   });
 }

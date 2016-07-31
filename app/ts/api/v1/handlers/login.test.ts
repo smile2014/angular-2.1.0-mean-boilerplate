@@ -1,7 +1,7 @@
 import * as chai from 'chai';
 import * as http from 'http';
 import * as mongoose from 'mongoose';
-import * as utils from '../../utils/test-utils';
+import * as utils from '../../../utils/test-utils';
 
 const expect = chai.expect;
 const apiEndpoint = '/api/v1';
@@ -14,6 +14,7 @@ describe('/users', function () {
   };
 
   before(function (done) {
+    this.timeout(10000);
     server = utils.startServer();
     mongoose.connection.once('open', () => {
       utils.clearDatabase(mongoose.model('User'))
