@@ -3,10 +3,9 @@
   "version": "0.0.1",
   "description": "Mean Boilerplate",
   "scripts": {
-    "build": "concurrently \"grunt build-backend\" \"grunt build-frontend\" \"grunt build-scss\"",
     "start": "concurrently \"grunt watch:backend\" \"grunt watch:frontend\" \"grunt watch:scss\" \"nodemon server.js --watch app/js/\"",
-    "dev": "npm run build && npm start",
-    "prod": "num run build && node server.js"
+    "dev": "grunt build && npm start",
+    "prod": "grunt build && node server.js"
   },
   "dependencies": {
     "@angular/common": "2.0.0-rc.4",
@@ -46,6 +45,7 @@
     "concurrently": "^2.0.0",
     "fs-readdir-recursive": "^1.0.0",
     "grunt": "^1.0.1",
+    "grunt-concurrent": "^2.3.0",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-mocha-cli": "^2.1.0",
@@ -55,6 +55,7 @@
     "grunt-ts": "^6.0.0-beta.3",
     "grunt-tslint": "^3.0.3",
     "istanbul": "^0.4.2",
+    "jasmine-core": "^2.4.1",
     "mocha": "^2.4.5",
     "node-sass": "^3.7.0",
     "nodemon": "^1.9.1",

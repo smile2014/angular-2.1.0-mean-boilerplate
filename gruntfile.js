@@ -38,6 +38,19 @@ module.exports = function (grunt) {
       scss: ['public/css']
     },
 
+    concurrent: {
+      build: {
+        tasks: [
+          'build-backend',
+          'build-frontend',
+          'build-scss'
+        ],
+        options: {
+          logConcurrentOutput: true
+        }
+      }
+    },
+
     mocha_istanbul: {
       backend: {
         src: getMochaTestFiles(),
@@ -127,7 +140,7 @@ module.exports = function (grunt) {
   [
     'grunt-contrib-clean',
     'grunt-contrib-watch',
-    'grunt-exec',
+    'grunt-concurrent',
     'grunt-mocha-istanbul',
     'grunt-mocha-cli',
     'grunt-sass',
@@ -155,7 +168,7 @@ module.exports = function (grunt) {
     'scsslint:main',
     'sass:main'
   ]);
-  grunt.registerTask('build', ['exec:build']);
+  grunt.registerTask('build', ['concurrent:build']);
   grunt.registerTask('sequential-build', [
     'build-backend',
     'build-frontend',
