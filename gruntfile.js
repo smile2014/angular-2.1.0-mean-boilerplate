@@ -38,33 +38,10 @@ module.exports = function (grunt) {
       scss: ['public/css']
     },
 
-    concurrent: {
-      build: {
-        tasks: [
-          'build-backend',
-          'build-frontend',
-          'build-scss'
-        ],
-        options: {
-          logConcurrentOutput: true
-        }
-      },
-      start: {
-        tasks: [
-          'watch:backend',
-          'watch:frontend',
-          'watch:scss',
-          'exec:start-nodemon'
-        ],
-        options: {
-          logConcurrentOutput: true
-        }
-      }
-    },
-
     exec: {
-      'start-nodemon': 'nodemon server.js --watch app/js/',
-      'start-node': 'node server.js'
+      build: 'npm run build',
+      dev: 'npm run dev',
+      start: 'node server.js'
     },
 
     mocha_istanbul: {
@@ -154,7 +131,6 @@ module.exports = function (grunt) {
   });
 
   [
-    'grunt-concurrent',
     'grunt-contrib-clean',
     'grunt-contrib-watch',
     'grunt-exec',
@@ -185,7 +161,7 @@ module.exports = function (grunt) {
     'scsslint:main',
     'sass:main'
   ]);
-  grunt.registerTask('build', ['concurrent:build']);
+  grunt.registerTask('build', ['exec:build']);
   grunt.registerTask('sequential-build', [
     'build-backend',
     'build-frontend',
@@ -220,15 +196,13 @@ module.exports = function (grunt) {
   /************************
    * Start Tasks
    ************************/
-  grunt.registerTask('start', [
-    'concurrent:start'
-  ]);
+  grunt.registerTask('start', ['exec:dev']);
   grunt.registerTask('dev', [
     'build',
-    'start'
+    'exec:dev'
   ]);
   grunt.registerTask('prod', [
     'build',
-    'exec:start-node'
+    'exec:start'
   ]);
 };

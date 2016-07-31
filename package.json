@@ -2,6 +2,10 @@
   "name": "boilerplate-mean",
   "version": "0.0.1",
   "description": "Mean Boilerplate",
+  "scripts": {
+    "build": "concurrently \"grunt build-backend\" \"grunt build-frontend\" \"grunt build-scss\"",
+    "dev": "concurrently \"grunt watch:backend\" \"grunt watch:frontend\" \"grunt watch:scss\" \"nodemon server.js --watch app/js/\""
+  },
   "dependencies": {
     "@angular/common": "2.0.0-rc.4",
     "@angular/compiler": "2.0.0-rc.4",
