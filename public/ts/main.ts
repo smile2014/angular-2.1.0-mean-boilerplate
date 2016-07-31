@@ -9,7 +9,8 @@ import {HTTP_PROVIDERS} from '@angular/http';
 import {bootstrap} from '@angular/platform-browser-dynamic';
 import {provideRouter, ROUTER_DIRECTIVES, RouterConfig} from '@angular/router';
 
-import {LoggedInGuard} from './guards/logged-in';
+import {LoggedInGuard} from './guards/can-activate/logged-in';
+import {ConfirmLeaveGuard} from './guards/can-deactivate/confirm-leave';
 import {AUTH_PROVIDERS} from './services/auth-service';
 
 import {ErrorRoute} from './routes/error-route';
@@ -25,7 +26,12 @@ export const routes: RouterConfig = [
   ...articleRoutes,
   {path: 'home', component: HomeRoute},
   {path: 'login', component: LoginRoute},
-  {path: 'profile', component: ProfileRoute, canActivate: [LoggedInGuard]},
+  {
+    path: 'profile',
+    component: ProfileRoute,
+    canActivate: [LoggedInGuard],
+    canDeactivate: [ConfirmLeaveGuard]
+  },
   {path: 'upload', component: UploadRoute},
   {path: '**', component: ErrorRoute}
 ];
@@ -57,6 +63,7 @@ bootstrap(HelloWorld, [
   provideRouter(routes),
   provide(APP_BASE_HREF, {useValue: '/'}),
   LoggedInGuard,
+  ConfirmLeaveGuard,
 
   HTTP_PROVIDERS,
   AUTH_PROVIDERS
