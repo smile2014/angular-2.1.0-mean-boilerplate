@@ -51,6 +51,12 @@ module.exports = function (grunt) {
       }
     },
 
+    karma: {
+      unit: {
+        configFile: 'public/karma.conf.js'
+      }
+    },
+
     mocha_istanbul: {
       backend: {
         src: getMochaTestFiles(),
@@ -141,6 +147,7 @@ module.exports = function (grunt) {
     'grunt-contrib-clean',
     'grunt-contrib-watch',
     'grunt-concurrent',
+    'grunt-karma',
     'grunt-mocha-istanbul',
     'grunt-mocha-cli',
     'grunt-sass',
@@ -183,8 +190,13 @@ module.exports = function (grunt) {
     'build-backend',
     'mochacli:backend'
   ]);
+  grunt.registerTask('test-frontend', [
+    'build-frontend',
+    'karma:unit'
+  ]);
   grunt.registerTask('test', [
-    'test-backend'
+    'test-backend',
+    'test-frontend'
   ]);
 
 
