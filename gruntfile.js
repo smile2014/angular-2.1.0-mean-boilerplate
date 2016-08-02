@@ -56,6 +56,15 @@ module.exports = function (grunt) {
         options: {
           logConcurrentOutput: true
         }
+      },
+      test: {
+        tasks: [
+          'test-backend',
+          'test-frontend'
+        ],
+        options: {
+          logConcurrentOutput: true
+        }
       }
     },
 
@@ -132,6 +141,14 @@ module.exports = function (grunt) {
           'ts:backend'
         ],
       },
+      'backend-test': {
+        files: ['app/ts/**/*.ts'],
+        tasks: [
+          'tslint:backend',
+          'ts:backend',
+          'mochacli:backend'
+        ]
+      },
       frontend: {
         files: ['public/ts/**/*.ts'],
         tasks: [
@@ -202,17 +219,15 @@ module.exports = function (grunt) {
    ************************/
   grunt.registerTask('test-backend', [
     'build-backend',
-    'mochacli:backend'
+    'mochacli:backend',
+    'watch:backend-test'
   ]);
   grunt.registerTask('test-frontend', [
     'build-frontend',
     'karma:frontend-unit',
     'watch:frontend-test'
   ]);
-  grunt.registerTask('test', [
-    'test-backend',
-    'test-frontend'
-  ]);
+  grunt.registerTask('test', ['concurrent:test']);
 
 
   /************************
