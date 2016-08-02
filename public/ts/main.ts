@@ -52,7 +52,7 @@ export const routes: RouterConfig = [
   <router-outlet></router-outlet>
   `
 })
-class HelloWorld {}
+export class HelloWorld {}
 
 export let injector: Injector;
 

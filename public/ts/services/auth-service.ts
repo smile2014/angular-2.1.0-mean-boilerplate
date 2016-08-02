@@ -19,7 +19,7 @@ export class AuthService {
     });
   }
 
-  authenticate(url: string, credentials: {
+  private authenticate(url: string, credentials: {
     username: string,
     password: string
   }): Observable<any> {

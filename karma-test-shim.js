@@ -1,8 +1,8 @@
 // Shim for running Karma with SystemJS
 
 // Turn on full stack traces in errors to help debugging
-//Error.stackTraceLimit = Infinity;
-Error.stackTraceLimit = 0;
+Error.stackTraceLimit = Infinity;
+//Error.stackTraceLimit = 0;
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 3000;
 

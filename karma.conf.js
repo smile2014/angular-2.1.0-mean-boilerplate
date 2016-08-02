@@ -17,6 +17,11 @@ module.exports = function (config) {
 
     /* Provide all dependencies included in index.html */
     files: [
+      // Karma Jasmine Html Reporter
+      'node_modules/karma-jasmine-html-reporter/src/css/jasmine.css',
+      'node_modules/karma-jasmine-html-reporter/src/lib/html.jasmine.reporter.js',
+      'node_modules/karma-jasmine-html-reporter/src/lib/adapter.js',
+
       // Angular 2 Requirements
       'node_modules/core-js/client/shim.min.js',
       'node_modules/zone.js/dist/zone.js',
@@ -63,7 +68,7 @@ module.exports = function (config) {
       'public/js/components/vendor/**/*.js'
     ],
 
-    reporters: ['kjhtml', 'progress'],
+    reporters: ['progress'],
 
     port: 9876
   });
