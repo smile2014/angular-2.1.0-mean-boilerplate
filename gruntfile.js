@@ -30,6 +30,14 @@ function getMochaTestFiles() {
   });
 }
 
+function getKarmaOptions() {
+  var karmaOptions = {
+    configFile: 'karma.conf.js',
+    singleRun: (options.singleRun === 'false') ? false : true
+  };
+  return karmaOptions;
+}
+
 module.exports = function (grunt) {
   grunt.initConfig({
     clean: {
@@ -52,9 +60,7 @@ module.exports = function (grunt) {
     },
 
     karma: {
-      unit: {
-        configFile: 'karma.conf.js'
-      }
+      'frontend-unit': getKarmaOptions()
     },
 
     mocha_istanbul: {
@@ -133,6 +139,14 @@ module.exports = function (grunt) {
           'ts:frontend'
         ],
       },
+      'frontend-test': {
+        files: ['public/ts/**/*.ts'],
+        tasks: [
+          'tslint:frontend',
+          'ts:frontend',
+          'karma:frontend-unit'
+        ]
+      },
       scss: {
         files: ['public/scss/**/*.scss'],
         tasks: [
@@ -192,7 +206,8 @@ module.exports = function (grunt) {
   ]);
   grunt.registerTask('test-frontend', [
     'build-frontend',
-    'karma:unit'
+    'karma:frontend-unit',
+    'watch:frontend-test'
   ]);
   grunt.registerTask('test', [
     'test-backend',
