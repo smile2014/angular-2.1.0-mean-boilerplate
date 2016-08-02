@@ -1,7 +1,4 @@
-var path = require('path');
-var cwd = process.cwd();
-
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
 
     basePath: '',
@@ -25,6 +22,9 @@ module.exports = function(config) {
       'node_modules/zone.js/dist/zone.js',
       'node_modules/reflect-metadata/Reflect.js',
       'node_modules/systemjs/dist/system.src.js',
+
+      // Angular 2 Testing Requirements
+      'node_modules/zone.js/dist/fake-async-test.js',
 
       // 3rd party JS libraries
       'https://code.jquery.com/jquery-2.2.0.min.js',
@@ -63,11 +63,8 @@ module.exports = function(config) {
       'public/js/components/vendor/**/*.js'
     ],
 
-    reporters: ['kjhtml'],
+    reporters: ['kjhtml', 'progress'],
 
-    port: 9876,
-
-    proxies: {
-    }
+    port: 9876
   });
 };
