@@ -10,6 +10,8 @@ jasmine.DEFAULT_TIMEOUT_INTERVAL = 3000;
 //   after everything is loaded.
 __karma__.loaded = function() {};
 
+// load html and css template into cache
+window.$templateCache = {};
 
 // Configure SystemJS
 var map = {
@@ -67,12 +69,33 @@ System.import('@angular/core/testing').then(function (testing) {
     .filter(function (filename) {
       return filename.endsWith('.test.js');
     })
-    .sort(function (a, b) {
-      return a < b;
-    })
     .map(function (filename) {
       return System.import(filename);
     }));
+
+// load .html and .css templates and cache them
+}).then(function () {
+  return Promise.all(
+    Object.keys(window.__karma__.files)
+    .filter(function (filename) {
+      var isCss = filename.startsWith('/base/public/css') && filename.endsWith('.css');
+      return isCss;
+    })
+    .map(function (filename) {
+      return new Promise((resolve, reject) => {
+        $.ajax({
+          type: 'GET',
+          url: filename,
+          dataType: 'text',
+          success: function (contents) {
+            filename = filename.replace('/base/public/', '');
+            window.$templateCache[filename] = contents;
+            resolve();
+          }
+        });
+      });
+    })
+  );
 
 // Start Jasmine once everything is loaded
 }).then(function() {

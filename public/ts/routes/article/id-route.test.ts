@@ -27,7 +27,7 @@ import {
 import {BrowserPlatformLocation} from '@angular/platform-browser';
 import {CACHED_TEMPLATE_PROVIDER} from '@angular/platform-browser-dynamic';
 import {SpyLocation} from '@angular/common/testing';
-import {HelloWorld, routes} from '../../main';
+import {HelloWorld, routes} from '../../hello-world';
 import {MockAuthService} from '../../services/auth-service.mock';
 import {AuthService} from '../../services/auth-service';
 
@@ -101,11 +101,6 @@ describe('Article Id Component', () => {
 
 
   describe('initialization', () => {
-    (<any>window).$templateCache = {
-      'css/angular2/main.css': '',
-      'css/angular2/routes/home-route.css': ''
-    };
-
     it('retrieves the article', fakeAsync(
       inject([Router, AuthService, TestComponentBuilder],
       (router: Router, mockAuthService: MockAuthService, tcb: TestComponentBuilder) => {

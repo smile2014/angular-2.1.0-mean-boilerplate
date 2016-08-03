@@ -53,6 +53,13 @@ module.exports = function (config) {
         served: true
       },
 
+      // template and css files
+      {
+        pattern: 'public/css/**/*.css',
+        included: false,
+        served: true
+      },
+
       // App Files
       {
         pattern: 'public/js/**/*.js',
