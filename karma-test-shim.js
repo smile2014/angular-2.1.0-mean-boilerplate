@@ -53,21 +53,22 @@ System.config({
 
 // Import the testing module, then import the providers module
 System.import('@angular/core/testing').then(function (testing) {
-
-  return System.import('@angular/platform-browser/testing')
-    .then(function(providers) {
+  System.import('@angular/platform-browser-dynamic/testing')
+    .then(function (providers) {
       testing.setBaseTestProviders(
-        providers.TEST_BROWSER_PLATFORM_PROVIDERS,
-        providers.TEST_BROWSER_APPLICATION_PROVIDERS
+        providers.TEST_BROWSER_DYNAMIC_PLATFORM_PROVIDERS,
+        providers.TEST_BROWSER_DYNAMIC_APPLICATION_PROVIDERS
       );
     });
 
-// Import our test files with SystemJS
 }).then(function () {
   return Promise.all(
     Object.keys(window.__karma__.files)  // All files served by Karma.
     .filter(function (filename) {
       return filename.endsWith('.test.js');
+    })
+    .sort(function (a, b) {
+      return a < b;
     })
     .map(function (filename) {
       return System.import(filename);
@@ -76,6 +77,6 @@ System.import('@angular/core/testing').then(function (testing) {
 // Start Jasmine once everything is loaded
 }).then(function() {
   __karma__.start();
-}).catch(function(error) {
+}).catch(function (error) {
   __karma__.error(error.stack || error);
 });

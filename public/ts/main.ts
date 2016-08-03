@@ -56,7 +56,7 @@ export class HelloWorld {}
 
 export let injector: Injector;
 
-bootstrap(HelloWorld, [
+/*bootstrap(HelloWorld, [
   disableDeprecatedForms(),
   provideForms(),
 
@@ -70,4 +70,4 @@ bootstrap(HelloWorld, [
 
 ]).then(ref => {
   injector = ref.injector;
-}).catch(err => console.error(err));
+}).catch(err => console.error(err));*/

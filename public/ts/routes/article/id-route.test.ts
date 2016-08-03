@@ -1,4 +1,7 @@
-import {ComponentResolver, Injector} from '@angular/core';
+import {
+  ComponentResolver,
+  Injector,
+} from '@angular/core';
 import {
   addProviders,
   fakeAsync,
@@ -18,26 +21,31 @@ import {
   Location,
   LocationStrategy,
   PathLocationStrategy,
-  PlatformLocation
+  PlatformLocation,
+  APP_BASE_HREF
 } from '@angular/common';
 import {BrowserPlatformLocation} from '@angular/platform-browser';
+import {CACHED_TEMPLATE_PROVIDER} from '@angular/platform-browser-dynamic';
 import {SpyLocation} from '@angular/common/testing';
-import {MockAuthService} from '../../services/auth-service.mock';
 import {HelloWorld, routes} from '../../main';
+import {MockAuthService} from '../../services/auth-service.mock';
+import {AuthService} from '../../services/auth-service';
 
 export function advance(fixture: ComponentFixture<any>): void {
   tick();
   fixture.detectChanges();
 }
 
-function createRoot(tcb: TestComponentBuilder,
-                           router: Router,
-                           type: any): ComponentFixture<any> {
-  const f = tcb.createFakeAsync(type);
-  advance(f);
+function createRoot(
+  tcb: TestComponentBuilder,
+  router: Router,
+  type: any
+): ComponentFixture<any> {
+  const fixture = tcb.createFakeAsync(type);
+  advance(fixture);
   (<any>router).initialNavigation();
-  advance(f);
-  return f;
+  advance(fixture);
+  return fixture;
 }
 
 describe('Article Id Component', () => {
@@ -79,13 +87,27 @@ describe('Article Id Component', () => {
         },
         deps: [Router]
       },
-      mockAuthService.getProviders()
+      {
+        provide: AuthService,
+        useValue: mockAuthService
+      },
+      {
+        provide: APP_BASE_HREF,
+        useValue: '/'
+      },
+      CACHED_TEMPLATE_PROVIDER
     ]);
   });
 
+
   describe('initialization', () => {
+    (<any>window).$templateCache = {
+      'css/angular2/main.css': '',
+      'css/angular2/routes/home-route.css': ''
+    };
+
     it('retrieves the article', fakeAsync(
-      inject([Router, MockAuthService, TestComponentBuilder],
+      inject([Router, AuthService, TestComponentBuilder],
       (router: Router, mockAuthService: MockAuthService, tcb: TestComponentBuilder) => {
         const fixture = createRoot(tcb, router, HelloWorld);
 
