@@ -10,7 +10,8 @@ import {
   BaseRequestOptions,
   ConnectionBackend,
   Response,
-  ResponseOptions
+  ResponseOptions,
+  RequestMethod
 } from '@angular/http';
 import {MockBackend, MockConnection} from '@angular/http/testing';
 
@@ -41,6 +42,7 @@ describe('AuthService', () => {
 
       mockBackend.connections.subscribe((conn: MockConnection) => {
         expect(conn.request.url).toEqual('/api/v1/user');
+        expect(conn.request.method).toEqual(RequestMethod.Get);
         conn.mockRespond(new Response(new ResponseOptions({
           body: {username: sampleUsername}
         })));
@@ -62,6 +64,9 @@ describe('AuthService', () => {
 
       mockBackend.connections.subscribe((conn: MockConnection) => {
         expect(conn.request.url).toEqual('/api/v1/signup');
+        expect(conn.request.method).toEqual(RequestMethod.Post);
+        expect(conn.request.headers.get('Content-Type')).toEqual('application/json');
+
         let responseOptions: any = {body: {err: null}};
         if (signedUp) responseOptions = {
           body: {err: errorMsg}
@@ -100,6 +105,9 @@ describe('AuthService', () => {
 
       mockBackend.connections.subscribe((conn: MockConnection) => {
         expect(conn.request.url).toEqual('/api/v1/login');
+        expect(conn.request.method).toEqual(RequestMethod.Post);
+        expect(conn.request.headers.get('Content-Type')).toEqual('application/json');
+
         let responseOptions: any = {body: {err: null}};
         const body = JSON.parse(conn.request.getBody());
         if (body.username !== correctUsername || body.password !== correctPassword) {
