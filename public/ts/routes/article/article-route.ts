@@ -15,7 +15,7 @@ import {ROUTER_DIRECTIVES, Router} from '@angular/router';
   `
 })
 export class ArticleRoute {
-  constructor(private router: Router) {}
+  constructor(public router: Router) {}
 
   openArticle(id: number) {
     this.router.navigate(['article', id, {

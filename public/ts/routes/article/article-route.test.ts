@@ -74,7 +74,7 @@ function getRoutedComponent(fixture: ComponentFixture<any>) {
   return found.componentInstance;
 }
 
-describe('Article Id Component', () => {
+describe('Article Route Component', () => {
   beforeEach(() => {
     addProviders([
       RouterOutletMap,
@@ -124,13 +124,16 @@ describe('Article Id Component', () => {
       inject([Router, TestComponentBuilder, Location],
       (router: Router, tcb: TestComponentBuilder, location: Location) => {
         const fixture = createRoot(tcb, router, ArticleRoute);
+        expect(location.path()).toEqual('/main');
 
+        let component = fixture.componentInstance;
         router.navigate(['3']);
+        component.openArticle(3);
         advance(fixture);
 
-        const component = getRoutedComponent(fixture);
-        expect(component.id).toEqual('3');
+        component = getRoutedComponent(fixture);
         expect(location.path()).toEqual('/3');
+        expect(component.id).toEqual('3');
       })));
   });
 });
