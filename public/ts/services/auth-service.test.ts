@@ -1,9 +1,3 @@
-import {
-  addProviders,
-  fakeAsync,
-  inject,
-  tick
-} from '@angular/core/testing';
 import {provide} from '@angular/core';
 import {
   Http,
@@ -14,6 +8,12 @@ import {
   RequestMethod
 } from '@angular/http';
 import {MockBackend, MockConnection} from '@angular/http/testing';
+import {
+  addProviders,
+  fakeAsync,
+  inject,
+  tick
+} from '@angular/core/testing';
 
 import {AuthService} from './auth-service';
 

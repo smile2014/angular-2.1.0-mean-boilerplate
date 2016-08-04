@@ -1,142 +1,40 @@
+import {Location} from '@angular/common';
 import {
-  ComponentResolver,
-  Injector,
-  DebugElement,
-} from '@angular/core';
-import {
+  addProviders,
   inject,
   fakeAsync,
   TestComponentBuilder,
-  ComponentFixture,
   tick
 } from '@angular/core/testing';
-import {addProviders} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {Router} from '@angular/router';
+
 import {
-  disableDeprecatedForms,
-  provideForms,
-  FormBuilder
-} from '@angular/forms';
+  getFormProviders,
+  getRouterProviders
+} from '../test/providers';
 import {
-  ActivatedRoute,
-  DefaultUrlSerializer,
-  RouterOutletMap,
-  UrlSerializer,
-  Router
-} from '@angular/router';
-import {
-  Location,
-  LocationStrategy,
-  PathLocationStrategy,
-  PlatformLocation,
-  APP_BASE_HREF
-} from '@angular/common';
-import {SpyLocation} from '@angular/common/testing';
-import {BrowserPlatformLocation, By} from '@angular/platform-browser';
+  advance,
+  createRootComponent,
+  dispatchEvent,
+  getRoutedComponent
+} from '../test/utils';
+
 import {HelloWorld, routes} from '../hello-world';
-import {CACHED_TEMPLATE_PROVIDER} from '@angular/platform-browser-dynamic';
 import {AuthService} from '../services/auth-service';
 import {MockAuthService} from '../services/auth-service.mock';
-import {getDOM} from '@angular/platform-browser/src/dom/dom_adapter';
-
-
-export function dispatchEvent(element: any, eventType: any) {
- getDOM().dispatchEvent(element, getDOM().createEvent(eventType));
-}
-
-export function advance(fixture: ComponentFixture<any>): void {
-  tick();
-  fixture.detectChanges();
-}
-
-function createRoot(
-  tcb: TestComponentBuilder,
-  router: Router,
-  type: any
-): ComponentFixture<any> {
-  const fixture = tcb.createFakeAsync(type);
-  advance(fixture);
-  (<any>router).initialNavigation();
-  advance(fixture);
-  return fixture;
-}
-
-function getRoutedComponent(fixture: ComponentFixture<any>) {
-  let found: DebugElement;
-
-  // search child elements in the component's template, the element
-  // immediately after <router-outlet> will be the routed component
-  function searchChildren(debugElement: DebugElement) {
-    if (found) return;
-
-    const children = debugElement.children;
-    for (let i = 0; i < children.length; ++i) {
-      const child = children[i];
-      if (child.name === 'router-outlet') {
-        found = children[i + 1];
-        break;
-      }
-      // if a child is not a component, search its children for <router-outlet>
-      if (!child.componentInstance) {
-        searchChildren(child);
-      }
-    }
-  }
-
-  searchChildren(fixture.debugElement);
-  return found;
-}
 
 describe('Login Form', () => {
   beforeEach(() => {
     const mockAuthService: MockAuthService = new MockAuthService();
 
     addProviders([
-      disableDeprecatedForms(),
-      provideForms(),
-      FormBuilder,
-      RouterOutletMap,
-      {provide: UrlSerializer, useClass: DefaultUrlSerializer},
-      {provide: Location, useClass: SpyLocation},
-      {provide: LocationStrategy, useClass: PathLocationStrategy},
-      {provide: PlatformLocation, useClass: BrowserPlatformLocation},
-      {
-        provide: Router,
-        useFactory: (
-          resolver: ComponentResolver,
-          urlSerializer: UrlSerializer,
-          outletMap: RouterOutletMap,
-          location: Location,
-          injector: Injector
-        ) => {
-          return new Router(
-            HelloWorld, resolver, urlSerializer, outletMap,
-            location, injector, routes
-          );
-        },
-        deps: [
-          ComponentResolver,
-          UrlSerializer,
-          RouterOutletMap,
-          Location,
-          Injector
-        ]
-      },
-      {
-        provide: ActivatedRoute,
-        useFactory: (r: Router) => {
-          return r.routerState.root;
-        },
-        deps: [Router]
-      },
-      {
-        provide: APP_BASE_HREF,
-        useValue: '/'
-      },
-      CACHED_TEMPLATE_PROVIDER,
-      {
-        provide: AuthService,
-        useValue: mockAuthService
-      }
+      ...getFormProviders(),
+      ...getRouterProviders({
+        rootComponent: HelloWorld,
+        routes: routes
+      }),
+      {provide: AuthService, useValue: mockAuthService}
     ]);
   });
 
@@ -147,7 +45,7 @@ describe('Login Form', () => {
       mockAuthService: MockAuthService,
       location: Location
     ) => {
-      const fixture = createRoot(tcb, router, HelloWorld);
+      const fixture = createRootComponent(tcb, router, HelloWorld);
       router.navigate(['/login']);
       advance(fixture);
 
@@ -218,7 +116,7 @@ describe('Login Form', () => {
       mockAuthService: MockAuthService,
       location: Location
     ) => {
-      const fixture = createRoot(tcb, router, HelloWorld);
+      const fixture = createRootComponent(tcb, router, HelloWorld);
       router.navigate(['/login']);
       advance(fixture);
 
@@ -237,8 +135,7 @@ describe('Login Form', () => {
       dispatchEvent(loginForm.username, 'input');
       dispatchEvent(loginForm.password, 'input');
 
-      fixture.detectChanges();
-      tick();
+      advance(fixture);
 
       let formGroup = component.loginForm;
       expect(formGroup.valid).toEqual(false);
@@ -248,8 +145,7 @@ describe('Login Form', () => {
       loginForm.username.value = 'Larry';
       dispatchEvent(loginForm.username, 'input');
 
-      fixture.detectChanges();
-      tick();
+      advance(fixture);
 
       expect(formGroup.valid).toEqual(false);
       expect(formGroup.controls.username.valid).toEqual(true);
@@ -259,8 +155,7 @@ describe('Login Form', () => {
       loginForm.password.value = 'password';
       dispatchEvent(loginForm.password, 'input');
 
-      fixture.detectChanges();
-      tick();
+      advance(fixture);
 
       expect(formGroup.valid).toEqual(true);
       expect(formGroup.controls.username.valid).toEqual(true);
