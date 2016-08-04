@@ -7,6 +7,7 @@ import {LoggedInGuard} from './guards/can-activate/logged-in';
 import {ConfirmLeaveGuard} from './guards/can-deactivate/confirm-leave';
 
 import {ErrorRoute} from './routes/error-route';
+import {ArticleRoute} from './routes/article/article-route';
 import {HomeRoute} from './routes/home/home-route';
 import {LoginRoute} from './routes/login-route';
 import {ProfileRoute} from './routes/profile-route';
@@ -16,7 +17,11 @@ import {routes as articleRoutes} from './routes/article/router-config';
 
 export const routes: RouterConfig = [
   {path: '', component: HomeRoute, pathMatch: 'full'},
-  ...articleRoutes,
+  {
+    path: 'article',
+    component: ArticleRoute,
+    children: articleRoutes
+  },
   {path: 'home', component: HomeRoute},
   {path: 'login', component: LoginRoute},
   {

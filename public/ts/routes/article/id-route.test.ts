@@ -1,6 +1,7 @@
 import {
   ComponentResolver,
   Injector,
+  DebugElement
 } from '@angular/core';
 import {
   addProviders,
@@ -27,7 +28,8 @@ import {
 import {BrowserPlatformLocation} from '@angular/platform-browser';
 import {CACHED_TEMPLATE_PROVIDER} from '@angular/platform-browser-dynamic';
 import {SpyLocation} from '@angular/common/testing';
-import {HelloWorld, routes} from '../../hello-world';
+import {ArticleRoute} from './article-route';
+import {routes} from './router-config';
 import {MockAuthService} from '../../services/auth-service.mock';
 import {AuthService} from '../../services/auth-service';
 
@@ -46,6 +48,32 @@ function createRoot(
   (<any>router).initialNavigation();
   advance(fixture);
   return fixture;
+}
+
+function getRoutedComponent(fixture: ComponentFixture<any>) {
+  let found: DebugElement;
+
+  // search child elements in the component's template, the element
+  // immediately after <router-outlet> will be the routed component
+  function searchChildren(debugElement: DebugElement) {
+    if (found) return;
+
+    const children = debugElement.children;
+    for (let i = 0; i < children.length; ++i) {
+      const child = children[i];
+      if (child.name === 'router-outlet') {
+        found = children[i + 1];
+        break;
+      }
+      // if a child is not a component, search its children for <router-outlet>
+      if (!child.componentInstance) {
+        searchChildren(child);
+      }
+    }
+  }
+
+  searchChildren(fixture.debugElement);
+  return found.componentInstance;
 }
 
 describe('Article Id Component', () => {
@@ -68,7 +96,7 @@ describe('Article Id Component', () => {
           injector: Injector
         ) => {
           return new Router(
-            HelloWorld, resolver, urlSerializer, outletMap,
+            ArticleRoute, resolver, urlSerializer, outletMap,
             location, injector, routes
           );
         },
@@ -99,17 +127,18 @@ describe('Article Id Component', () => {
     ]);
   });
 
-
   describe('initialization', () => {
-    it('retrieves the article', fakeAsync(
-      inject([Router, AuthService, TestComponentBuilder],
-      (router: Router, mockAuthService: MockAuthService, tcb: TestComponentBuilder) => {
-        const fixture = createRoot(tcb, router, HelloWorld);
+    it('retrieves the correct article', fakeAsync(
+      inject([Router, TestComponentBuilder, Location],
+      (router: Router, tcb: TestComponentBuilder, location: Location) => {
+        const fixture = createRoot(tcb, router, ArticleRoute);
 
-        router.navigateByUrl('/article/2');
+        router.navigate(['3']);
         advance(fixture);
 
-        expect(true).toEqual(true);
+        const component = getRoutedComponent(fixture);
+        expect(component.id).toEqual('3');
+        expect(location.path()).toEqual('/3');
       })));
   });
 });
