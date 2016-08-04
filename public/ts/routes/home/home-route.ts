@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Http} from '@angular/http';
 
 import {AuthService} from '../../services/auth-service';
 import {Greeting} from '../../components/common/greeting';
@@ -21,7 +20,7 @@ export class HomeRoute implements OnInit {
   message: string;
   testerMessage: string;
 
-  constructor(public http: Http, private authService: AuthService) {}
+  constructor(public authService: AuthService) {}
 
   ngOnInit(): void {
     this.authService.getUsername().subscribe((username: any) => {

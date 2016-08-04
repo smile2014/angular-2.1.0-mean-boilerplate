@@ -202,6 +202,12 @@ describe('Login Form', () => {
       advance(fixture);
 
       expect(native.querySelector('h1').innerHTML).toEqual('Invalid Inputs');
+
+      mockAuthService.setResponse({err: null});
+      component.signup(formGroup.value);
+      advance(fixture);
+
+      expect(location.path()).toEqual('/home');
     })
   ));
 
@@ -262,12 +268,17 @@ describe('Login Form', () => {
       expect(formGroup.controls.password.valid).toEqual(true);
       expect(!!formGroup.controls.password.errors).toEqual(false);
 
-
       mockAuthService.setResponse({err: 'Invalid Inputs'});
-      component.signup(formGroup.value);
+      component.login(formGroup.value);
       advance(fixture);
 
       expect(native.querySelector('h1').innerHTML).toEqual('Invalid Inputs');
+
+      mockAuthService.setResponse({err: null});
+      component.login(formGroup.value);
+      advance(fixture);
+
+      expect(location.path()).toEqual('/home');
     })
   ));
 });
