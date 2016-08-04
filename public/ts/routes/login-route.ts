@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {Http} from '@angular/http';
 import {
   FORM_DIRECTIVES,
   REACTIVE_FORM_DIRECTIVES,
@@ -18,21 +17,27 @@ import {AuthService} from '../services/auth-service';
   template: `
   <div>
     <form [formGroup]="signupForm"
-          (ngSubmit)="signup(signupForm.value)">
+          (ngSubmit)="signup(signupForm.value)"
+          class="signup-form">
       <input type="text"
+             name="username"
              placeholder="username"
              [formControl]="signupForm.controls['username']">
       <input type="password"
              placeholder="password"
+             name="password"
              [formControl]="signupForm.controls['password']">
       <button type="submit">Sign Up</button>
     </form>
     <form [formGroup]="loginForm"
-          (ngSubmit)="login(loginForm.value)">
+          (ngSubmit)="login(loginForm.value)"
+          class="login-form">
       <input type="text"
+             name="username"
              placeholder="username"
              [formControl]="loginForm.controls['username']">
       <input type="password"
+             name="password"
              placeholder="password"
              [formControl]="loginForm.controls['password']">
       <button type="submit">Log In</button>
@@ -48,7 +53,6 @@ export class LoginRoute {
 
   constructor(
     public fb: FormBuilder,
-    public http: Http,
     public router: Router,
     private authService: AuthService
   ) {

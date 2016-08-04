@@ -16,7 +16,7 @@ import {UploadRoute} from './routes/upload-route';
 import {routes as articleRoutes} from './routes/article/router-config';
 
 export const routes: RouterConfig = [
-  {path: '', component: HomeRoute, pathMatch: 'full'},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
   {
     path: 'article',
     component: ArticleRoute,
