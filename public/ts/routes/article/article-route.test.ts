@@ -71,7 +71,7 @@ function getRoutedComponent(fixture: ComponentFixture<any>) {
   }
 
   searchChildren(fixture.debugElement);
-  return found.componentInstance;
+  return found;
 }
 
 describe('Article Route Component', () => {
@@ -119,21 +119,27 @@ describe('Article Route Component', () => {
     ]);
   });
 
-  describe('initialization', () => {
-    it('retrieves the correct article', fakeAsync(
+  describe('methods', () => {
+    it('opens the correct article', fakeAsync(
       inject([Router, TestComponentBuilder, Location],
       (router: Router, tcb: TestComponentBuilder, location: Location) => {
         const fixture = createRoot(tcb, router, ArticleRoute);
         expect(location.path()).toEqual('/main');
 
-        let component = fixture.componentInstance;
-        router.navigate(['3']);
-        component.openArticle(3);
+        let root = fixture.componentInstance;
+        root.openArticle(1);
         advance(fixture);
 
-        component = getRoutedComponent(fixture);
-        expect(location.path()).toEqual('/3');
-        expect(component.id).toEqual('3');
+        let component = getRoutedComponent(fixture).componentInstance;
+        expect(location.path()).toEqual('/1;param1=param1;param2=param2');
+        expect(component.id).toEqual('1');
+
+        root.openArticle(2);
+        advance(fixture);
+
+        component = getRoutedComponent(fixture).componentInstance;
+        expect(location.path()).toEqual('/2;param1=param1;param2=param2');
+        expect(component.id).toEqual('2');
       })));
   });
 });

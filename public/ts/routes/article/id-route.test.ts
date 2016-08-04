@@ -53,7 +53,7 @@ function getRoutedComponent(fixture: ComponentFixture<any>) {
 
   // search child elements in the component's template, the element
   // immediately after <router-outlet> will be the routed component
-  function searchChildren(debugElement: DebugElement) {
+  function searchChildren(debugElement: DebugElement): DebugElement {
     if (found) return;
 
     const children = debugElement.children;
@@ -71,7 +71,7 @@ function getRoutedComponent(fixture: ComponentFixture<any>) {
   }
 
   searchChildren(fixture.debugElement);
-  return found.componentInstance;
+  return found;
 }
 
 describe('Article Id Component', () => {
@@ -124,13 +124,25 @@ describe('Article Id Component', () => {
       inject([Router, TestComponentBuilder, Location],
       (router: Router, tcb: TestComponentBuilder, location: Location) => {
         const fixture = createRoot(tcb, router, ArticleRoute);
-
         router.navigate(['3']);
         advance(fixture);
 
-        const component = getRoutedComponent(fixture);
+        const component = getRoutedComponent(fixture).componentInstance;
         expect(component.id).toEqual('3');
         expect(location.path()).toEqual('/3');
-      })));
+      })
+    ));
+
+    it('displays the correct article in the template', fakeAsync(
+      inject([Router, TestComponentBuilder],
+      (router: Router, tcb: TestComponentBuilder) => {
+        const fixture = createRoot(tcb, router, ArticleRoute);
+        router.navigate(['3']);
+        advance(fixture);
+
+        const native = getRoutedComponent(fixture).nativeElement;
+        expect(native.querySelector('h1').innerHTML).toEqual('This is article #3');
+      })
+    ));
   });
 });

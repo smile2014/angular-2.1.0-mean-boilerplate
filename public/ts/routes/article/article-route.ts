@@ -18,7 +18,7 @@ export class ArticleRoute {
   constructor(public router: Router) {}
 
   openArticle(id: number) {
-    this.router.navigate(['article', id, {
+    this.router.navigate([id, {
       param1: 'param1',
       param2: 'param2'
     }]);
