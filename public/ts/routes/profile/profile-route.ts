@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {AuthService} from '../../services/auth-service';
-import {Greeting} from '../../components/common/greeting';
+import {Greeting} from '../../components/greeting';
 
 @Component({
   directives: [Greeting],
