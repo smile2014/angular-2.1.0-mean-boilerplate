@@ -12,17 +12,18 @@ import {Router} from '@angular/router';
 import {
   getFormProviders,
   getRouterProviders
-} from '../test/providers';
+} from '../../test/providers';
 import {
   advance,
   createRootComponent,
   dispatchEvent,
   getRoutedComponent
-} from '../test/utils';
+} from '../../test/utils';
 
-import {HelloWorld, routes} from '../hello-world';
-import {AuthService} from '../services/auth-service';
-import {MockAuthService} from '../services/auth-service.mock';
+import {HelloWorld} from '../root';
+import {routes} from '../router-config';
+import {AuthService} from '../../services/auth-service';
+import {MockAuthService} from '../../services/auth-service.mock';
 
 describe('Login Form', () => {
   beforeEach(() => {
@@ -103,6 +104,7 @@ describe('Login Form', () => {
 
       mockAuthService.setResponse({err: null});
       component.signup(formGroup.value);
+      mockAuthService.setResponse('Larry');
       advance(fixture);
 
       expect(location.path()).toEqual('/home');
@@ -171,6 +173,7 @@ describe('Login Form', () => {
 
       mockAuthService.setResponse({err: null});
       component.login(formGroup.value);
+      mockAuthService.setResponse('Larry');
       advance(fixture);
 
       expect(location.path()).toEqual('/home');

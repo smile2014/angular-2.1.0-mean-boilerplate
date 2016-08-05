@@ -12,7 +12,8 @@ import {provideRouter} from '@angular/router';
 import {LoggedInGuard} from './guards/can-activate/logged-in';
 import {ConfirmLeaveGuard} from './guards/can-deactivate/confirm-leave';
 import {AUTH_PROVIDERS} from './services/auth-service';
-import {routes, HelloWorld} from './hello-world';
+import {HelloWorld} from './routes/root';
+import {routes} from './routes/router-config';
 
 export let injector: Injector;
 

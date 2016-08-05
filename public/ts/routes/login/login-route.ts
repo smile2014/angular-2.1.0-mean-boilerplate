@@ -7,7 +7,7 @@ import {
   Validators
 } from '@angular/forms';
 import {Router} from '@angular/router';
-import {AuthService} from '../services/auth-service';
+import {AuthService} from '../../services/auth-service';
 
 @Component({
   directives: [
