@@ -8,6 +8,7 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
   template: `
   <nav>
     <a routerLink="/home">Home</a>
+    <a routerLink="/demo">Demo</a>
     <a routerLink="/upload">Upload</a>
     <a routerLink="/login">Login</a>
     <a routerLink="/profile">Profile</a>
