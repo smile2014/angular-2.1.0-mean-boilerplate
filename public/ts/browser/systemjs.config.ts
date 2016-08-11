@@ -25,8 +25,7 @@ declare const System: any;
     'http',
     'platform-browser',
     'platform-browser-dynamic',
-    'router',
-    'router-deprecated',
+    'router'
   ].forEach(packageName => {
 
     let mainFile: string = `/bundles/${packageName}.umd.js`;

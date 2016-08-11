@@ -1,4 +1,5 @@
-import {RouterConfig} from '@angular/router';
+import {ModuleWithProviders} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 
 import {LoggedInGuard} from '../guards/can-activate/logged-in';
 import {ConfirmLeaveGuard} from '../guards/can-deactivate/confirm-leave';
@@ -12,7 +13,7 @@ import {LoginRoute} from './login/login-route';
 import {ProfileRoute} from './profile/profile-route';
 import {UploadRoute} from './upload/upload-route';
 
-export const routes: RouterConfig = [
+export const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {
     path: 'article',
@@ -34,3 +35,5 @@ export const routes: RouterConfig = [
   {path: 'upload', component: UploadRoute},
   {path: '**', component: ErrorRoute}
 ];
+
+export const routing: ModuleWithProviders = RouterModule.forRoot(routes);

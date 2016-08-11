@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {ROUTER_DIRECTIVES} from '@angular/router';
 
 @Component({
-  selector: 'hello-world',
+  selector: 'app-root',
   directives: [ROUTER_DIRECTIVES],
   styleUrls: [`css/angular2/main.css`],
   template: `
@@ -18,4 +18,4 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
   <router-outlet></router-outlet>
   `
 })
-export class HelloWorld {}
+export class AppRoot {}

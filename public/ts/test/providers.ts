@@ -8,7 +8,8 @@ import {
 import {SpyLocation} from '@angular/common/testing';
 import {
   ComponentResolver,
-  Injector
+  Injector,
+  NgModuleFactoryLoader
 } from '@angular/core';
 import {
   disableDeprecatedForms,
@@ -23,7 +24,7 @@ import {
   ActivatedRoute,
   DefaultUrlSerializer,
   Router,
-  RouterConfig,
+  Routes,
   RouterOutletMap,
   UrlSerializer
 } from '@angular/router';
@@ -38,7 +39,7 @@ export function getFormProviders(): any[] {
 
 export function getRouterProviders(config: {
   rootComponent: any,
-  routes: RouterConfig
+  routes: Routes
 }): any[] {
   return [
     RouterOutletMap,
@@ -53,6 +54,7 @@ export function getRouterProviders(config: {
         UrlSerializer,
         RouterOutletMap,
         Location,
+        NgModuleFactoryLoader,
         Injector
       ],
       useFactory: (
@@ -60,11 +62,12 @@ export function getRouterProviders(config: {
         urlSerializer: UrlSerializer,
         outletMap: RouterOutletMap,
         location: Location,
+        loader: NgModuleFactoryLoader,
         injector: Injector
       ) => {
         return new Router(
           config.rootComponent, resolver, urlSerializer, outletMap,
-          location, injector, config.routes
+          location, injector, loader, config.routes
         );
       }
     },
