@@ -1,14 +1,12 @@
-import * as mongoose from 'mongoose';
-const passportLocalMongoose = require('passport-local-mongoose');
+import {
+  Document,
+  model,
+  PassportLocalModel,
+  Schema
+} from 'mongoose';
+import * as passportLocalMongoose from 'passport-local-mongoose';
 
-export interface Statics {
-  authenticate: Function;
-  serializeUser: Function;
-  deserializeUser: Function;
-  register: Function;
-}
-
-const UserSchema = new mongoose.Schema({});
+const UserSchema = new Schema({});
 UserSchema.plugin(passportLocalMongoose);
 
-export const User: Statics & mongoose.Model<{}> =  mongoose.model<{}, Statics>('User', UserSchema);
+export const User: PassportLocalModel<Document> = model('User', UserSchema);

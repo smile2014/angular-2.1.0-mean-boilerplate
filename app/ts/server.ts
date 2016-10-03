@@ -1,4 +1,4 @@
-/// <reference path="../../typings-modules/backend.d.ts" />
+import 'core-js';
 import * as express from 'express';
 import * as glob from 'glob';
 import * as http from 'http';
@@ -10,7 +10,7 @@ import {loadRoutes} from './config/express';
 import {options} from './config/options';
 
 const app = express();
-mongoose.Promise = Promise;
+(<any>mongoose).Promise = Promise;
 
 module.exports = function(): http.Server {
   logEnvironment();

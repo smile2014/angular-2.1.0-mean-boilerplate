@@ -1,3 +1,4 @@
+import 'mocha';
 import * as chai from 'chai';
 import * as http from 'http';
 import * as mongoose from 'mongoose';

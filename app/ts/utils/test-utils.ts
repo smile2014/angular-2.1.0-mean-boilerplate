@@ -51,7 +51,7 @@ export function getPromise(server: http.Server, url: string, options: RequestOpt
     request(server)
       .get(url)
       .set(headers)
-      .end((err, res) => err ? reject(err) : resolve(res));
+      .end((err: any, res: any) => err ? reject(err) : resolve(res));
   });
 }
 
@@ -67,7 +67,7 @@ export function postPromise(server: http.Server, url: string, options: RequestOp
       .post(url)
       .set(headers)
       .send(data)
-      .end((err, res) => err ? reject(err) : resolve(res));
+      .end((err: any, res: any) => err ? reject(err) : resolve(res));
   });
 }
 

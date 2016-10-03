@@ -115,8 +115,16 @@ module.exports = function (grunt) {
 
     // typescript compile
     ts: {
-      backend: {tsconfig: 'app/ts/tsconfig.json'},
-      frontend: {tsconfig: 'public/ts/tsconfig.json'}
+      backend: {
+        tsconfig: {
+          tsconfig: 'app/ts/tsconfig.json',
+          passThrough: true
+        }
+      },
+      frontend: {tsconfig: 'public/ts/tsconfig.json'},
+      options: {
+        compiler: 'node_modules/typescript/bin/tsc'
+      }
     },
 
     tslint: {

@@ -28,7 +28,7 @@ export const signup: express.RequestHandler = function (req, res, next) {
   const username = req.body.username;
   const password = req.body.password;
 
-  User.register(new User({username: username}), password, (err: any, user: any) => {
+  User.register(new User({username: username}), password, err => {
     if (err) {
       res.status(200).json({err: 'That user already exists.'});
     } else {
