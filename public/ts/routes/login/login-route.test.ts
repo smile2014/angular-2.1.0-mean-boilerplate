@@ -20,7 +20,7 @@ import {
   getRoutedComponent
 } from '../../test/utils';
 
-import {HelloWorld} from '../root';
+import {AppRoot} from '../root';
 import {routes} from '../router-config';
 import {AuthService} from '../../services/auth-service';
 import {MockAuthService} from '../../services/auth-service.mock';
@@ -32,7 +32,7 @@ describe('Login Form', () => {
     addProviders([
       ...getFormProviders(),
       ...getRouterProviders({
-        rootComponent: HelloWorld,
+        rootComponent: AppRoot,
         routes: routes
       }),
       {provide: AuthService, useValue: mockAuthService}
@@ -46,7 +46,7 @@ describe('Login Form', () => {
       mockAuthService: MockAuthService,
       location: Location
     ) => {
-      const fixture = createRootComponent(tcb, router, HelloWorld);
+      const fixture = createRootComponent(tcb, router, AppRoot);
       router.navigate(['/login']);
       advance(fixture);
 
@@ -118,7 +118,7 @@ describe('Login Form', () => {
       mockAuthService: MockAuthService,
       location: Location
     ) => {
-      const fixture = createRootComponent(tcb, router, HelloWorld);
+      const fixture = createRootComponent(tcb, router, AppRoot);
       router.navigate(['/login']);
       advance(fixture);
 

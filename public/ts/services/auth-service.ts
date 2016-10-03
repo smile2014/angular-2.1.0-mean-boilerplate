@@ -1,4 +1,4 @@
-import {Injectable, provide} from '@angular/core';
+import {Injectable, Provider} from '@angular/core';
 import {Http, Headers} from '@angular/http';
 
 import {Observable} from 'rxjs/Observable';
@@ -50,5 +50,5 @@ export class AuthService {
 }
 
 export const AUTH_PROVIDERS: any[] = [
-  provide(AuthService, {useClass: AuthService})
+  new Provider(AuthService, {useClass: AuthService})
 ];

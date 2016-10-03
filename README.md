@@ -1,36 +1,27 @@
 # MEAN2 Playground
-Sample **MongoDB, ExpressJS, Angular2, NodeJS** application
-with all the essentials.
+**MongoDB, ExpressJS, Angular2, NodeJS** starter project featuring:
 
-**Node/Express**
-- MVC & Typescript
-- Popular Middleware (bodyParser, morgan, etc.)
-- Command-line Options with minimist
-- Mongoose ODM
-- File Upload with formidable
-- Passport Authentication
-- Cookies & Sessions
-
-**Angular2**
-- SystemJS Bundling
-- Client-Side Routing & PathLocationStrategy
-- Http Requests
-- FormBuilder and Validators
-- Dependency Injection
-- Lifecycle Hooks
-
-**Workflow**
-- Build Automation with Grunt & npm
-- Change Detection and Reload for Browser & Server
+* Full stack Typescript
+* Browser and server live reload
+* Grunt automation
+* Unit testing with Mocha, Istanbul, Karma, and Jasmine
+* Sass integration for Angular 2
+* SystemJS
+* DefinitelyTyped
+* Mongoose ODM
+* PassportJS authentication
+* PrimeNG
+* and more...
 
 ### To Run
-You will need latest versions of:
+You will need:
 
-- npm (get it by installing [node](https://nodejs.org/en/download/))
-- typings (run `npm install -g typings`)
-- mongoDB (get it [here](https://www.mongodb.org/downloads#production))
+1. [NodeJS](https://nodejs.org/en/download/)
+2. typings (run `npm install -g typings` after installing NodeJS)
+3. node-sass (run `npm install -g node-sass` after installing NodeJS)
+3. [mongoDB](https://www.mongodb.org/downloads#production)
 
-In the terminal:
+After Installing:
 
 1. `git clone https://github.com/simonxca/mean2-playground`
 2. `cd` into the repo
