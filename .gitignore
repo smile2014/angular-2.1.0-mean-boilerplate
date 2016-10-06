@@ -1,29 +1,27 @@
-# npm
-node_modules/
-npm-debug.log
-
-# credentials
-app/ts/config/credentials.ts
-
-# OS X
-.DS_Store
-
-# istanbul
-coverage
-
 # compiled typescript
 public/js/
 app/js/
 .tscache/
 **/.baseDir.ts
+tscommand*
+
+
+# istanbul
+coverage
+
+
+# npm
+node_modules/
+npm-debug.log
+
+
+# OS X
+.DS_Store
+
 
 # sass
 /.sass-cache
 public/css/
-
-# tsd
-typings/
-tscommand*
 
 # vscode
 .vscode/
