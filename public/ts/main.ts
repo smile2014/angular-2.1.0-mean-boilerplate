@@ -1,4 +1,3 @@
-/// <reference path="../../typings-modules/frontend.d.ts" />
 import {APP_BASE_HREF} from '@angular/common';
 import {NgModule, Provider} from '@angular/core';
 import {FormsModule, FORM_PROVIDERS, REACTIVE_FORM_PROVIDERS} from '@angular/forms';
