@@ -23,6 +23,7 @@ export function deleteRequireCache(path: string) {
 
 export function startServer(): http.Server {
   const serverPath = `${config.root}/server`;
+  console.log(serverPath);
   deleteRequireCache(serverPath);
   return require(serverPath);
 }

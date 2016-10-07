@@ -6,18 +6,14 @@ import * as express from 'express';
 import * as favicon from 'serve-favicon';
 import * as glob from 'glob';
 import * as logger from 'morgan';
-import * as passport from 'passport';
-import * as passportLocal from 'passport-local';
 import * as path from 'path';
 import * as methodOverride from 'method-override';
 import * as mongoose from 'mongoose';
 import * as session from 'express-session';
 import {config} from './express-config';
 import {getNodeEnv} from '../utils/express-utils';
-import {User} from '../models/user';
 
 const MongoStore = connectMongo(session);
-const LocalStrategy = passportLocal.Strategy;
 
 export function loadRoutes(app: express.Express): void {
   loadMiddleware(app);
@@ -50,9 +46,6 @@ function loadMiddleware(app: express.Express): void {
       mongooseConnection: mongoose.connection
     })
   }));
-  app.use(passport.initialize());
-  app.use(passport.session());
-  configurePassport();
 
   app.use('/node_modules', express.static(config.root + '/node_modules', {
     extensions: ['js']
@@ -76,12 +69,6 @@ function secretWarning(req: any, res: any, next: any) {
     console.log('Remember to remove secretWarning() from app/ts/config/express.ts');
   }
   next();
-}
-
-function configurePassport() {
-  passport.use(new LocalStrategy(User.authenticate()));
-  passport.serializeUser(User.serializeUser());
-  passport.deserializeUser(User.deserializeUser());
 }
 
 function loadApi(app: express.Express): void {
