@@ -121,7 +121,12 @@ module.exports = function (grunt) {
           passThrough: true
         }
       },
-      frontend: {tsconfig: 'public/ts/tsconfig.json'},
+      frontend: {
+        tsconfig: {
+          tsconfig: 'public/ts/tsconfig.json',
+          passThrough: true
+        }
+      },
       options: {
         compiler: 'node_modules/typescript/bin/tsc'
       }

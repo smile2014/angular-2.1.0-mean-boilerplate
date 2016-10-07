@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as passport from 'passport';
-import {User} from '../../../models/user';
+import {User} from '../../models/user';
 
 export const getUser: express.RequestHandler = function (req, res, next) {
   try {

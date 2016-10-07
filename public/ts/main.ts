@@ -1,3 +1,4 @@
+import 'jasmine';
 import {APP_BASE_HREF} from '@angular/common';
 import {NgModule, Provider} from '@angular/core';
 import {FormsModule, FORM_PROVIDERS, REACTIVE_FORM_PROVIDERS} from '@angular/forms';
@@ -10,7 +11,6 @@ import {Greeting} from './components/greeting';
 import {ArticleRoute} from './routes/article/article-route';
 import {ArticleIdRoute} from './routes/article/id-route';
 import {ArticleMainRoute} from './routes/article/main-route';
-import {DemoRoute} from './routes/demo/demo-route';
 import {ErrorRoute} from './routes/error/error-route';
 import {HomeRoute} from './routes/home/home-route';
 import {LoginRoute} from './routes/login/login-route';
@@ -36,7 +36,6 @@ import {routing} from './routes/router-config';
     ArticleRoute,
     ArticleIdRoute,
     ArticleMainRoute,
-    DemoRoute,
     ErrorRoute,
     HomeRoute,
     LoginRoute,

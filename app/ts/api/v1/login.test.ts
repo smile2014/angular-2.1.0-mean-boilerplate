@@ -1,8 +1,7 @@
-import 'mocha';
 import * as chai from 'chai';
 import * as http from 'http';
 import * as mongoose from 'mongoose';
-import * as utils from '../../../utils/test-utils';
+import * as utils from '../../utils/test-utils';
 
 const expect = chai.expect;
 const apiEndpoint = '/api/v1';

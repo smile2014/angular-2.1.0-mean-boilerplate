@@ -1,4 +1,5 @@
 import 'core-js';
+import 'mocha';
 import * as express from 'express';
 import * as glob from 'glob';
 import * as http from 'http';

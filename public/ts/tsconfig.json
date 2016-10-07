@@ -1,18 +1,18 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "system",
+    "module": "commonjs",
     "moduleResolution": "node",
+
     "sourceMap": true,
-    "declaration": true,
+    "noImplicitAny": true,
+    "removeComments": true,
+    "suppressImplicitAnyIndexErrors": true,
+
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "removeComments": true,
-    "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "outDir": "../js"
-  },
-  "exclude": [
-    "node_modules"
-  ]
+
+    "outDir": "../js",
+    "types": ["core-js"]
+  }
 }

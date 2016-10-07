@@ -1,6 +1,6 @@
 import * as express from 'express';
 import * as passport from 'passport';
-import {getUser, login, signup, logout} from '../handlers/login';
+import {getUser, login, signup, logout} from './login-handlers';
 
 const router = express.Router();
 

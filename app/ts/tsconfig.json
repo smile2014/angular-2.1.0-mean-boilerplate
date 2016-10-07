@@ -10,6 +10,6 @@
     "suppressImplicitAnyIndexErrors": true,
 
     "outDir": "../js",
-    "types": []
+    "types": ["core-js"]
   }
 }
