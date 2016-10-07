@@ -3,7 +3,8 @@
 
 * Full stack Typescript
 * Browser and server live reload
-* Mongoose
+* API versioning
+* Boilerplate for Mongoose, Formidable, Minimist, etc.
 * Unit testing with Mocha, Istanbul, Karma, and Jasmine
 * Sass integration for Angular 2
 * Grunt automation
