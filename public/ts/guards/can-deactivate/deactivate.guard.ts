@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 
 @Injectable()
-export class ConfirmLeaveGuard {
+export class DeactivateGuard {
   canDeactivate() {
-    if (confirm('Leave this page?')) return true;
+    console.log()
     return false;
   }
 }

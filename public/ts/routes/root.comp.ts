@@ -12,4 +12,4 @@ import {ROUTER_DIRECTIVES} from '@angular/router';
   <router-outlet></router-outlet>
   `
 })
-export class AppRoot {}
+export class RootComponent {}

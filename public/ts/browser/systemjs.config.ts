@@ -1,6 +1,6 @@
 // SystemJS Config
 declare const System: any;
-(function(global: any) {
+(function (global) {
 
   const map = {
     '@angular':           'node_modules/@angular',
@@ -8,7 +8,7 @@ declare const System: any;
     'symbol-observable':  'node_modules/symbol-observable'
   };
 
-  const packages: any = {
+  const packages = {
     'js':                 { main: 'main.js', defaultExtension: 'js' },
     'rxjs':               { defaultExtension: 'js' },
     'symbol-observable':  { main: 'index.js', defaultExtension: 'js' }
@@ -26,18 +26,17 @@ declare const System: any;
     'router'
   ].forEach(packageName => {
 
-    let mainFile: string = `/bundles/${packageName}.umd.js`;
+    let mainFile = `/bundles/${packageName}.umd.js`;
     if (System.packageWithIndex) mainFile = 'index.js';
 
     packages[`@angular/${packageName}`] = {
-      main:               mainFile
+      main: mainFile
     };
   });
 
-  const config = {
+  System.config({
     map: map,
     packages: packages
-  };
+  });
 
-  System.config(config);
 })(this);

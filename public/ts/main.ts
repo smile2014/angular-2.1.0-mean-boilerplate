@@ -6,16 +6,16 @@ import {HttpModule} from '@angular/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
-import {AppRoot} from './routes/root';
-import {Greeting} from './components/greeting';
-import {ErrorRoute} from './routes/error/error-route';
-import {HomeRoute} from './routes/home/home-route';
+import {RootComponent} from './routes/root.comp';
+import {Greeting} from './components/greeting.comp';
+import {ErrorRoute} from './routes/error/error.route';
+import {HomeRoute} from './routes/home/home.route';
 
-import {LoggedInGuard} from './guards/can-activate/logged-in';
-import {ConfirmLeaveGuard} from './guards/can-deactivate/confirm-leave';
-import {AUTH_PROVIDERS} from './services/auth-service';
+import {ActivateGuard} from './guards/can-activate/activate.guard';
+import {DeactivateGuard} from './guards/can-deactivate/deactivate.guard';
+import {AUTH_PROVIDERS} from './services/auth.service';
 
-import {routing} from './routes/router-config';
+import {routing} from './config/router.config';
 
 @NgModule({
   imports: [
@@ -25,7 +25,7 @@ import {routing} from './routes/router-config';
     HttpModule
   ],
   declarations: [
-    AppRoot,
+    RootComponent,
     Greeting,
     ErrorRoute,
     HomeRoute
@@ -33,12 +33,12 @@ import {routing} from './routes/router-config';
   providers: [
     FORM_PROVIDERS,
     REACTIVE_FORM_PROVIDERS,
-    LoggedInGuard,
-    ConfirmLeaveGuard,
+    ActivateGuard,
+    DeactivateGuard,
     new Provider(APP_BASE_HREF, {useValue: '/'}),
     AUTH_PROVIDERS
   ],
-  bootstrap: [AppRoot]
+  bootstrap: [RootComponent]
 })
 class AppModule {}
 

@@ -1,6 +1,6 @@
 import {provide} from '@angular/core';
-import {SpyObject} from '../test/spy-object';
-import {AuthService} from './auth-service';
+import {SpyObject} from '../test/spy-object.utils';
+import {AuthService} from './auth.service';
 
 export class MockAuthService extends SpyObject {
   getUsernameSpy: any;

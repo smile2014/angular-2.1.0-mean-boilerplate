@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {Greeting} from '../../components/greeting';
+import {Greeting} from '../../components/greeting.comp';
 
 @Component({
   directives: [Greeting],

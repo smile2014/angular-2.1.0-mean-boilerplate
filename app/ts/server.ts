@@ -59,7 +59,7 @@ function loadModels(): void {
 function startServer(): http.Server {
   // set up livereload
   if (getNodeEnv() === 'development') {
-    require('./config/livereload')(app);
+    require('./config/livereload.config')(app);
   }
 
   return app.listen(config.port, () => {
