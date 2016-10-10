@@ -1,5 +1,5 @@
-import 'core-js';
-import 'mocha';
+/// <reference types="core-js" />
+/// <reference types="mocha" />
 import * as express from 'express';
 import * as glob from 'glob';
 import * as http from 'http';

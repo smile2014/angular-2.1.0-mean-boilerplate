@@ -27,7 +27,6 @@ function loadMiddleware(app: express.Express): void {
   app.use(methodOverride());
 
   // delete after changing the cookie secret
-  app.use(secretWarning);
   if (getNodeEnv() === 'development') {
     app.use(logger('dev'));
   }
@@ -50,6 +49,7 @@ function loadMiddleware(app: express.Express): void {
   app.use('/node_modules', express.static(config.root + '/node_modules', {
     extensions: ['js']
   }));
+  app.use(secretWarning);
   app.use(express.static(config.root + '/public', {
     extensions: ['html', 'js']
   }));
@@ -57,14 +57,8 @@ function loadMiddleware(app: express.Express): void {
 
 // delete after changing the cookie secret
 function secretWarning(req: any, res: any, next: any) {
-  if (config.cookieSecret === 'default') {
-    console.log('WARNING: change cookie secret in app/ts/config/express-config.ts');
-  } else {
-    console.log('Remember to remove secretWarning() from app/ts/config/express.ts');
-  }
-
-  if (config.tokenSecret === 'default') {
-    console.log('WARNING: change token secret in app/ts/config/express-config.ts');
+  if (config.cookieSecret === 'default' || config.tokenSecret === 'default') {
+    console.log('WARNING: change cookie/token secrets in app/ts/config/express-config.ts');
   } else {
     console.log('Remember to remove secretWarning() from app/ts/config/express.ts');
   }

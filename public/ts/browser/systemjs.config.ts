@@ -5,15 +5,13 @@ declare const System: any;
   const map = {
     '@angular':           'node_modules/@angular',
     'rxjs':               'node_modules/rxjs',
-    'symbol-observable':  'node_modules/symbol-observable',
-    'primeng':            'node_modules/primeng'
+    'symbol-observable':  'node_modules/symbol-observable'
   };
 
   const packages: any = {
     'js':                 { main: 'main.js', defaultExtension: 'js' },
     'rxjs':               { defaultExtension: 'js' },
-    'symbol-observable':  { main: 'index.js', defaultExtension: 'js' },
-    'primeng':            { defaultExtension: 'js' }
+    'symbol-observable':  { main: 'index.js', defaultExtension: 'js' }
   };
 
   // Load angular packages
