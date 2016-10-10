@@ -10,8 +10,8 @@ import * as path from 'path';
 import * as methodOverride from 'method-override';
 import * as mongoose from 'mongoose';
 import * as session from 'express-session';
-import {config} from './express-config';
-import {getNodeEnv} from '../utils/express-utils';
+import {config} from './server.config';
+import {getNodeEnv} from '../utils/express.utils';
 
 const MongoStore = connectMongo(session);
 

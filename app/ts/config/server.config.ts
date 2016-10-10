@@ -1,5 +1,5 @@
 import * as path from 'path';
-import {getNodeEnv} from '../utils/express-utils';
+import {getNodeEnv} from '../utils/express.utils';
 
 const appName = 'playlistHeaven';
 

@@ -1,4 +1,3 @@
-import {ModuleWithProviders} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 
 import {ErrorRoute} from './error/error-route';
@@ -10,4 +9,4 @@ export const routes: Routes = [
   {path: '**', component: ErrorRoute}
 ];
 
-export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
+export const routing = RouterModule.forRoot(routes);

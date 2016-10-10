@@ -1,5 +1,5 @@
 import * as express from 'express';
-import {config} from './express-config';
+import {config} from './server.config';
 const sendevent = require('sendevent');
 const watch = require('watch');
 

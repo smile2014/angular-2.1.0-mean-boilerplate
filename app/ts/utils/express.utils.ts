@@ -1,5 +1,5 @@
 import * as path from 'path';
-import {options} from '../config/options';
+import {options} from '../config/options.config';
 
 if (options['env']) process.env.NODE_ENV = options['env'];
 

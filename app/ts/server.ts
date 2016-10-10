@@ -5,10 +5,10 @@ import * as glob from 'glob';
 import * as http from 'http';
 import * as mongoose from 'mongoose';
 import * as path from 'path';
-import {config} from './config/express-config';
-import {getNodeEnv, isMocha} from './utils/express-utils';
-import {loadRoutes} from './config/express';
-import {options} from './config/options';
+import {config} from './config/server.config';
+import {getNodeEnv, isMocha} from './utils/express.utils';
+import {loadRoutes} from './config/express.config';
+import {options} from './config/options.config';
 
 const app = express();
 (<any>mongoose).Promise = Promise;

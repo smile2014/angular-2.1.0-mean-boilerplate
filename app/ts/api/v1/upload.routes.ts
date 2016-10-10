@@ -1,10 +1,10 @@
 import * as express from 'express';
-import {sayHello} from './hello-handlers';
+import {uploadFile} from './upload.handlers';
 
 const router = express.Router();
 
 module.exports = function (app: express.Express) {
-  app.use('/', router);
+  app.use('/upload', router);
 };
 
-router.get('/hello', sayHello);
+router.post('/', uploadFile);

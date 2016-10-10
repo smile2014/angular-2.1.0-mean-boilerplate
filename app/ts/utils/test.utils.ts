@@ -1,7 +1,7 @@
 import * as http from 'http';
 import * as mongoose from 'mongoose';
 import * as request from 'supertest';
-import {config} from '../config/express-config';
+import {config} from '../config/server.config';
 
 /**
  * General utility functions
