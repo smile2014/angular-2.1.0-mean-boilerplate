@@ -1,4 +1,5 @@
 # MEAN2 Boilerplate
+#### Angular 2 Version: 2.0.2
 **MongoDB, ExpressJS, Angular2, NodeJS** boilerplate featuring:
 
 * Full stack Typescript
