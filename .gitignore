@@ -1,6 +1,6 @@
 # compiled typescript
-public/js/
-app/js/
+public/dist/
+app/dist/
 .tscache/
 **/.baseDir.ts
 tscommand*
@@ -21,7 +21,7 @@ npm-debug.log
 
 # sass
 /.sass-cache
-public/css/
+
 
 # vscode
 .vscode/
