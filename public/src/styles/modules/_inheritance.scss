@@ -6,9 +6,3 @@
   display: -webkit-flex;     /* NEW - Chrome */
   display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
 }
-
-%custom-height {
-  display: block;
-  line-height: 0;
-  overflow: hidden;
-}

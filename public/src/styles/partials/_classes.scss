@@ -1,48 +1,22 @@
-@import 'modules/colors';
-@import 'modules/inheritance';
+@import 'modules/animations';
 @import 'modules/mixins';
 @import 'modules/timing';
 
-@keyframes FadeIn {
-  0% {
-    background-color: transparent;
-    border-color: transparent;
-    opacity: 0;
-  }
-}
-
+// Fade Animation
 .fade-in {
-  @include vendor-prefix(animation, FadeIn $animation-timing forwards);
+  @include vendor-prefix(animation, FadeIn $timing-medium forwards);
 }
-
-@keyframes FadeOut {
-  100% {
-    background-color: transparent;
-    border-color: transparent;
-    opacity: 0;
-  }
-}
-
 .fade-out {
-  @include vendor-prefix(animation, FadeOut $animation-timing forwards);
+  @include vendor-prefix(animation, FadeOut $timing-medium forwards);
 }
 
-.flex {
-  @extend %flex;
-}
-
+// Transition
 .transition {
-  @include vendor-prefix(transition, all $transition-timing ease-in-out);
+  @include vendor-prefix(transition, all $timing-fast ease-in-out);
 }
-
 .transition-fast {
-  @include vendor-prefix(transition, all $transition-timing-fast ease-in-out);
+  @include vendor-prefix(transition, all $timing-medium ease-in-out);
 }
-
 .transition-slow {
-  @include vendor-prefix(transition, all $transition-timing-slow ease-in-out);
-}
-
-.transparent {
-  opacity: 0;
+  @include vendor-prefix(transition, all $timing-slow ease-in-out);
 }
