@@ -1,5 +1,4 @@
 import {NgModule} from '@angular/core';
-import {HttpModule} from '@angular/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {RouterModule} from '@angular/router';
 
@@ -21,7 +20,6 @@ import {routes} from '../config/router.config';
 @NgModule({
   imports: [
     BrowserModule,
-    HttpModule,
     RouterModule.forRoot(routes)
   ],
   declarations: [

@@ -1,17 +1,18 @@
 // SystemJS Config
 declare const System: any;
 (function (global) {
+  const paths = {
+    'npm:': 'node_modules/'
+  };
 
   const map = {
-    '@angular':           'node_modules/@angular',
-    'rxjs':               'node_modules/rxjs',
-    'symbol-observable':  'node_modules/symbol-observable'
+    '@angular': 'npm:@angular',
+    'rxjs': 'npm:rxjs'
   };
 
   const packages = {
-    'dist':                 { main: 'main.js', defaultExtension: 'js' },
-    'rxjs':               { defaultExtension: 'js' },
-    'symbol-observable':  { main: 'index.js', defaultExtension: 'js' }
+    'dist': { main: 'main.js', defaultExtension: 'js' },
+    'rxjs': { defaultExtension: 'js' }
   };
 
   // Load angular packages
@@ -26,7 +27,7 @@ declare const System: any;
     'router'
   ].forEach(packageName => {
 
-    let mainFile = `/bundles/${packageName}.umd.js`;
+    let mainFile = `bundles/${packageName}.umd.js`;
     if (System.packageWithIndex) mainFile = 'index.js';
 
     packages[`@angular/${packageName}`] = {
@@ -35,6 +36,7 @@ declare const System: any;
   });
 
   System.config({
+    paths: paths,
     map: map,
     packages: packages
   });

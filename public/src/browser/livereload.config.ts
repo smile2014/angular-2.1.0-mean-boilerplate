@@ -11,13 +11,12 @@ try {
   };
 
   source.onerror = function (error: any) {
-    const refresh = 5;
+    const refresh = 5000;
     console.log('livereload error. Backend not available.');
-    console.log('refreshing in ' + refresh + ' seconds.');
+    console.log('refreshing in ' + refresh / 1000 + ' seconds.');
+
     setTimeout(function () {
       window.location.reload();
-    }, refresh * 1000);
+    }, refresh);
   };
-} catch (err) {
-
-}
+} catch (err) {}

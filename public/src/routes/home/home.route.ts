@@ -1,11 +1,8 @@
 import {Component} from '@angular/core';
 
 @Component({
-  styleUrls: [`css/angular2/routes/home-route.css`],
-  template: `
-  <div>
-    <greeting></greeting>
-  </div>
-  `
+  moduleId: module.id,
+  styleUrls: ['home.route.css'],
+  templateUrl: 'home.route.html'
 })
 export class HomeRoute {}
