@@ -3,9 +3,10 @@
   "version": "0.0.1",
   "description": "MEAN2 Boilerplate",
   "scripts": {
-    "start": "concurrently \"grunt watch:backend\" \"grunt watch:frontend\" \"grunt watch:scss\" \"grunt watch:html\" \"nodemon server.js --watch app/js/\"",
-    "dev": "grunt build && npm start",
-    "prod": "grunt build && node server.js"
+    "start": "node server.js",
+    "watch": "concurrently \"grunt watch:backend\" \"grunt watch:frontend\" \"grunt watch:scss\" \"grunt watch:html\" \"nodemon server.js --watch app/dist/\"",
+    "dev": "grunt build && npm run watch",
+    "prod": "grunt build && npm start"
   },
   "dependencies": {
     "@angular/common": "^2.0.2",

@@ -14,39 +14,39 @@ module.exports = function (grunt) {
   /*
    * grunt task names
    */
-  var cleanBackend = {name: 'clean:backend'};
-  var cleanFrontend = {name: 'clean:frontend'};
-  var concurrentBuild = {name: 'concurrent:build'};
-  var concurrentTest = {name: 'concurrent:test'};
-  var copyFrontend = {name: 'copy:frontend'};
-  var karmaFrontendUnit = {name: 'karma:frontend-unit'};
-  var mochaIstanbulBackend = {name: 'mocha_istanbul:backend'};
-  var mochaCliBackend = {name: 'mochacli:backend'};
-  var sassMain = {name: 'sass:main'};
-  var scssLintMain = {name: 'scsslint:main'};
-  var tsBackend = {name: 'ts:backend'};
-  var tsFrontend = {name: 'ts:frontend'};
-  var tsLintBackend = {name: 'tslint:backend'};
-  var tsLintFrontend = {name: 'tslint:frontend'};
-  var watchBackend = {name: 'watch:backend'};
-  var watchBackendTest = {name: 'watch:backend-test'};
-  var watchFrontend = {name: 'watch:frontend'};
-  var watchFrontendTest = {name: 'watch:frontend-test'};
-  var watchScss = {name: 'watch:scss'};
-  var watchHtml = {name: 'watch:html'};
+  var cleanBackend = 'clean:backend';
+  var cleanFrontend = 'clean:frontend';
+  var concurrentBuild = 'concurrent:build';
+  var concurrentTest = 'concurrent:test';
+  var copyFrontend = 'copy:frontend';
+  var karmaFrontendUnit = 'karma:frontend-unit';
+  var mochaIstanbulBackend = 'mocha_istanbul:backend';
+  var mochaCliBackend = 'mochacli:backend';
+  var sassMain = 'sass:main';
+  var scssLintMain = 'scsslint:main';
+  var tsBackend = 'ts:backend';
+  var tsFrontend = 'ts:frontend';
+  var tsLintBackend = 'tslint:backend';
+  var tsLintFrontend = 'tslint:frontend';
+  var watchBackend = 'watch:backend';
+  var watchBackendTest = 'watch:backend-test';
+  var watchFrontend = 'watch:frontend';
+  var watchFrontendTest = 'watch:frontend-test';
+  var watchScss = 'watch:scss';
+  var watchHtml = 'watch:html';
 
   /*
    * user task names
    */
-  var buildBackend = {name: 'build-backend'};
-  var buildFrontend = {name: 'build-frontend'};
-  var build = {name: 'build'};
-  var sequentialBuild = {name: 'sequential-build'};
-  var testBackend = {name: 'test-backend'};
-  var testFrontend = {name: 'test-frontend'};
-  var test = {name: 'test'};
-  var coverBackend = {name: 'cover-backend'};
-  var cover = {name: 'cover'};
+  var buildBackend = 'build-backend';
+  var buildFrontend = 'build-frontend';
+  var build = 'build';
+  var sequentialBuild = 'sequential-build';
+  var testBackend = 'test-backend';
+  var testFrontend = 'test-frontend';
+  var test = 'test';
+  var coverBackend = 'cover-backend';
+  var cover = 'cover';
 
   /*
    * initConfig
@@ -60,8 +60,8 @@ module.exports = function (grunt) {
     concurrent: {
       build: {
         tasks: [
-          buildBackend.name,
-          buildFrontend.name
+          buildBackend,
+          buildFrontend
         ],
         options: {
           logConcurrentOutput: true
@@ -69,8 +69,8 @@ module.exports = function (grunt) {
       },
       test: {
         tasks: [
-          testBackend.name,
-          testFrontend.name
+          testBackend,
+          testFrontend
         ],
         options: {
           logConcurrentOutput: true
@@ -173,44 +173,44 @@ module.exports = function (grunt) {
       backend: {
         files: [backendInputDir + '/**/*.ts'],
         tasks: [
-          tsLintBackend.name,
-          tsBackend.name
+          tsLintBackend,
+          tsBackend
         ]
       },
       'backend-test': {
         files: [backendInputDir + '/**/*.ts'],
         tasks: [
-          tsLintBackend.name,
-          tsBackend.name,
-          mochaCliBackend.name
+          tsLintBackend,
+          tsBackend,
+          mochaCliBackend
         ]
       },
       frontend: {
         files: [frontendInputDir + '/**/*.ts'],
         tasks: [
-          tsLintFrontend.name,
-          tsFrontend.name
+          tsLintFrontend,
+          tsFrontend
         ]
       },
       'frontend-test': {
         files: [frontendInputDir + '/**/*.ts'],
         tasks: [
-          tsLintFrontend.name,
-          tsFrontend.name,
-          karmaFrontendUnit.name
+          tsLintFrontend,
+          tsFrontend,
+          karmaFrontendUnit
         ]
       },
       scss: {
         files: [frontendInputDir + '/**/*.scss'],
         tasks: [
-          scssLintMain.name,
-          sassMain.name
+          scssLintMain,
+          sassMain
         ]
       },
       html: {
         files: [frontendInputDir + '/**/*.html'],
         tasks: [
-          copyFrontend.name
+          copyFrontend
         ]
       }
     }
@@ -230,8 +230,9 @@ module.exports = function (grunt) {
     readRecursive(SCSS_DIR).forEach(function (fileName) {
       if (!fileName.endsWith(SCSS_EXT)) return;
 
+      var scssFileName = fileName;
       var cssFileName = fileName.substring(0, fileName.length - SCSS_EXT.length) + '.css';
-      result[CSS_DIR + '/' + cssFileName] = SCSS_DIR + '/' + fileName;
+      result[CSS_DIR + '/' + cssFileName] = SCSS_DIR + '/' + scssFileName;
     });
     return result;
   }
@@ -272,60 +273,60 @@ module.exports = function (grunt) {
   /*
    * Build Tasks
    */
-  grunt.registerTask(buildBackend.name, [
-    cleanBackend.name,
-    tsLintBackend.name,
-    tsBackend.name
+  grunt.registerTask(buildBackend, [
+    cleanBackend,
+    tsLintBackend,
+    tsBackend
   ]);
 
-  grunt.registerTask(buildFrontend.name, [
-    cleanFrontend.name,
+  grunt.registerTask(buildFrontend, [
+    cleanFrontend,
     // lint
-    tsLintFrontend.name,
-    scssLintMain.name,
+    tsLintFrontend,
+    scssLintMain,
     // compile/copy
-    tsFrontend.name,
-    sassMain.name,
-    copyFrontend.name
+    tsFrontend,
+    sassMain,
+    copyFrontend
   ]);
 
-  grunt.registerTask(build.name, [
-    concurrentBuild.name
+  grunt.registerTask(build, [
+    concurrentBuild
   ]);
 
-  grunt.registerTask(sequentialBuild.name, [
-    buildBackend.name,
-    buildFrontend.name
+  grunt.registerTask(sequentialBuild, [
+    buildBackend,
+    buildFrontend
   ]);
 
   /*
    * Test Tasks
    */
-  grunt.registerTask(testBackend.name, [
-    buildBackend.name,
-    mochaCliBackend.name,
-    watchBackendTest.name
+  grunt.registerTask(testBackend, [
+    buildBackend,
+    mochaCliBackend,
+    watchBackendTest
   ]);
 
-  grunt.registerTask(testFrontend.name, [
-    buildFrontend.name,
-    karmaFrontendUnit.name,
-    watchFrontendTest.name
+  grunt.registerTask(testFrontend, [
+    buildFrontend,
+    karmaFrontendUnit,
+    watchFrontendTest
   ]);
 
-  grunt.registerTask(test.name, [
-    concurrentTest.name
+  grunt.registerTask(test, [
+    concurrentTest
   ]);
 
   /*
    * Code Coverage Tasks
    */
-  grunt.registerTask(coverBackend.name, [
-    buildBackend.name,
-    mochaIstanbulBackend.name
+  grunt.registerTask(coverBackend, [
+    buildBackend,
+    mochaIstanbulBackend
   ]);
 
-  grunt.registerTask(cover.name, [
-    coverBackend.name
+  grunt.registerTask(cover, [
+    coverBackend
   ]);
 };
