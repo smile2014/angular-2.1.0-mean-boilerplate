@@ -1,23 +1,23 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12">
-    <h2 class="title">Forms</h2>
-    <p>This page contains best practices for HTML form tags.</p>
-      <form>
+      <h2 class="title">Forms</h2>
+      <p>Example of HTML form tag structure.</p>
+      <form action="/api/v1/upload" enctype="multipart/form-data" method="post">
         <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" class="form-control" id="name" required>
+          <label for="forms-route-filename">Filename</label>
+          <input type="text" class="form-control" id="forms-route-filename"
+            name="filename" required>
         </div>
         <div class="form-group">
-          <label for="alterEgo">Alter Ego</label>
-          <input type="text" class="form-control" id="alterEgo">
+          <label for="forms-route-author">Author</label>
+          <input type="text" class="form-control" id="forms-route-author"
+            name="author">
         </div>
         <div class="form-group">
-          <label for="power">Hero Power</label>
-          <select class="form-control" id="power" required>
-            <option value="Monday">Monday</option>
-            <option value="Tuesday">Tuesday</option>
-          </select>
+          <label for="forms-route-file">File</label>
+          <input type="file" class="form-control" id="forms-route-file"
+            name="file">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
