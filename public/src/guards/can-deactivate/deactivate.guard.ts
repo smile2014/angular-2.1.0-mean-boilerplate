@@ -4,6 +4,6 @@ import {Injectable} from '@angular/core';
 export class DeactivateGuard {
   canDeactivate() {
     console.log('Deactivate Guard: public/ts/guards/can-deactivate/deactivate');
-    return false;
+    return true;
   }
 }

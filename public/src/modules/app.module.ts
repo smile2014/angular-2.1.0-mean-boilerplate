@@ -5,9 +5,11 @@ import {RouterModule} from '@angular/router';
 // routes
 import {ErrorRoute} from '../routes/error/error.route';
 import {HomeRoute} from '../routes/home/home.route';
+import {FormsRoute} from '../routes/forms/forms.route';
 
 // components
 import {GreetingComponent} from '../components/greeting.comp';
+import {Navbar} from '../components/navbar.comp';
 import {RootComponent} from '../routes/root.comp';
 
 // guards
@@ -25,10 +27,12 @@ import {routes} from '../config/router.config';
   declarations: [
     // routes
     ErrorRoute,
+    FormsRoute,
     HomeRoute,
 
     // components
     GreetingComponent,
+    Navbar,
     RootComponent
   ],
   providers: [

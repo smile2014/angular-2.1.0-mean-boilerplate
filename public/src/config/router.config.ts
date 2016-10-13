@@ -1,6 +1,7 @@
 import {Routes} from '@angular/router';
 
 import {ErrorRoute} from '../routes/error/error.route';
+import {FormsRoute} from '../routes/forms/forms.route';
 import {HomeRoute} from '../routes/home/home.route';
 import {ActivateGuard} from '../guards/can-activate/activate.guard';
 import {DeactivateGuard} from '../guards/can-deactivate/deactivate.guard';
@@ -13,5 +14,6 @@ export const routes: Routes = [
     canActivate: [ActivateGuard],
     canDeactivate: [DeactivateGuard]
   },
+  {path: 'forms', component: FormsRoute},
   {path: '**', component: ErrorRoute}
 ];
