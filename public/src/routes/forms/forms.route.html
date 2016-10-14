@@ -19,11 +19,6 @@
             name="author" disabled>
         </div>
         <div class="form-group">
-          <label for="forms-route-date">Date</label>
-          <input type="date" class="form-control" id="forms-route-date"
-            name="date">
-        </div>
-        <div class="form-group">
           <label for="forms-route-file">File</label>
           <input type="file" class="form-control" id="forms-route-file"
             name="file">
@@ -48,12 +43,21 @@
           </p>
           <p>
             <input type="radio" name="color" id="forms-route-color-green" value="green" />
-            <label for="forms-route-color-red">Green</label>
+            <label for="forms-route-color-green">Green</label>
           </p>
           <p>
             <input type="radio" name="color" id="forms-route-color-blue" value="blue" />
-            <label for="forms-route-color-red">Blue</label>
+            <label for="forms-route-color-blue">Blue</label>
           </p>
+        </fieldset>
+        <fieldset class="form-group">
+          <legend>Jobs</legend>
+          <select multiple class="form-control">
+            <option>Software Engineer</option>
+            <option>Business Analyst</option>
+            <option>Chef</option>
+            <option>Graphic Design</option>
+          </select>
         </fieldset>
         <input type="hidden" name="hidden" value="hidden" />
         <button type="submit" class="btn btn-default">Submit</button>
