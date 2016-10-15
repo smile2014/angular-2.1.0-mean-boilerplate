@@ -1,10 +1,9 @@
 # MEAN2 Boilerplate
-#### Angular 2 Version: 2.0.2
 **MongoDB, ExpressJS, Angular2, NodeJS** boilerplate featuring:
 
 * Full stack Typescript
 * Browser and server live reload
-* API versioning
+* SystemJS Packaging
 * Boilerplate for Mongoose, Formidable, Minimist, etc.
 * Unit testing with Mocha, Istanbul, Karma, and Jasmine
 * Sass integration for Angular 2
